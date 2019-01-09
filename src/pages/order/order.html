@@ -1,0 +1,57 @@
+<!--
+  Generated template for the OrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>order</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+
+<ion-content>
+  <div class="tittle-name bg-color">
+    <p>Quản lý order:  </p>
+    <div class="filter-btn">
+      <select id="order" name="order">
+        <option value="order-old">Order đã thanh toán</option>
+        <option value="order-active">Order chưa thanh toán</option>
+        <option value="order-new">Order đặt hàng</option>
+      </select>
+    </div>
+    <button ion-button clear (click)="moveNewOrder()"> Thêm mới </button>
+  </div>
+  <ion-row class="menu-search a3-center"> 
+    <ion-col col-6><input type="text" placeholder="Tìm kiếm...">
+    </ion-col>
+    <ion-col col-1><button ion-button icon-only clear><ion-icon name="search"></ion-icon></button></ion-col>
+   </ion-row>
+   <table class="list-order">
+      <tr>
+        <th> Mã Order</th>
+        <th> Tên bàn</th>
+        <th>Mã nhân viên</th>
+        <th>Tên nhân viên</th>
+        <th>Thời gian bắt đầu</th>
+        <th>Thời gian kết thúc</th>
+        <th>Ngày</th>
+        <th>Trạng thái</th>
+        <th>Tổng tiền</th>
+      </tr>
+      <tr  class="hover-name" *ngFor="let item of items" (click)="moveOrderDetail()">
+        <td >{{item.orderID}}</td>
+        <td >{{item.table}}</td>
+        <td >{{item.nameID}}</td>
+        <td >{{item.name}}</td>
+        <td >{{item.startTime}}</td>
+        <td >{{item.endTime}}</td>
+        <td >{{item.date}}</td>
+        <td >{{item.status}}</td>
+        <td >{{item.money}}</td>
+      </tr>
+    </table>
+</ion-content>

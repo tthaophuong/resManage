@@ -1,0 +1,133 @@
+page-discount {
+  .table-list {
+    width: 100%;
+    overflow: scroll;
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    td:hover {
+      color: #ffb713;
+    }
+  }
+
+  .discount-lists {
+    padding: 10px;
+  }
+
+  .discount-tittle {
+    font-size: 28px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .add-program {
+    text-align: center;
+    margin: 20px;
+
+    button {
+      background-color: #ffb713;
+      color: black;
+      min-width: 200px;
+    }
+
+    button:hover {
+      background-color: #ffb713 !important;
+      opacity: 0.8;
+    }
+  }
+
+  .time-discount {
+    padding: 8px;
+    margin: 20px;
+
+    label {
+      margin: 0 10px;
+    }
+
+    button {
+      color: black;
+    }
+
+    button:hover {
+      color: #ffb713;
+      background-color: aquamarine;
+    }
+  }
+
+  .time-start {
+    font-size: 18px;
+  }
+
+  .calendar {
+    border: 1px solid rgb(43, 41, 41);
+  }
+
+  .dropdown {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #efeded;
+    z-index: 5;
+    transition: 200ms linear;
+    // border: 1px solid white;
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+  .calendar:hover .dropdown{
+    display: block;
+  }
+  .day-of-weeks {
+    display: flex;
+    width: 100%;
+
+    .day {
+      width: 14.2857143%;
+      text-align: center;
+      color: rgb(43, 41, 41);
+    }
+  }
+
+  .day-in-month {
+    .day {
+      width: 14.2857143%;
+      text-align: center;
+      padding: .6rem;
+      margin: .6rem 0;
+      position: relative;
+      color: white;
+
+      &.active {
+        color: gray;
+      }
+
+      .bg {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background: #ffb713;
+        z-index: -1;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+page-login {
+  .container {
+    padding: 25px;
+
+    p {
+      font-size: 36px;
+    }
+  }
+
+  .text-input {
+    margin: 4px 0 25px;
+    font-size: 18px;
+  }
+
+  .text-decor {
+    font-size: 20px;
+
+    ion-label {
+      min-width: 160px;
+    }
+  }
+
+  .label-md-primary,
+  .item-input .label-md-primary,
+  .item-select .label-md-primary,
+  .item-datetime .label-md-primary {
+    color: white;
+  }
+
+  .checkbox {
+    display: flex;
+    text-align: left;
+    margin: auto;
+    ion-label{
+      margin-left: 15px;
+    }
+  }
+
+  .btns button {
+    background-color: #ffb713;
+    color: #00634e;
+    font-size: 24px;
+  }
+  .btns button:hover{
+    background-color: #ffb713;
+    opacity: 0.8;
+    font-family: 'Times New Roman', Times, serif;
+  }
+}

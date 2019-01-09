@@ -1,0 +1,46 @@
+<!--
+  Generated template for the SchedulePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>schedule</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+
+<ion-content>
+  <div class="tittle-name bg-color">
+    <p>Quản lý lịch làm việc</p>
+    <div class="search-btn">
+      <ion-searchbar></ion-searchbar>
+      <button ion-button inline class="btn-menu" (click)="createSchedule()">
+        <ion-icon name="add"></ion-icon> Thêm mới
+      </button>
+    </div>
+  </div>
+  <!-- <div class="schedule-lists" > -->
+    <table class="list-employee">
+      <tr class="table-title">
+        <th>STT</th>
+        <th>Mã ID</th>
+        <th>Ca làm việc</th>
+        <th>Bắt đầu</th>
+        <th>Kết thúc</th>
+        <th>Trạng thái</th>
+      </tr>
+      <tr class="hover-name" *ngFor="let item of items" (click)="openModel()">
+        <td>{{item.stt}}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.timeStart}}</td>
+        <td>{{item.timeEnd}}</td>
+        <td>{{item.statusSch}}</td>
+      </tr>
+    </table>
+  <!-- </div> -->
+</ion-content>

@@ -1,0 +1,85 @@
+page-food-info {
+  .tittle {
+    padding: 15px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .btns {
+    text-align: center;
+    margin-top: 20px;
+
+    button {
+      padding: 6px;
+      min-width: 150px;
+      margin-right: 20px;
+    }
+  }
+
+  .bg-color1 {
+    background: rgb(235, 220, 18);
+    color: black;
+  }
+
+  .avata {
+    border: 1px solid black;
+    max-width: 200px;
+    min-height: 200px;
+    position: relative;
+    margin: auto;
+  }
+
+  .icon-ava:hover {
+    opacity: 0.6;
+  }
+
+  .button-md:hover:not(.disable-hover) {
+    background-color: #00634e;
+    opacity: 0.8;
+  }
+
+  .icon-ava {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 20px;
+    padding: 6px;
+  }
+
+  .avata-img {
+    display: flex;
+    margin-top: 8px;
+    position: absolute;
+    left: 30px;
+  }
+
+  .take-photo {
+    padding: 8px;
+    border-right: 1px solid black;
+  }
+
+  .photo {
+    border-right: none;
+  }
+
+  .cate-tittle {
+    position: relative;
+  }
+
+  .btn-category {
+    position: absolute;
+    color: black;
+    border: 1px solid;
+    top: 0;
+    right: 10px;
+    border-radius: 50%;
+    padding: 10px;
+
+  }
+
+  .btn-category:hover {
+    color: orangered !important;
+    background-color: white !important;
+  }
+
+}

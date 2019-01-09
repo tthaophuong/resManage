@@ -1,0 +1,66 @@
+<!--
+  Generated template for the ReportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>report</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+
+<ion-content>
+  <div class="tittle-name bg-color">
+    <p>Báo cáo nhà hàng: </p>
+    <!-- <button ion-button clear (click)="moveOrderDetail()"> Upload </button> -->
+    <select name="" >
+      <option value="text">Tháng 1</option>
+      <option value="text">Tháng 2</option>
+      <option value="text">Tháng 3</option>
+      <option value="text">Tháng 4</option>
+      <option value="text">Tháng 5</option>
+      <option value="text">Tháng 6</option>
+      <option value="text">Tháng 7</option>
+      <option value="text">Tháng 8</option>
+      <option value="text">Tháng 9</option>
+      <option value="text">Tháng 10</option>
+      <option value="text">Tháng 11</option>
+      <option value="text">Tháng 12</option>
+    </select>
+  </div>
+  <!-- <ion-row>
+    <ion-col col-4 class="time-start">Từ ngày: </ion-col>
+    <ion-col col-8 class="calendar">
+      <div class="dropdown" [class.show]="isShowDate">
+        <div class="day-of-weeks" margin-top>
+          <div class="day" *ngFor="let day of dayofweeks">
+            {{day}}
+          </div>
+        </div>
+        <div class="day-in-month row">
+          <div tappable class="day" (click)="changeNumber(day)" *ngFor="let day of calendar.days" 
+          [class.active]="day && day.dayNumber >= today.getDate() && calendar.month == today.getMonth()+ 1">
+            <span *ngIf="day">{{day.dayNumber}}</span>
+            <div class="bg" *ngIf="day && day.dayNumber == numberSelected"></div>
+          </div>
+        </div>
+
+      </div>
+    </ion-col>
+  </ion-row> -->
+  <dl class="res-diagram">
+      <dt>Doanh số của nhà hàng trong tháng 1</dt>
+
+    <dd class="percentage percentage-11"><span class="text">Salad: 11.33%</span></dd>
+    <dd class="percentage percentage-49"><span class="text">Gà nướng: 49.77%</span></dd>
+    <dd class="percentage percentage-16"><span class="text">Cá nướng: 16.09%</span></dd>
+    <dd class="percentage percentage-5"><span class="text">Lẩu bò: 5.41%</span></dd>
+    <dd class="percentage percentage-2"><span class="text">Rau xào: 1.62%</span></dd>
+    <dd class="percentage percentage-2"><span class="text">Khoai tây chiên: 2%</span></dd>
+  </dl>
+
+</ion-content>

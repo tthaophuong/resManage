@@ -1,0 +1,139 @@
+<ion-content>
+  <div class="food-container">
+    <div class="tittle"> Thông tin sản phẩm</div>
+
+    <button ion-button icon-only clear class="btn-category" (click)="closeCombo()">
+      <ion-icon icon-only name="close"></ion-icon>
+    </button>
+
+    <ion-row style="margin: 20px">
+      <ion-col col-5>
+        <div class="avata">
+          <div class="icon-ava text-center">
+            <ion-icon name="camera" icon-ony></ion-icon>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col col-7>
+        <ion-row>
+          <ion-col col-3>
+            <ion-label for="fname"> Mã sản phẩm</ion-label>
+          </ion-col>
+          <ion-col col-5><input type="text" id="fname" name="firstname" placeholder="Your ID">
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-3>
+            <ion-label for="fname">Tên Sản phẩm</ion-label>
+          </ion-col>
+          <ion-col col-5><input type="text" id="fname1" name="firstname" placeholder="Your name.."> </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-3>
+            <ion-label for="fname">Giá sản phẩm</ion-label>
+          </ion-col>
+          <ion-col col-5>
+            <input type="text" id="fname1" name="firstname" placeholder="Your name..">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3>
+            <ion-label for="fname">Phân loại</ion-label>
+          </ion-col>
+          <ion-col col-5>
+            <select id="status" name="status">
+              <option value="active">Đồ ăn</option>
+              <option value="block">Đồ uống</option>
+              <option value="block">Khác</option>
+            </select>
+          </ion-col>
+
+        </ion-row>
+        <ion-row>
+          <ion-col col-3>
+            <ion-label for="fname">Trạng thái</ion-label>
+          </ion-col>
+          <ion-col col-5>
+            <select id="status" name="status">
+              <option value="active">Còn bán</option>
+              <option value="block">Dừng bán</option>
+            </select>
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-3>
+            <ion-label for="fname">Nguyên liệu</ion-label>
+          </ion-col>
+          <ion-col col-5> </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3>
+            <ion-label for="fname">Đồ ăn đi kèm</ion-label>
+          </ion-col>
+          <ion-col col-5><input type="text-area" id="fname1" name="firstname" placeholder="Your name.."> </ion-col>
+        </ion-row>
+
+
+
+
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <!-- <div class="category-container"> -->
+    <!-- <div class="cate-tittle">
+    <p>Thêm danh mục</p>
+    <button ion-button icon-only clear class="btn-category">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </div> -->
+    <!-- <ion-row>
+      <select id="status" name="status" class="category-info ">
+        <option value="active">Đồ ăn</option>
+        <option value="block">Đồ uống</option>
+        <option value="block">Hoa quả</option>
+      </select>
+    </ion-row>
+    <ion-row><input class="category-info " type="text-area" id="fname1" name="firstname" placeholder="Tên danh mục">
+    </ion-row>
+  </div>
+
+  <div class="combo-container">
+        <div class="combo-container">
+        <ion-label>Tên Combo</ion-label>
+        <ion-row>
+          <input type="text" id="fname1" name="firstname" placeholder="Combo's name..">
+        </ion-row>
+        <ion-label>Sản phẩm</ion-label>
+        <ion-row> <input type="text" placeholder="Tìm kiếm..."></ion-row>
+        <table>
+      
+          <tr *ngFor="let item of items">
+            <td>1. </td>
+            <td>{{item.name}}</td>
+            <td>x</td>
+            <td><label>{{item.quantity}}</label></td>
+            <td>
+              <ion-icon class="remove"></ion-icon>
+            </td>
+          </tr>
+        </table>
+        <div class="caculator">
+          <ion-label>Tạm tính:</ion-label>
+          <ion-label>Sản phẩm</ion-label>
+        </div>
+        <ion-label>Giá tiền </ion-label>
+        <ion-row> <input type="text" placeholder="Giá tiền"></ion-row>
+      </div>
+  </div>
+-->
+   <div class="btns "> 
+    <button class="bg-color1" ion-button>Xóa</button>
+    <button class="bg-color1" ion-button>Lưu</button>
+  </div> 
+</ion-content>

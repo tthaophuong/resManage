@@ -1,0 +1,131 @@
+<ion-content>
+  <div class="tittle">Thông tin nhân viên
+    <button ion-button icon-only clear (click)="hideDetail()">
+      <ion-icon icon-only name="close"></ion-icon>
+    </button>
+  </div>
+  <form class="employee-form">
+    <!-- <ion-row>
+      <ion-col col-3>
+        <ion-label for="fname">Trạng thái làm việc:</ion-label>
+      </ion-col>
+      <ion-col col-5>
+        <ion-label for="fname">Đang làm việc</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-7>
+
+        <ion-row>
+          <ion-col col-5>
+            <ion-label for="fname">Mã nhân viên</ion-label>
+          </ion-col>
+          <ion-col col-5><input type="text" id="fname" name="firstname" placeholder="Your ID">
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <ion-label for="fname">Tên nhân viên</ion-label>
+          </ion-col>
+          <ion-col col-5><input type="text" id="fname1" name="firstname" placeholder="Your name.."> </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <ion-label for="fname">Giới tính</ion-label>
+          </ion-col>
+          <ion-col col-5>
+            <select id="gender" name="gender">
+              <option value="female">Nữ</option>
+              <option value="male">Nam</option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <ion-label for="fname">Ngày sinh</ion-label>
+          </ion-col>
+          <ion-col col-5>
+            <input type="text" id="fname1" name="firstname" placeholder="Your name..">
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <ion-label for="fname">Chức vụ</ion-label>
+          </ion-col>
+          <ion-col col-5>
+            <select id="status" name="status">
+              <option value="active">Quản lý</option>
+              <option value="block">Nhân viên order</option>
+              <option value="block">Nhân viên bếp</option>
+              <option value="block">Nhân viên bar</option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <ion-label for="fname">Ca làm việc</ion-label>
+          </ion-col>
+          <ion-col col-5> <select id="gender" name="gender">
+              <option value="australia">Fulltime(8am-15pm)</option>
+              <option value="canada">Parttime(17pm-22pm)</option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <ion-label for="fname">Trạng thái tài khoản</ion-label>
+          </ion-col>
+          <ion-col col-5>
+            <select id="status" name="status">
+              <option value="active">Đã kích hoạt</option>
+              <option value="block">Đã bị khóa</option>
+            </select>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col col-5>
+        <div class="avata">
+
+        </div>
+        <div class="avata-img ">
+          <div class="take-photo">Chụp ảnh</div>
+          <div class="take-photo photo"> Upload ảnh</div>
+        </div>
+      </ion-col>
+    </ion-row> -->
+    <div class="add-employee">
+    <P>Thêm nhân viên </P>
+    <div class="schedule bor-table">
+      <ion-input type="text" value="" placeholder="Tên đăng nhập"></ion-input>
+    </div>
+    <div class="schedule bor-table">
+      <ion-input type="password" value="" placeholder="Mật khẩu"></ion-input>
+    </div>
+    <div class="schedule bor-table">
+        <select id="status" name="status" class="table-info ">
+          <option value="active">Full time (8:00-16:00)</option>
+          <option value="block">Parttime (8:00-13:30)</option>
+          <option value="block">Parttime (17:30-22:30)</option>
+        </select>
+      </div>
+    <div class="schedule bor-table">
+      <select id="status" name="status" class="table-info ">
+        <option value="active">Nhân viên thu ngân</option>
+        <option value="block">Nhân viên bếp</option>
+        <option value="block">Nhân viên phục vụ</option>
+      </select>
+    </div>
+  </div>
+    <div class="btns ">
+      <button class="bg-color1" ion-button>Xóa</button>
+      <button class="bg-color1" ion-button>Lưu</button>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-content>
+  <div class="tittle-name bg-color">
+    <p>Quản lý nhân viên </p>
+    <div class="search-btn">
+      <ion-searchbar></ion-searchbar>
+      <button ion-button inline class="btn-menu" (click)="doPrompt()">
+        <ion-icon name="add"></ion-icon> Thêm mới
+      </button>
+    </div>
+  </div>
+  <div class="list-content">
+    <table class="list-employee">
+      <tr class="table-title">
+        <th>STT</th>
+        <th>Mã nhân viên</th>
+        <th>Tên nhân viên</th>
+        <th>Ngày sinh</th>
+        <th>SĐT</th>
+        <th>TG hoạt động</th>
+        <th>Trạng thái</th>
+      </tr>
+      <tr class="hover-name" *ngFor="let item of items" (click)="openModel()">
+        <td>{{item.stt}}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.birth}}</td>
+        <td>{{item.phone}}</td>
+        <td>{{item.time}}</td>
+        <td>{{item.status}}</td>
+      </tr>
+    </table>
+
+    <div class="total-employee">
+      <ion-label for="">Tổng số nhân viên: </ion-label>
+      <ion-label for="">5</ion-label>
+    </div>
+  </div>
+
+  
+</ion-content>

@@ -1,0 +1,78 @@
+page-order-detail {
+  .title-order {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+  .order-detail {
+    padding: 15px;
+  }
+
+  .close-btn button {
+    border: 1px solid yellow;
+    padding: 8px;
+    text-align: left;
+    color: black;
+    float: right;
+  }
+
+  .order-title {
+    display: grid;
+
+    label {
+      padding: 8px;
+    }
+  }
+
+  .order-food {
+    margin-top: 20px;
+  }
+
+  .myTable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+
+  .myTable th,
+  .myTable td {
+    text-align: left;
+    padding: 12px;
+  }
+
+  .myTable tr {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .myTable tr.header {
+    background-color: #f1f1f1;
+  }
+
+  .myTable tr:hover {
+    color: red;
+  }
+
+  .btns {
+    text-align: center;
+    margin-top: 20px;
+
+    button {
+      padding: 6px;
+      min-width: 150px;
+      margin-right: 20px;
+    }
+  }
+
+  .bg-color1 {
+    background: rgb(235, 220, 18);
+    color: black;
+  }
+
+  .bg-color1:hover {
+    background: rgb(235, 220, 18) !important;
+    opacity: 0.8;
+  }
+}

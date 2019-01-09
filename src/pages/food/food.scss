@@ -1,0 +1,62 @@
+page-food {
+  .content-container {
+    position: relative;
+  }
+
+  .close-btn button{
+      border: 1px solid yellow;
+      padding: 8px;
+      text-align: left;
+      color: black;
+      float: right;
+  }
+
+  .menu-lists ion-list-header {
+    font-size: 35px;
+    color: rgb(156, 29, 7);
+  }
+
+  .label-md {
+    margin: 10px 8px 10px 0;
+  }
+
+  .button-clear-md {
+    color: black;
+  }
+
+  .item-md .item-button {
+    font-size: 1.6rem;
+  }
+  .title-header{
+    font-size: 35px;
+    color: rgb(156, 29, 7);
+    margin: 10px 8px 10px 0
+  }
+
+ .according{
+   margin-top: 10px;
+   padding: 10px;
+   font-size: 18px;
+  //  background: whitesmoke;
+ }
+ .according:hover{
+  //  color: rgb(184, 10, 10);
+  color: red;
+ }
+ .according ion-icon{
+   float: right;
+ }
+ .panel{
+   display: none;
+   overflow: hidden;
+   .panel-item{
+     padding: 8px 10px;
+   }
+ }
+ .list-header-md{
+  border-top: 0;
+ }
+.product-container:hover{
+color: red;
+}
+}

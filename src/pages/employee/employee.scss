@@ -1,0 +1,78 @@
+page-employee {
+  .tittle-name {
+    display: flex;
+    position: relative;
+    background-color: #dddddd;
+    border-bottom: 1px solid rgb(180, 180, 180);
+    p {
+      margin-left: 15px;
+      font-size: 20px;
+    }
+  }
+
+  .btn-menu {
+    margin: auto;
+    padding: 10px;
+    color: white;
+    background-color: rgb(17, 141, 44);
+  }
+  .table-title {
+    background-color: rgb(194, 112, 18);
+    color: white;
+  }
+.search-btn{
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+  .list-employee {
+    margin: 20px;
+    width: 100%;
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2
+    }
+
+    .hover-name:hover {
+      color: red;
+    }
+
+  }
+
+  .total-employee {
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    font-size: 18px;
+    color: red;
+    ;
+
+    ion-label {
+      overflow: visible;
+    }
+  }
+
+  .alert-md .alert-wrapper{
+    min-width: 370px;
+    text-align: center;
+  }
+
+
+
+  
+}

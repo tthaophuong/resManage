@@ -1,0 +1,98 @@
+page-employee-detail {
+  .tittle {
+    text-align: center;
+    padding: 10px;
+    font-size: 28px;
+    position: relative;
+    margin-bottom: 15px 0;
+
+    button {
+      border: 1px solid black;
+      border-radius: 50%;
+      color: black;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    button:hover{
+      color: orangered;
+    }
+  }
+
+  .button[icon-only] {
+    padding: 6px;
+  }
+
+  .btns {
+    text-align: center;
+    margin-top: 20px;
+
+    button {
+      padding: 6px;
+      min-width: 100px;
+    }
+  }
+
+  .avata {
+    border: 1px solid black;
+    max-width: 200px;
+    min-height: 200px;
+    position: relative;
+  }
+
+  .icon-ava {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 20px;
+    padding: 6px;
+  }
+
+  .avata-img {
+    display: flex;
+    margin-top: 8px;
+    position: absolute;
+    left: 30px;
+  }
+
+  .take-photo {
+    padding: 8px;
+    border-right: 1px solid black;
+  }
+
+  .take-photo:hover {
+    color: orangered;
+  }
+
+  .photo {
+    border-right: none;
+  }
+
+  .bg-color1 {
+    background: #ffb713;;
+    color: black;
+  }
+  .bg-color1:hover{
+    background: #ffb713;
+    opacity: 0.8;
+  }
+
+  input,
+  select {
+    padding: 6px;
+    min-width: 185px;
+  }
+  .add-employee{
+    padding: 14px;
+  }
+  .schedule{
+    margin-bottom: 20px;
+  }
+  .table-info {
+    border: none;
+    font-size: 18px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 3px;
+  }
+}

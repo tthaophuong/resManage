@@ -14,3 +14,140 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.modal-wrapper{
+  left: calc(50% - (800px/2));
+  top: calc(50% - (600px/2));
+  position: absolute;
+  width: 800px;
+  height: 600px;
+}
+
+.bg-color {
+  color: #066020;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.list-icon {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column;
+  text-align: center;
+}
+
+.font-common {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.a3-center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.menu-list {
+  display: grid;
+  justify-content: center;
+  max-width: 80px;
+}
+
+.user-img {
+  overflow: hidden;
+  border-bottom: 1px solid rgb(180, 180, 180);
+
+  img {
+    max-width: 60px;
+  }
+}
+
+.icon-list {
+  justify-content: center;
+
+  ion-icon {
+    font-size: 37px;
+    margin-top: 15px;
+    color: #066020;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+}
+
+.dropdown {
+  position: relative;
+}
+
+.alert-md .alert-wrapper{
+  min-width: 370px;
+  text-align: center;
+}
+.alert-md .alert-head{
+  text-align: center;
+}
+.alert-md .alert-message:empty{
+  display: none;
+}
+.alert-md .alert-button{
+  margin: auto;
+  background: rgb(235, 220, 18);
+  color:black;
+  min-width: 80px;
+  text-align: center;
+}
+.split-pane-md.split-pane-visible>.split-pane-side {
+  min-width: 80px;
+  max-width: 80px;
+  border-left: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.split-pane-ios.split-pane-visible>.split-pane-side {
+  min-width: 80px;
+  max-width: 80px;
+  border-left: 0;
+}
+.bor-table{
+  border: 1px solid black;
+  border-radius: 3px;
+}
+.schedule-total {
+  padding: 10px;
+  text-align: center;
+  position: relative;
+
+  p {
+    font-size: 28px;
+  }
+
+  button {
+    background: #ffb713;
+    min-width: 200px;
+  }
+
+  button:hover {
+    color: orangered;
+  }
+}
+
+.schedule-btn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  background-color: white !important;
+  color: black;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.schedule {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.save-btn {
+  color: black;
+}

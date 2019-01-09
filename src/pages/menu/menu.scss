@@ -1,0 +1,86 @@
+page-menu {
+  .menu-header {
+    position: relative;
+    display: flex;
+    padding: 8px;
+    background-color: #dddddd;
+  }
+
+  .menu-name {
+    padding: 10px;
+    margin-left: 8px;
+    min-width: 140px;
+    text-align: center;
+    background: white;
+    border-radius: 3px;
+  }
+
+  .menu-name:hover {
+    color: orangered;
+  }
+
+  .menu-ctn {
+    margin: 20px;
+    text-align: left;
+    font-size: 22px;
+
+    button {
+      // margin-left: 15px;
+      padding: 20px;
+      color: white;
+      background-color: rgb(17, 141, 44);
+    }
+  }
+
+  .title-menu {
+    margin: auto;
+    font-weight: bold;
+  }
+
+  .search-menu ion-input {
+    border: 1px solid grey;
+  }
+
+  .btn-menu {
+    margin: auto;
+    button:hover {
+      background-color: rgb(17, 141, 44) !important;
+      opacity: 0.8;
+  }
+  }
+  
+  .table-list {
+    width: 100%;
+    position: relative;
+    margin: 15px;
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+
+
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    td:hover {
+      color: red;
+    }
+
+  }
+
+  .table-title {
+    background-color: rgb(194, 112, 18);
+    color: white;
+  }
+}
+

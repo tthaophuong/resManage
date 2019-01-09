@@ -1,0 +1,161 @@
+page-map {
+  .menu-header {
+    position: relative;
+    display: flex;
+    padding: 8px;
+    background-color: #dddddd;
+  }
+
+  .menu-name {
+    padding: 10px;
+    margin-left: 8px;
+    min-width: 140px;
+    text-align: center;
+    background: white;
+    border-radius: 3px;
+  }
+
+  .menu-name:hover {
+    color: orangered;
+  }
+
+  .menu-ctn {
+    margin: 20px;
+    text-align: left;
+    font-size: 22px;
+
+    button {
+      margin-left: 15px;
+      padding: 10px;
+      color: white;
+      background-color: rgb(17, 141, 44);
+    }
+  }
+
+  .title-menu {
+    margin: auto;
+    font-weight: bold;
+  }
+
+  .search-menu ion-input {
+    border: 1px solid grey;
+  }
+
+  .btn-menu {
+    margin: auto;
+  }
+
+  .table-list {
+    border: 1px solid black;
+    margin-right: 15px;
+  }
+
+  .table-info {
+    border: 1px solid black;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  .btn {
+    text-align: center;
+    margin-top: 20px;
+
+    button {
+      background-color: rgb(245, 210, 13);
+      min-width: 100px;
+      color: black;
+    }
+  }
+
+  .table-imgs img {
+    max-width: 100px;
+    // margin-right: 20px;
+    padding: 10px;
+  }
+
+  .info {
+    display: flex;
+    padding: 10px;
+    font-size: 20px;
+    margin-left: 20px;
+
+    ion-icon {
+      margin: auto;
+      padding: 10px;
+    }
+  }
+
+  .floor {
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+  }
+
+  .floor:hover {
+    background: #dddddd;
+    color: orangered;
+  }
+
+  .urban {
+    width: 45%;
+  }
+
+  .area-list {
+    display: flex;
+  }
+
+  .area {
+    display: none;
+  }
+
+
+  .tittle-name {
+    display: flex;
+    position: relative;
+    background-color: #dddddd;
+    border-bottom: 1px solid rgb(180, 180, 180);
+
+    p {
+      margin-left: 15px;
+      font-size: 20px;
+    }
+  }
+  .btn-menu {
+    margin: auto;
+    padding: 10px;
+    color: white;
+    background-color: rgb(17, 141, 44);
+  }
+
+  .btn-menu:hover {
+    background-color: rgb(17, 141, 44) !important;
+    color: rgb(194, 112, 18);
+  }
+
+  .search-btn {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .floor-number{
+    background: rgb(194, 112, 18);
+  }
+  .map-info{
+    margin: 20px;
+    font-size: 18px;
+  }
+  .floor-number{
+    border: none;
+    color: white;
+    padding: 8px;
+  }
+  .table-number{
+    max-width: 80px;
+    padding: 6px;
+    margin: 10px 10px 10px 0;
+    text-align: center;
+  }
+}

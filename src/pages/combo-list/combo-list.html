@@ -1,0 +1,35 @@
+<ion-content>
+  <div class="schedule-total">
+    <p>Thêm Order</p>
+    <button class="schedule-btn" ion-button icon-only clear (click)="dismiss()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+    <div class="schedule bor-table">
+      <ion-input type="text" value="" placeholder="Nhập tên combo"></ion-input>
+    </div>
+    <div class="schedule bor-table">
+      <ion-input type="text" value="" placeholder="Thêm và tìm kiếm sản phẩm"></ion-input>
+    </div>
+    <ion-row class="schedule" *ngFor="let combo of combos">
+      <ion-col col-3 class="combo-detail">{{combo.namec}}</ion-col>
+      <ion-col col-3 class="combo-detail ">{{combo.linkc}}</ion-col>
+      <ion-col col-3 class="combo-detail combo-quantity">{{combo.quantityc}}</ion-col>
+      <ion-col col-3 class="combo-detail ">{{combo.removec}}</ion-col>
+    </ion-row>
+    <ion-row class="combo-costs ">
+      <ion-col col-3></ion-col>
+      <ion-col col-3></ion-col>
+      <ion-col col-3 class="combo-cost ">
+        <ion-label>Tạm tính:</ion-label>
+      </ion-col>
+      <ion-col col-3 class="combo-cost ">
+        <ion-label>500.000đ</ion-label>
+      </ion-col>
+    </ion-row>
+    <div class="schedule bor-table">
+      <ion-input type="text" value="" placeholder="Giá bán"></ion-input>
+    </div>
+
+    <button class="save-btn" ion-button inline>Lưu</button>
+  </div>
+</ion-content>

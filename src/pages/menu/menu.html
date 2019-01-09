@@ -1,0 +1,80 @@
+<ion-content>
+  <div class="menu-header bg-color">
+    <div class="menu-name" (click)="onClickMenu(1)">Danh mục</div>
+    <div class="menu-name" [class.selected]="index == 0" (click)="onClickMenu(2)">Món ăn</div>
+    <div class="menu-name" [class.selected]="index == 0" (click)="onClickMenu(3)">Combo</div>
+
+  </div>
+  <div class="content-list">
+    <ion-row class="menu-ctn a3-center">
+      <ion-col col-6 class="title-menu" >{{resnames}} </ion-col>
+      <ion-col col-5 class="search-menu">
+          <ion-searchbar ></ion-searchbar> 
+      </ion-col>
+      <ion-col col-1 class="btn-menu"> 
+        <button ion-button inline (click)="openModelCombo()">
+          <ion-icon name="add"></ion-icon> Thêm mới
+        </button> </ion-col> 
+    </ion-row>
+    <table class="table-list" [hidden]="indexMenu != CATEGORY" >
+      <tr class="table-title">
+        <th>Số thứ tự </th>
+        <th>Mã ID</th> 
+        <th>Tên </th>
+        <th>Loại </th>
+        <th>Icon </th>
+      </tr>
+      <tr *ngFor="let item of items">
+        <td (click)="openModelFood()">{{item.code}}</td>
+        <td (click)="openModelFood()">{{item.id}}</td>
+        <td (click)="openModelFood()">{{item.name}}</td>
+        <td (click)="openModelFood()">{{item.group}}</td>
+        <td (click)="openModelFood()">{{item.icon}}</td>
+      </tr>
+    </table>
+
+    <table class="table-list" [hidden]="indexMenu != PRODUCT">
+        <tr class="table-title">
+          <th>Số thứ tự </th>
+          <th>Mã ID</th>
+          <th>Tên </th>
+          <th>Giá </th>
+          <th>Tiền </th>
+          <th>Đơn vị tính </th>
+          <th>Loại </th>
+          <th>Trạng thái </th>
+        </tr>
+        <tr *ngFor="let food of foods">
+          <td (click)="openModelFood()">{{food.codef}}</td>
+          <td (click)="openModelFood()">{{food.idf}}</td>
+          <td (click)="openModelFood()">{{food.namef}}</td>
+          <td (click)="openModelFood()">{{food.costf}}</td>
+          <td (click)="openModelFood()">{{food.moneyf}}</td>
+          <td (click)="openModelFood()">{{food.countf}}</td>
+          <td (click)="openModelFood()">{{food.kindf}}</td>
+          <td (click)="openModelFood()">{{food.statusf}}</td>
+        </tr>
+      </table>
+
+      <table class="table-list" [hidden]="indexMenu != COMBO">
+          <tr class="table-title">
+            <th>Số thứ tự </th>
+            <th>Mã ID</th>
+            <th>Tên </th>
+            <th>Giá </th>
+            <th>Loại </th>
+            <th>Trạng thái </th>
+          </tr>
+          <tr *ngFor="let combo of combos">
+            <td (click)="openModelCombo()">{{combo.codec}}</td>
+            <td (click)="openModelCombo()">{{combo.idc}}</td>
+            <td (click)="openModelCombo()">{{combo.namec}}</td>
+            <td (click)="openModelCombo()">{{combo.costc}}</td>
+            <td (click)="openModelCombo()">{{combo.kindc}}</td>
+            <td (click)="openModelCombo()">{{combo.statusc}}</td>
+          </tr>
+        </table>
+  
+
+  </div>
+</ion-content>
