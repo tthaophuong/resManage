@@ -30,7 +30,6 @@ export class MapPage {
 
   indexMenu = 1;
   titles = ["Danh sách tầng", "Danh sách khu vực", "Danh sách bàn"];
-
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public modCtrl: ModalController, public mAppModule: AppControllerProvider) {
   }
@@ -45,8 +44,7 @@ export class MapPage {
   }
 
 createInfo(){
-  let inf = this.modCtrl.create("TablePage")
-  inf.present()
+  this.mAppModule.showModal("TablePage",{mode: this.indexMenu})
 }
   
   tables = [

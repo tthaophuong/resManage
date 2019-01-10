@@ -22,9 +22,8 @@ import { AppControllerProvider } from '../../providers/app-controller/app-contro
 })
 export class MenuPage {
   index: number = 0;
-  num: number = 0;
+  // num: number = 0;
   menu: Array<{ menuSelected: string, subMenu: string }> = [];
-  // category: Array<{ categorySelected: string, subCategory: string }> = [];
   menuSelected: any;
 
   CATEGORY: number = 1;
@@ -52,10 +51,10 @@ export class MenuPage {
   }
 
   openModelFood() {
-    if (this.num=0) {
-      this.indexMenu = this.num;
-      this.menuSelected = this.menu[this.num - 1]
-    }
+    // if (this.num=0) {
+    //   this.indexMenu = this.num;
+    //   this.menuSelected = this.menu[this.num - 1]
+    // }
     this.mAppModule.showModal("FoodInfoPage");
   }
   openModelCombo() {

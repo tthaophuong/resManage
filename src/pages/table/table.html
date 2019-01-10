@@ -12,9 +12,10 @@
 
 </ion-header> -->
 
-
+ 
 <ion-content>
   <div class="schedule-total">
+    <div class="floor" *ngIf="mMode == 1">
     <p>Thêm tầng</p>
     <button class="schedule-btn" ion-button icon-only clear (click)="dismiss()">
       <ion-icon name="close"></ion-icon>
@@ -22,7 +23,8 @@
     <div class="schedule bor-table">
       <ion-input type="text" value="" placeholder="Nhập tên tầng"></ion-input>
     </div>
-
+</div>
+<div class="tables" *ngIf="mMode == 2">
     <p>Thêm bàn</p>
     <div class="schedule bor-table">
       <select id="status" name="status" class="table-info ">
@@ -37,6 +39,8 @@
     <div class="schedule bor-table">
       <ion-input type="text" value="" placeholder="Sức chứa"></ion-input>
     </div>
+</div>
+<div class="areas" *ngIf="mMode == 3">
     <p>Thêm khu vực chế biến</p>
     <div class="schedule bor-table">
       <select id="status" name="status" class="table-info ">
@@ -48,6 +52,7 @@
     <div class="schedule bor-table">
       <ion-input type="text" value="" placeholder="Nhập tên khu vực"></ion-input>
     </div>
+  </div>
     <button ion-button inline>Lưu</button>
   </div>
 </ion-content>
