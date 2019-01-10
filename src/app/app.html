@@ -1,86 +1,22 @@
 <ion-split-pane>
   <ion-menu [content]="mycontent" type="overlay">
     <ion-content>
-      <div class="menu-list bg-color">
-        <div class="user-img" (click)="openModal()"> <img src="./assets/imgs/User-group-Icon-735175.png" alt=""></div>
+      <div class="bg-color">
+        <div class="user-img" text-center (click)="openModal()"> <img src="./assets/imgs/User-group-Icon-735175.png"
+            alt="">
+        </div>
         <div class="list-icon">
           <ion-list class="icon-list">
-
-            <div class="dropdown">
-              <a href="#">
-                <ion-icon icon-only name="home"></ion-icon>
+            <div class="dropdown" (click)="onClickMenuItem(item)" [class.selected]="item.id == menuId" *ngFor="let item of mMenuItems">
+              <a href="{{item.url}}">
+                <div>
+                  <ion-icon icon-only name="{{item.icon}}"></ion-icon>
+                </div>
+                <div class="dropdown-contents">
+                  {{item.name}}
+                </div>
               </a>
-              <div class="dropdown-contents">
-                Trang chủ
-              </div>
             </div>
-            <div class="dropdown">
-              <a href="#/menu">
-                <ion-icon icon-only name="restaurant"></ion-icon>
-              </a>
-              <div class="dropdown-contents">
-                Thực đơn
-              </div>
-            </div>
-            <div class="dropdown">
-              <a href="#/map" class="home-icon">
-                <ion-icon icon-only name="map"></ion-icon>
-              </a>
-              <div class="dropdown-contents">
-                Sơ đồ
-              </div>
-            </div>
-
-            <div class="dropdown">
-              <a href="#/employee">
-                <ion-icon icon-only name="bookmarks"></ion-icon>
-              </a>
-              <div class="dropdown-contents">
-                Nhân viên
-              </div>
-            </div>
-
-
-          </ion-list>
-
-          <ion-list class="icon-list icon-bottom">
-
-
-            <div class="dropdown">
-              <a href="#/order" class="home-icon">
-                <ion-icon icon-only name="clipboard"></ion-icon>
-              </a>
-              <div class="dropdown-contents">
-                Order
-              </div>
-            </div>
-            <div class="dropdown">
-              <a href="#/schedule" class="home-icon">
-                <ion-icon icon-only name="copy"></ion-icon>
-              </a>
-              <div class="dropdown-contents">
-                Lịch làm việc
-              </div>
-            </div>
-
-            <div class="dropdown">
-              <a href="#/report" class="home-icon">
-                <ion-icon icon-only name="calendar"></ion-icon>
-              </a>
-              <div class="dropdown-contents">
-                Báo cáo
-              </div>
-            </div>
-
-            <div class="dropdown">
-              <a href="#/discount" class="home-icon">
-                <ion-icon icon-only name="cash"></ion-icon>
-              </a>
-              <div class="dropdown-contents">
-                Khuyến mại
-              </div>
-            </div>
-
           </ion-list>
         </div>
       </div>

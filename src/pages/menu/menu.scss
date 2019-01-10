@@ -1,86 +1,81 @@
 page-menu {
-  .menu-header {
-    position: relative;
-    display: flex;
-    padding: 8px;
-    background-color: #dddddd;
+  .m-body-container{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
   }
-
-  .menu-name {
-    padding: 10px;
-    margin-left: 8px;
-    min-width: 140px;
-    text-align: center;
+  ion-content.content{
+    background: whitesmoke;
+  }
+  .m-name-menu {
+    color: gray;
     background: white;
-    border-radius: 3px;
-  }
+    border: 1px solid lightgray;
+    padding: 10px 16px;
+    text-align: center;
+    min-width: 120px;
+    border-radius: 5px;
+    margin-right: 16px;
+    cursor: pointer;
 
-  .menu-name:hover {
-    color: orangered;
-  }
-
-  .menu-ctn {
-    margin: 20px;
-    text-align: left;
-    font-size: 22px;
-
-    button {
-      // margin-left: 15px;
-      padding: 20px;
+    &.selected {
+      background: map-get($map: $colors, $key: green);
       color: white;
-      background-color: rgb(17, 141, 44);
+      border-color: map-get($map: $colors, $key: green);
     }
+  }
+
+  .m-name-menu:first-child {
+    margin-left: 12px;
   }
 
   .title-menu {
-    margin: auto;
     font-weight: bold;
+    color: #222;
+    font-size: 2.2rem;
   }
-
-  .search-menu ion-input {
-    border: 1px solid grey;
+  .btn-add-container{
+    padding-left: 10px;
+    .button{
+      background-color: map-get($map: $colors, $key: green);
+      border-radius: 5px;
+      box-shadow: 0 3px 6px rgba($color: map-get($map: $colors, $key: green), $alpha: .16);
+    }
   }
-
-  .btn-menu {
-    margin: auto;
-    button:hover {
-      background-color: rgb(17, 141, 44) !important;
-      opacity: 0.8;
+  .m-search-container{
+    .searchbar-ios{
+      background: transparent;
+      border-bottom: none !important;
+    }
+    .searchbar-ios .searchbar-search-icon {
+      top: 12px;
+    }
+    .searchbar-ios .searchbar-input{
+      font-size: 1.3rem;
+      height: 3.6rem;
+      box-shadow: 0 0 6px rgba($color: #000000, $alpha: .2);
+    }
   }
+  .table-container{
+    margin-top: 20px;
+    border: 1px solid #BAC1D5;
+    .white-bg{
+      td{
+        background: white;
+      }
+    }
+    th{
+      background-color: map-get($map: $colors, $key: orange);
+      color: white;
+      padding: 16px 0;
+    }
+    td{
+      padding: 14px 0;
+      background: #f8f8f8;
+    }
+    .width-50{
+      width: 60px;
+    }
   }
   
-  .table-list {
-    width: 100%;
-    position: relative;
-    margin: 15px;
-
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-    }
-
-    td,
-    th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-
-
-    }
-
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-
-    td:hover {
-      color: red;
-    }
-
-  }
-
-  .table-title {
-    background-color: rgb(194, 112, 18);
-    color: white;
-  }
 }
-

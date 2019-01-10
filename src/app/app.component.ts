@@ -10,6 +10,17 @@ import { AppControllerProvider } from '../providers/app-controller/app-controlle
 })
 export class MyApp {
   rootPage: any = HomePage;
+  menuId: number = 1;
+  mMenuItems = [
+    {id: 1, name: "Trang chủ", icon: "home", url: ""},
+    {id: 2, name: "Thực đơn", icon: "restaurant", url: "#/menu"},
+    {id: 3, name: "Sơ đồ", icon: "map", url: "#/map"},
+    {id: 4, name: "Nhân viên", icon: "bookmarks", url: "#/employee"},
+    {id: 5, name: "Order", icon: "clipboard", url: "#/order"},
+    {id: 6, name: "Lịch làm việc", icon: "copy", url: "#/schedule"},
+    {id: 7, name: "Báo cáo", icon: "calendar", url: "#/report"},
+    {id: 8, name: "Khuyến mại", icon: "cash", url: "#/discount"}
+  ];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     public mAppModule: AppControllerProvider) {
@@ -23,6 +34,10 @@ export class MyApp {
   }
   openModal(){
     this.mAppModule.showModal("LoginPage");
+  }
+
+  onClickMenuItem(item){
+    this.menuId = item.id;
   }
 }
 

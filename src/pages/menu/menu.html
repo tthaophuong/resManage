@@ -1,80 +1,115 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="a3-container menu-header-container a3-items-center">
+      <div class="m-name-menu" [class.selected]="indexMenu == CATEGORY" (click)="onClickMenu(1)">Danh mục</div>
+      <div class="m-name-menu" [class.selected]="indexMenu == PRODUCT" (click)="onClickMenu(2)">Món ăn</div>
+      <div class="m-name-menu" [class.selected]="indexMenu == COMBO" (click)="onClickMenu(3)">Combo</div>
+    </div>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-  <div class="menu-header bg-color">
-    <div class="menu-name" (click)="onClickMenu(1)">Danh mục</div>
-    <div class="menu-name" [class.selected]="index == 0" (click)="onClickMenu(2)">Món ăn</div>
-    <div class="menu-name" [class.selected]="index == 0" (click)="onClickMenu(3)">Combo</div>
+
+  <div class="m-body-container">
+    <div class="a3-container a3-justify-between a3-items-center">
+      <div class="title-menu">{{title}}</div>
+      <div class="title-left">
+        <div class="a3-container a3-items-center">
+          <div class="m-search-container">
+            <ion-searchbar mode="ios"></ion-searchbar>
+          </div>
+
+          <div class="btn-add-container">
+            <button ion-button icon-left (click)="onClickAdd()">
+              <ion-icon name="add"></ion-icon>
+              Thêm mới
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table width="100%" [hidden]="indexMenu != CATEGORY">
+        <tr class="table-title">
+          <th class="width-50">STT</th>
+          <th class="width-50">Mã ID</th>
+          <th text-left colspan="2">Tên</th>
+          <th text-left>Loại </th>
+          <th>Icon </th>
+        </tr>
+        <tr *ngFor="let item of items; let i = index" [class.white-bg]="i % 2 == 0">
+          <td text-center>{{i+1}}</td>
+          <td text-center>{{item.id}}</td>
+          <td colspan="2">{{item.name}}</td>
+          <td>{{item.group}}</td>
+          <td>{{item.icon}}</td>
+        </tr>
+      </table>
+
+
+      <table width="100%" [hidden]="indexMenu != PRODUCT">
+        <tr class="table-title">
+          <th text-center class="width-50">STT</th>
+          <th text-center class="width-50">Mã ID</th>
+          <th text-left>Tên </th>
+          <th text-left>Giá </th>
+          <th>Tiền </th>
+          <th>Đơn vị tính </th>
+          <th>Loại </th>
+          <th>Trạng thái </th>
+        </tr>
+        <tr *ngFor="let food of foods; let i = index" [class.white-bg]="i % 2 == 0">
+          <td text-center>{{i+1}}</td>
+          <td text-center>{{food.idf}}</td>
+          <td text-left>{{food.namef}}</td>
+          <td text-left>{{food.costf}}</td>
+          <td text-center>{{food.moneyf}}</td>
+          <td text-center>{{food.countf}}</td>
+          <td text-center>{{food.kindf}}</td>
+          <td text-center>{{food.statusf}}</td>
+        </tr>
+      </table>
+
+      <table width="100%" [hidden]="indexMenu != COMBO">
+        <tr class="table-title">
+          <th text-center class="width-50">STT</th>
+          <th text-center class="width-50">Mã ID</th>
+          <th text-left>Tên </th>
+          <th text-left>Giá </th>
+          <th text-center>Loại </th>
+          <th text-center>Trạng thái </th>
+        </tr>
+        <tr *ngFor="let combo of combos ; let i = index" [class.white-bg]="i % 2 == 0">
+          <td text-center>{{i+1}}</td>
+          <td text-center>{{combo.idc}}</td>
+          <td text-left>{{combo.namec}}</td>
+          <td text-left>{{combo.costc}}</td>
+          <td text-center>{{combo.kindc}}</td>
+          <td text-center>{{combo.statusc}}</td>
+        </tr>
+      </table>
+
+    </div>
+
 
   </div>
-  <div class="content-list">
+
+
+  <!-- <div class="content-list">
     <ion-row class="menu-ctn a3-center">
       <ion-col col-6 class="title-menu" >{{resnames}} </ion-col>
       <ion-col col-5 class="search-menu">
           <ion-searchbar ></ion-searchbar> 
       </ion-col>
       <ion-col col-1 class="btn-menu"> 
-        <button ion-button inline (click)="openModelCombo()">
+        <button ion-button inline >
           <ion-icon name="add"></ion-icon> Thêm mới
         </button> </ion-col> 
     </ion-row>
-    <table class="table-list" [hidden]="indexMenu != CATEGORY" >
-      <tr class="table-title">
-        <th>Số thứ tự </th>
-        <th>Mã ID</th> 
-        <th>Tên </th>
-        <th>Loại </th>
-        <th>Icon </th>
-      </tr>
-      <tr *ngFor="let item of items">
-        <td (click)="openModelFood()">{{item.code}}</td>
-        <td (click)="openModelFood()">{{item.id}}</td>
-        <td (click)="openModelFood()">{{item.name}}</td>
-        <td (click)="openModelFood()">{{item.group}}</td>
-        <td (click)="openModelFood()">{{item.icon}}</td>
-      </tr>
-    </table>
+   
 
-    <table class="table-list" [hidden]="indexMenu != PRODUCT">
-        <tr class="table-title">
-          <th>Số thứ tự </th>
-          <th>Mã ID</th>
-          <th>Tên </th>
-          <th>Giá </th>
-          <th>Tiền </th>
-          <th>Đơn vị tính </th>
-          <th>Loại </th>
-          <th>Trạng thái </th>
-        </tr>
-        <tr *ngFor="let food of foods">
-          <td (click)="openModelFood()">{{food.codef}}</td>
-          <td (click)="openModelFood()">{{food.idf}}</td>
-          <td (click)="openModelFood()">{{food.namef}}</td>
-          <td (click)="openModelFood()">{{food.costf}}</td>
-          <td (click)="openModelFood()">{{food.moneyf}}</td>
-          <td (click)="openModelFood()">{{food.countf}}</td>
-          <td (click)="openModelFood()">{{food.kindf}}</td>
-          <td (click)="openModelFood()">{{food.statusf}}</td>
-        </tr>
-      </table>
+    
 
-      <table class="table-list" [hidden]="indexMenu != COMBO">
-          <tr class="table-title">
-            <th>Số thứ tự </th>
-            <th>Mã ID</th>
-            <th>Tên </th>
-            <th>Giá </th>
-            <th>Loại </th>
-            <th>Trạng thái </th>
-          </tr>
-          <tr *ngFor="let combo of combos">
-            <td (click)="openModelCombo()">{{combo.codec}}</td>
-            <td (click)="openModelCombo()">{{combo.idc}}</td>
-            <td (click)="openModelCombo()">{{combo.namec}}</td>
-            <td (click)="openModelCombo()">{{combo.costc}}</td>
-            <td (click)="openModelCombo()">{{combo.kindc}}</td>
-            <td (click)="openModelCombo()">{{combo.statusc}}</td>
-          </tr>
-        </table>
-  
-
-  </div>
+  </div> -->
 </ion-content>

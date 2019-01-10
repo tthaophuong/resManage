@@ -1,15 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons right>
+      <button ion-button icon-only navPop>
+          <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>{{cateTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-  <div text-right>
-      <button ion-button icon-only clear class="btn-category" (click)="closeCombo()">
-          <ion-icon name="close"></ion-icon>
-        </button>
-  </div>
+
   <div class="category-container" id="catagorys" *ngIf="mMode == 1">
-    <div class="cate-tittle">
-      <p>{{cateTitle}}</p>
-     
-    </div> 
-    <ion-row>
+    <ion-item>
+      <ion-input type="text" placeholder="Tên danh mục"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Loại</ion-label>
+        <ion-select [(ngModel)]="mTypeCategory">
+          <ion-option value="1">Đồ ăn</ion-option>
+          <ion-option value="2">Đồ uống</ion-option>
+        </ion-select>
+    </ion-item>
+
+    
+    <!-- <ion-row>
       <select id="status" name="status" class="category-info ">
         <option value="active">Đồ ăn</option>
         <option value="block">Đồ uống</option>
@@ -17,7 +33,7 @@
       </select>
     </ion-row>
     <ion-row><input class="category-info " type="text-area" id="fname1" name="firstname" placeholder="Tên danh mục">
-    </ion-row>
+    </ion-row> -->
   </div>
 
   <div class="category-container" id="foods"  *ngIf="mMode == 2">

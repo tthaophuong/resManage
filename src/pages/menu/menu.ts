@@ -21,8 +21,9 @@ import { AppControllerProvider } from '../../providers/app-controller/app-contro
   templateUrl: 'menu.html',
 })
 export class MenuPage {
-  index: number = 0;
-  // num: number = 0;
+
+  
+  num: number = 0;
   menu: Array<{ menuSelected: string, subMenu: string }> = [];
   menuSelected: any;
 
@@ -34,16 +35,19 @@ export class MenuPage {
 
 
   titles = ["Danh sách danh mục", "Danh sách món ăn", "Danh sách combo"];
+  title: string = "";
 
   constructor(
     public mAppModule: AppControllerProvider,
     public navCtrl: NavController, public navParams: NavParams,
     public modCtrl: ModalController) {
+    this.title = this.titles[this.indexMenu - 1];
+
   }
 
   onClickMenu(index) {
     this.indexMenu = index;
-    this.resnames = this.titles[this.indexMenu - 1];
+    this.title = this.titles[this.indexMenu - 1];
   }
 
   ionViewDidLoad() {
@@ -57,23 +61,23 @@ export class MenuPage {
     // }
     this.mAppModule.showModal("FoodInfoPage");
   }
-  openModelCombo() {
-    this.mAppModule.showModal("ComboPage",{mode: this.indexMenu});
 
+
+  onClickAdd() {
+    this.mAppModule.showModal("ComboPage",{mode: this.indexMenu});
   }
-  chdangeIndex(number) {
-    this.index = number;
-    this.menuSelected = this.menu[this.index];
-    if (this.index == 0) {
-      this.mAppModule.showModal("FoodPage")
-    } if (this.index == 1) {
-      this.mAppModule.showModal("ComboListPage")
-    }
-    if (this.index == 2) {
-      this.mAppModule.showModal("DiscountPage")
-    }
-  }
-  resnames = "Danh sách danh mục";
+  // chdangeIndex(number) {
+  //   this.index = number;
+  //   this.menuSelected = this.menu[this.index];
+  //   if (this.index == 0) {
+  //     this.mAppModule.showModal("FoodPage")
+  //   } if (this.index == 1) {
+  //     this.mAppModule.showModal("ComboListPage")
+  //   }
+  //   if (this.index == 2) {
+  //     this.mAppModule.showModal("DiscountPage")
+  //   }
+  // }
   items = [
     {
       code: "1",

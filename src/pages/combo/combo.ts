@@ -16,6 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ComboPage {
 
   mMode: number = 1;
+  mTypeCategory: number = 1;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     if(this.navParams.data["mode"]){
       this.mMode = this.navParams.get("mode");
