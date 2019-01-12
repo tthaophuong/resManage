@@ -64,9 +64,7 @@ page-menu {
       padding: 16px;
     }
     .white-bg{
-      td{
-        background: white;
-      }
+      background: white;
     }
     th{
       background-color: map-get($map: $colors, $key: orange);
@@ -75,10 +73,16 @@ page-menu {
     }
     td{
       padding: 14px 0;
-      background: #f8f8f8;
+      // background: #f8f8f8;
     }
     .width-50{
       width: 60px;
+    }
+    .item-row-table{
+      cursor: pointer;
+    }
+    .item-row-table:hover{
+      background: rgba($color: map-get($map: $colors, $key: orange), $alpha: .4);
     }
   }
   

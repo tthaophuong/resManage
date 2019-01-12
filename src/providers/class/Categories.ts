@@ -5,7 +5,8 @@ export class Categories{
 	private  name : string = "";
     private  icon : string = "";
     private  type : number = -1;
-	
+	private restaurant_id : number = -1;
+
     constructor(){}
 
     public toSFSObject(o) {
@@ -13,6 +14,7 @@ export class Categories{
 		o.putUtfString(Paramskey.NAME, this.getName());
 		o.putUtfString(Paramskey.ICON, this.getIcon());
 		o.putInt(Paramskey.TYPE, parseInt(this.getType()+""));
+		o.putInt(Paramskey.RESTAURANT_ID, this.getRestaurant_id());
 		return o;
 	}
 	
@@ -29,7 +31,19 @@ export class Categories{
 		if(o.containsKey(Paramskey.TYPE)) {
 			this.setType(o.getInt(Paramskey.TYPE));
 		}
+		if(o.containsKey(Paramskey.RESTAURANT_ID)) {
+			this.setRestaurant_id(o.getInt(Paramskey.RESTAURANT_ID));
+		}
 	}
+
+	public getRestaurant_id() {
+		return this.restaurant_id;
+	}
+
+	public  setRestaurant_id( restaurant_id) {
+		this.restaurant_id = restaurant_id;
+	}
+	
 
 	public  getType() {
 		return this.type;
