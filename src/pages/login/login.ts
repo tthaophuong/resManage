@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AppControllerProvider } from '../../providers/app-controller/app-controller';
+import { RestaurantSFSConnector } from '../../providers/smartfox/SFSConnector';
 
 /**
  * Generated class for the LoginPage page.
@@ -14,12 +16,43 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  username: string = "";
+  password: string = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public mAppModule: AppControllerProvider,
+    public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    this.mAppModule._loadAppConfig().then(()=>{
+      
+    })
+  }
+
+  doConnectToServer(){
+    RestaurantSFSConnector.getInstance().connect().then(()=>{
+      this.onConnectSuccess();
+    })
+  }
+
+  onConnectSuccess(){
+    this.mAppModule.getUserData().setUsername(this.username);
+    this.mAppModule.getUserData().setPassword(this.password);
+    
+    RestaurantSFSConnector.getInstance().doLogin(this.mAppModule.getUserData()).then((success) => {
+      this.onLoginSuccess(success);
+    })
+  }
+
+  login() {
+    this.doConnectToServer();
+  }
+
+  onLoginSuccess(success) {
+    console.log("login success", success['data'].getDump());
+    this.mAppModule.saveUserLoginData(this.mAppModule.getUserData());
+    this.mAppModule.onLoginSuccess(success);
   }
 
 }

@@ -1,156 +1,70 @@
 page-combo {
-  .tittle {
-    padding: 15px;
-    font-size: 30px;
-    text-align: center;
+  .header:after {
+    height: 0 !important;
+  }
+  .gray-color{
+      color: #9e9e9e;
+  }
+  .item {
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba($color: #000000, $alpha: .16);
   }
 
-  .btns {
-    text-align: center;
-    margin-top: 20px;
-
-    button {
-      padding: 6px;
-      min-width: 150px;
-      margin-right: 20px;
-    }
+  .text-input {
+    margin: 13px 0 !important;
   }
 
-  .bg-color1 {
-    background: rgb(235, 220, 18);
-    color: black;
+  .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+  .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    box-shadow: none;
   }
 
-  .avata {
-    border: 1px solid black;
-    max-width: 200px;
-    min-height: 200px;
-    position: relative;
-    margin: auto;
+  .item-md.item-block .item-inner {
+    border-bottom: none;
   }
 
-  .icon-ava:hover {
-    opacity: 0.6;
+  .item-md.item-input.item-input-has-focus .item-inner,
+  .item-md.item-input.input-has-focus .item-inner {
+
+    border-radius: 5px;
+    box-shadow: none;
   }
 
-  .button-md:hover:not(.disable-hover) {
-    background-color: #00634e;
-    opacity: 0.8;
+  .item-ios.item-input.item-input-has-focus .item-inner,
+  .item-ios.item-input.input-has-focus .item-inner {
+    border-radius: 5px;
+    box-shadow: none;
   }
 
-  .icon-ava {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    font-size: 20px;
-    padding: 6px;
-  }
-
-  .avata-img {
-    display: flex;
-    margin-top: 8px;
-    position: absolute;
-    left: 30px;
-  }
-
-  .take-photo {
-    padding: 8px;
-    border-right: 1px solid black;
-  }
-
-  .photo {
-    border-right: none;
+  ion-content.content {
+    background: map-get($map: $colors, $key: light);
   }
 
   .category-container {
-    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+    padding-top: 32px;
+
+    padding: 16px;
+    min-height: 100%;
   }
 
-  .category-info {
-    padding: 10px;
-    width: 100%;
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-
-  .cate-tittle {
-    position: relative;
-    p{
-      font-size: 28px;
-    }
-  }
-
-  .btn-category {
-    position: absolute;
-    color: black;
-    border: 1px solid;
-    top: 0;
-    right: 10px;
-    border-radius: 50%;
-    padding: 6px;
-  }
-
-  .btn-category:hover {
-    color: orangered !important;
-    background-color: white !important;
-  }
-  .combo-container {
-    display: grid;
-    justify-content: center;
-    font-size: 18px;
-  }
-
-  input {
-    min-width: 500px;
-    padding: 8px;
-  }
-
-  td {
-    padding: 10px;
-    margin: 15px 0;
-  }
-
-  .combo-title {
-    font-size: 32px;
-    padding: 12px;
-  }
-
-  .caculator {
-    border-top: 1px solid black;
-    display: flex;
-    text-align: right;
-  }
-
-  ion-label {
-    max-width: 200px;
-  }
-
-  .close-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-
-
-    button {
-      border: 1px solid yellow;
-      padding: 8px;
-      text-align: left;
-      color: black
-    }
-  }
-
-  .btn {
+  .btn-save-bottom {
     text-align: center;
     margin-top: 20px;
 
-    button {
-      color: black;
-      background-color: #ffb713;
-      min-width: 150px;
+    .button {
+      background: map-get($map: $colors, $key: green);
+      border-radius: 5px;
+      min-width: 120px;
     }
-    button:hover{
-      opacity: 0.8;
-      background: #ffb713 !important;
-    }
+  }
+  .total-money{
+      text-align: right;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      border-top: .55px solid white;
+      color: map-get($map: $colors, $key: orange);
   }
 }

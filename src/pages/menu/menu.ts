@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { AppControllerProvider } from '../../providers/app-controller/app-controller';
+import { RestaurantManager } from '../../providers/app-controller/RestaurantManager';
 // import { AppModule } from '../../app/app.module';
 
 /**
@@ -23,16 +24,16 @@ import { AppControllerProvider } from '../../providers/app-controller/app-contro
 export class MenuPage {
 
   
-  num: number = 0;
-  menu: Array<{ menuSelected: string, subMenu: string }> = [];
-  menuSelected: any;
+
+  items = [];
+  foods = [];
+  combos = [];
 
   CATEGORY: number = 1;
   PRODUCT: number = 2;
   COMBO: number = 3;
 
   indexMenu = 1;
-
 
   titles = ["Danh sách danh mục", "Danh sách món ăn", "Danh sách combo"];
   title: string = "";
@@ -51,14 +52,11 @@ export class MenuPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuPage');
+    this.items = RestaurantManager.getInstance().mCategorys;
+    this.foods = RestaurantManager.getInstance().mProducts;
   }
 
   openModelFood() {
-    // if (this.num=0) {
-    //   this.indexMenu = this.num;
-    //   this.menuSelected = this.menu[this.num - 1]
-    // }
     this.mAppModule.showModal("FoodInfoPage");
   }
 
@@ -66,88 +64,6 @@ export class MenuPage {
   onClickAdd() {
     this.mAppModule.showModal("ComboPage",{mode: this.indexMenu});
   }
-  // chdangeIndex(number) {
-  //   this.index = number;
-  //   this.menuSelected = this.menu[this.index];
-  //   if (this.index == 0) {
-  //     this.mAppModule.showModal("FoodPage")
-  //   } if (this.index == 1) {
-  //     this.mAppModule.showModal("ComboListPage")
-  //   }
-  //   if (this.index == 2) {
-  //     this.mAppModule.showModal("DiscountPage")
-  //   }
-  // }
-  items = [
-    {
-      code: "1",
-      id: "1 ",
-      name: "Salad",
-      group: "Đồ ăn",
-    },
-    {
-      code: "1",
-      id: "1 ",
-      name: "Salad",
-      group: "Đồ ăn",
-    },
-    {
-      code: "1",
-      id: "1 ",
-      name: "Salad",
-      group: "Đồ ăn",
-    },
-    {
-      code: "1",
-      id: "1 ",
-      name: "Salad",
-      group: "Đồ ăn",
-    },
-    {
-      code: "1",
-      id: "1 ",
-      name: "Salad",
-      group: "Đồ ăn",
-    },
-  ];
-  foods = [
-    {
-      codef: "1",
-      idf: "1 ",
-      namef: "Salad",
-      costf: "20000",
-      moneyf: "VND",
-      countf: "bát",
-      kindf: "Đồ ăn",
-      statusf: "đang bán",
-    },
-    {
-      codef: "1",
-      idf: "1 ",
-      namef: "Salad",
-      costf: "20000",
-      moneyf: "VND",
-      countf: "bát",
-      kindf: "Đồ ăn",
-      statusf: "đang bán",
-    },
-  ];
-  combos = [
-    {
-      codec: "1",
-      idc: "1 ",
-      namec: "Salad",
-      costc: "20000",
-      kindc: "Đồ ăn",
-      statusc: "đang bán",
-    },
-    {
-      codec: "1",
-      idc: "1 ",
-      namec: "Salad",
-      costc: "20000",
-      kindc: "Đồ ăn",
-      statusc: "đang bán",
-    },
-  ]
+ 
+  
 }

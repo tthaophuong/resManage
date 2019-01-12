@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AppControllerProvider } from '../providers/app-controller/app-controller';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -15,9 +15,12 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage
   ],
   imports: [
-    HttpClientModule,
+    HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{
+      scrollPadding: false,
+      scrollAssists: false
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

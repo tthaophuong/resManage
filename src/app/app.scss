@@ -62,7 +62,6 @@
 }
 
 
-
 .font-common {
   font-family: 'Noto Sans TC', sans-serif;
   font-family: 'Roboto', sans-serif;
@@ -75,25 +74,6 @@
 }
 
 
-
-
-.alert-md .alert-wrapper{
-  min-width: 370px;
-  text-align: center;
-}
-.alert-md .alert-head{
-  text-align: center;
-}
-.alert-md .alert-message:empty{
-  display: none;
-}
-.alert-md .alert-button{
-  margin: auto;
-  background: rgb(235, 220, 18);
-  color:black;
-  min-width: 80px;
-  text-align: center;
-}
 .split-pane-md.split-pane-visible>.split-pane-side {
   min-width: 120px;
   max-width: 120px;

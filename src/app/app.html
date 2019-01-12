@@ -1,5 +1,5 @@
 <ion-split-pane>
-  <ion-menu [content]="mycontent" type="overlay">
+  <ion-menu [content]="mycontent" type="overlay" [hidden]="!mAppModule.userIsLogin">
     <ion-content>
       <div class="bg-color">
         <div class="user-img" text-center (click)="openModal()"> <img src="./assets/imgs/User-group-Icon-735175.png"

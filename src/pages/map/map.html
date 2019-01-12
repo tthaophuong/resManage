@@ -1,149 +1,40 @@
-<ion-content>
-  <!-- <div class="menu-header bg-color">
-    <div class="menu-name" (click)="onClickMenu(1)">Tầng</div>
-    <div class="menu-name" [class.selected]="index == 0" (click)="onClickMenu(2)">Khu vực</div>
-    <div class="menu-name" [class.selected]="index == 0" (click)="onClickMenu(3)">Bàn</div>
-  </div>
-
-  <ion-row class="menu-ctn a3-center">
-    <ion-col col-6 class="title-menu">{{mname}} </ion-col>
-    <ion-col col-5 class="search-menu">
-      <ion-searchbar></ion-searchbar>
-    </ion-col>
-    <ion-col col-1 class="btn-menu"> <button ion-button inline>
-        <ion-icon name="add"></ion-icon> Thêm mới
-      </button> </ion-col>
-  </ion-row>
-
-  <ion-row class="map-detail a3-center">
-    <ion-col col-7 class="table-list">
-      <div class="table" [hidden]="indexMenu != TABLE">
-        <div class="floor">Tầng 1</div>
-        <div class="floor">Tầng 2</div>
-        <div class="floor">Tầng 3</div>
-        <div class="floor">Tầng 4</div>
-      </div>
-
-      <div class="floor1" [hidden]="indexMenu != FLOOR">
-        <div class="area-list">
-          <div class="floor urban" >Khu A</div>
-          <div class="floor urban">Khu B</div>
-          <div class="floor urban">Khu C</div>
-        </div>
-        <div class="area-list">
-          <div class="floor urban">Khu D</div>
-          <div class="floor urban">Khu E</div>
-          <div class="floor urban">Khu F</div>
-        </div>
-      </div>
-
-      <div class="area-floor" [hidden]="indexMenu != AREA" >
-        <ion-row class="table-imgs" >
-            <ion-col col-3 *ngFor="let table of tables">
-                <img [src]="table.imgs" alt=""><br/>
-               {{table.name}} 
-              </ion-col>
-        </ion-row>
-      </div>
-    </ion-col>
-
-    <ion-col col-4 class="table-info">
-      <ion-row>
-        <ion-col col-4>
-          <ion-label></ion-label>Mã bàn
-        </ion-col>
-        <ion-col col-8> <input type="text" placeholder="Mã bàn...."></ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <ion-label></ion-label>Tên bàn
-        </ion-col>
-        <ion-col col-8> <input type="text" placeholder="Tên bàn...."></ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <ion-label></ion-label>Khu vực
-        </ion-col>
-        <ion-col col-8>
-          <select id="area" name="area">
-            <option value="area">Khu A</option>
-            <option value="area1">Khu B</option>
-            <option value="area2">Khu C</option>
-            <option value="area2">Khu D</option>
-            <option value="area2">Khu E</option>
-          </select>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <ion-label></ion-label>Tầng
-        </ion-col>
-        <ion-col col-8>
-          <select id="floor" name="floor">
-            <option value="floor">Tầng 1</option>
-            <option value="floor1">Tầng 2</option>
-            <option value="floor2">Tầng 3</option>
-            <option value="floor2">Tầng 4</option>
-          </select>
-        </ion-col>
-      </ion-row>
-      <div class="btn">
-        <button ion-button>Xóa</button>
-        <button ion-button>Lưu</button>
-      </div>
-
-    </ion-col>
-  </ion-row> -->
-
-  <div class="tittle-name bg-color">
-    <p>Quản lý sơ đồ nhà hàng </p>
-    <div class="search-btn">
-      <button ion-button inline class="btn-menu" (click)="createInfo()">
-        <ion-icon name="add"></ion-icon> Thêm mới
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sơ đồ nhà hàng</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-left class="add-btn">
+        <ion-icon name="add"></ion-icon>
+        Thêm mới
       </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="body-container-map">
+    <div *ngFor="let item of mArrayFloorModels">
+        <div class="floor-name">{{item.floor.name}}</div>
+        <ion-row>
+          <ion-col col-6 >
+            <div class="table-title">Bàn</div>
+            <ion-row align-items-center>
+              <ion-col col-2 *ngFor="let table of item.tables">
+                <div class="table-item">{{table.name}}</div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col col-6>
+            <div class="table-title">Khu vực</div>
+            <ion-row align-items-center>
+                <ion-col col-2 *ngFor="let area of item.areas">
+                  <div class="table-item">{{area.name}}</div>
+                </ion-col>
+              </ion-row>
+          </ion-col>
+        </ion-row>
     </div>
+     
   </div>
-  <div class="map-info">
-    <div class="floor-number bor-table">
-      Tầng 1
-    </div>
-    <ion-row>
-      <ion-col col-7>Bàn</ion-col>
-      <ion-col col-5>Khu vực </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-7>
-        <div class="table-number bor-table">Bàn 1</div>
-        <div class="table-number bor-table">Bàn 1</div>
-        <div class="table-number bor-table">Bàn 1</div>
-        <div class="table-number bor-table">Bàn 1</div>
-      </ion-col>
-      <ion-col col-5>
-        <div class="table-number bor-table">Bar 1</div>
-        <div class="table-number bor-table">Bếp 1</div>
-      </ion-col>
-    </ion-row>
-  </div>
-  <div class="map-info">
-    <div class="floor-number bor-table">
-      Tầng 2
-    </div>
-    <ion-row>
-      <ion-col col-7>Bàn</ion-col>
-      <ion-col col-5>Khu vực </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-7>
-        <div class="table-number bor-table">Bàn 1</div>
-        <div class="table-number bor-table">Bàn 1</div>
-        <div class="table-number bor-table">Bàn 1</div>
-        <div class="table-number bor-table">Bàn 1</div>
-      </ion-col>
-      <ion-col col-5>
-        <div class="table-number bor-table">Bar 1</div>
-        <div class="table-number bor-table">Bếp 1</div>
-      </ion-col>
-    </ion-row>
-  </div>
+  
 
 </ion-content>

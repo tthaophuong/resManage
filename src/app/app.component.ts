@@ -9,7 +9,7 @@ import { AppControllerProvider } from '../providers/app-controller/app-controlle
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = HomePage;
+  rootPage: any = "LoginPage";
   menuId: number = 1;
   mMenuItems = [
     {id: 1, name: "Trang chủ", icon: "home", url: ""},

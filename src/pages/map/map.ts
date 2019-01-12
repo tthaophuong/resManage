@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { AppControllerProvider } from '../../providers/app-controller/app-controller';
+import { Floors } from '../../providers/class/Floors';
+import { Areas } from '../../providers/class/Areas';
+import { Tables } from '../../providers/class/Tables';
 
 /**
  * Generated class for the MapPage page.
@@ -8,6 +11,12 @@ import { AppControllerProvider } from '../../providers/app-controller/app-contro
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
+export interface FloorModels{
+  floor: Floors;
+  areas: Array<Areas>;
+  tables: Array<Tables>;
+}
 
 @IonicPage(
   {
@@ -30,6 +39,9 @@ export class MapPage {
 
   indexMenu = 1;
   titles = ["Danh sách tầng", "Danh sách khu vực", "Danh sách bàn"];
+
+  mArrayFloorModels : Array<FloorModels> = [];
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public modCtrl: ModalController, public mAppModule: AppControllerProvider) {
   }

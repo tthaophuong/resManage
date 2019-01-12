@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons right>
       <button ion-button icon-only navPop>
-          <ion-icon name="close-circle"></ion-icon>
+        <ion-icon name="close-circle"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -10,107 +10,110 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <div class="category-container">
+    <div id="catagorys" *ngIf="mMode == 1">
+      <ion-item>
+        <ion-input type="text" placeholder="Tên danh mục"></ion-input>
+      </ion-item>
 
-  <div class="category-container" id="catagorys" *ngIf="mMode == 1">
-    <ion-item>
-      <ion-input type="text" placeholder="Tên danh mục"></ion-input>
-    </ion-item>
-
-    <ion-item>
+      <ion-item>
         <ion-label>Loại</ion-label>
         <ion-select [(ngModel)]="mTypeCategory">
           <ion-option value="1">Đồ ăn</ion-option>
           <ion-option value="2">Đồ uống</ion-option>
         </ion-select>
-    </ion-item>
+      </ion-item>
 
-    
-    <!-- <ion-row>
-      <select id="status" name="status" class="category-info ">
-        <option value="active">Đồ ăn</option>
-        <option value="block">Đồ uống</option>
-        <option value="block">Hoa quả</option>
-      </select>
-    </ion-row>
-    <ion-row><input class="category-info " type="text-area" id="fname1" name="firstname" placeholder="Tên danh mục">
-    </ion-row> -->
-  </div>
-
-  <div class="category-container" id="foods"  *ngIf="mMode == 2">
-    <div class="cate-tittle">
-      <p>Thêm món ăn</p>
     </div>
-    <ion-row>
-      <select id="status" name="status" class="category-info ">
-        <option value="active">Đồ ăn</option>
-        <option value="block">Đồ uống</option>
-        <option value="block">Hoa quả</option>
-      </select>
-    </ion-row>
-    <ion-row>
-      <select id="status" name="status" class="category-info ">
-        <option value="active">Khu vực chế biến</option>
-        <option value="block">Bếp 1</option>
-        <option value="block">Bếp 2</option>
-        <option value="block">Bar 1</option>
-        <option value="block">Bar 2</option>
-      </select>
-    </ion-row>
-    <ion-row>
-      <ion-col col-7>
-        <input class="category-info " type="text-area" id="fname1" name="firstname" placeholder="Giá tiền">
-      </ion-col>
-      <ion-col col-5>
-        <select id="status" name="status" class="category-info ">
-          <option value="active">VND</option>
-          <option value="block">$</option>
-        </select>
-      </ion-col>
 
-    </ion-row>
-    <ion-row>
-      <select id="status" name="status" class="category-info ">
-        <option value="active">Đơn vị</option>
-        <option value="block">Cốc</option>
-        <option value="block">Chai</option>
-        <option value="block">Đĩa</option>
-      </select>
-    </ion-row>
-  </div>
+    <div id="foods" *ngIf="mMode == 2">
 
-  <div class="combo-container" id="combos"  *ngIf="mMode == 3">
-    <div class="combo-title a3-center">Combo của nhà hàng</div>
-    <div class="combo-container">
-      <ion-label>Tên Combo</ion-label>
-      <ion-row>
-        <input type="text" id="fname1" name="firstname" placeholder="Combo's name..">
-      </ion-row>
-      <ion-label>Sản phẩm</ion-label>
-      <ion-row> <input type="text" placeholder="Tìm kiếm..."></ion-row>
-      <table>
+      <ion-item>
+        <ion-input type="text" placeholder="Tên món ăn"></ion-input>
+      </ion-item>
 
-        <tr *ngFor="let item of items">
-          <td>1. </td>
-          <td>{{item.name}}</td>
-          <td>x</td>
-          <td><label>{{item.quantity}}</label></td>
-          <td>
-            <ion-icon class="remove"></ion-icon>
-          </td>
-        </tr>
-      </table>
-      <div class="caculator">
-        <ion-label>Tạm tính:</ion-label>
-        <ion-label>Sản phẩm</ion-label>
+      <ion-item>
+        <ion-input type="number" placeholder="Giá tiền(VNĐ)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Đơn vị</ion-label>
+        <ion-select [(ngModel)]="mCurrency">
+          <ion-option value="1">Suất</ion-option>
+          <ion-option value="2">Con</ion-option>
+          <ion-option value="3">Đĩa</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Loại</ion-label>
+        <ion-select [(ngModel)]="mTypeCategory">
+          <ion-option value="1">Đồ ăn</ion-option>
+          <ion-option value="2">Đồ uống</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Khu vực chế biến</ion-label>
+        <ion-select [(ngModel)]="mArea">
+          <ion-option value="1">Bếp 1</ion-option>
+          <ion-option value="2">Bếp 2</ion-option>
+          <ion-option value="3">Bar 1</ion-option>
+          <ion-option value="4">Bar 2</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </div>
+
+    <div id="combos" *ngIf="mMode == 3">
+      <ion-item>
+        <ion-input type="text" placeholder="Tên combo"></ion-input>
+      </ion-item>
+
+      <ion-item class="gray-color">
+        <ion-icon item-start name="search"></ion-icon>
+        <ion-label>Thêm và tìm kiếm sản phẩm</ion-label>
+      </ion-item>
+
+      <div class="c-product" >
+        <ion-row align-items-center *ngFor="let item of mProductsProductModels; let i = index">
+          <ion-col col-6>
+            <div class="product-name">{{i+1}}. {{item.product.name}}</div>
+          </ion-col>
+          <ion-col col-1>
+            x
+          </ion-col>
+          <ion-col col-4>
+            <ion-item>
+              <ion-input type="number" placeholder="Số lượng" [(ngModel)]="item.quantity"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-1>
+            <div class="btn-container">
+              <button ion-button icon-only clear color="dark">
+                <ion-icon name="close"></ion-icon>
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
       </div>
-      <ion-label>Giá tiền </ion-label>
-      <ion-row> <input type="text" placeholder="Giá tiền"></ion-row>
+
+      <div class="total-money">
+        Tạm tính: {{total_money | number}}
+      </div>
+
+      <ion-item>
+        <ion-input type="number" placeholder="Giá bán(VNĐ)"></ion-input>
+      </ion-item>
+
+
     </div>
-   
+
+    <div class="btn-save-bottom">
+      <button ion-button> Lưu</button>
+    </div>
   </div>
 
-  <div class="btn">
-    <button ion-button> Sửa</button>
-    <button ion-button> Lưu</button>
-  </div>
-</ion-content> 
+
+
+</ion-content>
