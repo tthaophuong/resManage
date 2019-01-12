@@ -7,7 +7,13 @@ export class Floors{
     
     constructor(){
         
-    }
+	}
+	
+	fromObject(object: Floors){
+		this.floor_id = object.getFloor_id();
+		this.name = object.getName();
+		this.restaurant_id = object.getRestaurant_id();
+	}
 
     public toSFSObject(o) {
 		o.putUtfString(Paramskey.NAME, this.getName());

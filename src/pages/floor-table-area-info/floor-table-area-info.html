@@ -1,0 +1,117 @@
+<!--
+  Generated template for the FloorTableAreaInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons right>
+      <button ion-button icon-only navPop>
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>{{cateTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="fta-info-container">
+    <div *ngIf="mMode == 1">
+      <ion-item [hidden]="isEdit">
+        <ion-label>Mã tầng</ion-label>
+        <ion-input type="text" disabled="true" [(ngModel)]="mFloor.floor_id"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tên</ion-label>
+        <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mFloor.name"></ion-input>
+      </ion-item>
+      <ion-item [hidden]="isEdit">
+        <ion-label>Nhà hàng</ion-label>
+        <ion-input type="text" disabled="true" [(ngModel)]="restaurantName"></ion-input>
+      </ion-item>
+    </div>
+    <div *ngIf="mMode == 2">
+      <ion-item [hidden]="isEdit">
+        <ion-label >Mã khu vực</ion-label>
+        <ion-input type="text" disabled="true" [(ngModel)]="mArea.area_id"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tên</ion-label>
+        <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mArea.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tầng</ion-label>
+        <ion-select [(ngModel)]="mArea.floor_id" placeholder="Chọn tầng" [disabled]="!isEdit">
+          <ion-option value="{{item.floor_id}}" *ngFor="let item of mFloors">{{item.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Trạng thái</ion-label>
+        <ion-select [(ngModel)]="mArea.status" placeholder="Chưa cập nhật" [disabled]="!isEdit">
+          <ion-option value="1" >Đang hoạt động</ion-option>
+          <ion-option value="2" >Ngừng hoạt động</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item [hidden]="isEdit">
+        <ion-label>Nhà hàng</ion-label>
+        <ion-input type="text" disabled="true" [(ngModel)]="restaurantName"></ion-input>
+      </ion-item>
+
+    </div>
+    <div *ngIf="mMode == 3">
+      <ion-item [hidden]="isEdit">
+        <ion-label>Mã bàn</ion-label>
+        <ion-input type="text" disabled="true" [(ngModel)]="mTable.table_id"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tên</ion-label>
+        <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mTable.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Số chỗ ngồi</ion-label>
+        <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mTable.capacity"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Trạng thái</ion-label>
+        <ion-select [(ngModel)]="mTable.status" placeholder="Chưa cập nhật" [disabled]="!isEdit">
+          <ion-option value="1" >Đang hoạt động</ion-option>
+          <ion-option value="2" >Ngừng hoạt động</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tầng</ion-label>
+        <ion-select [(ngModel)]="mTable.floor_id" placeholder="Chọn tầng" [disabled]="!isEdit">
+          <ion-option value="{{item.floor_id}}" *ngFor="let item of mFloors">{{item.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item [hidden]="isEdit">
+        <ion-label>Nhà hàng</ion-label>
+        <ion-input type="text" disabled="true" [(ngModel)]="restaurantName"></ion-input>
+      </ion-item>
+    </div>
+
+    <div margin-top class="btn-save-container">
+      <button ion-button [hidden]="!isEdit" (click)="onClickSave()" class="btn-save">Lưu</button>
+    </div>
+
+    <div class="a3-container-center" margin-top [hidden]="isEdit">
+      <button ion-button class="btn-delete" (click)="onClickDelete()" icon-left>
+        <ion-icon name="trash"></ion-icon>
+        Xoá
+      </button>
+
+      <button ion-button class="btn-edit" (click)="onClickEdit()" icon-left>
+        <ion-icon name="create"></ion-icon>
+        Chỉnh sửa
+      </button>
+    </div>
+  </div>
+</ion-content>

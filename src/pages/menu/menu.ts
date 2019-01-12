@@ -23,8 +23,6 @@ import { RestaurantManager } from '../../providers/app-controller/RestaurantMana
 })
 export class MenuPage {
 
-  
-
   items = [];
   foods = [];
   combos = [];
@@ -52,13 +50,17 @@ export class MenuPage {
   }
 
   ionViewDidLoad() {
-    this.items = RestaurantManager.getInstance().mCategorys;
-    this.foods = RestaurantManager.getInstance().mProducts;
+    if(!this.mAppModule.userIsLogin){
+      this.navCtrl.setRoot("LoginPage");
+      return;
+    }
+    this.items = RestaurantManager.getInstance().getCategorys();
+    this.foods = RestaurantManager.getInstance().getProducts();
+
+    
   }
 
-  openModelFood() {
-    this.mAppModule.showModal("FoodInfoPage");
-  }
+  
 
 
   onClickAdd() {

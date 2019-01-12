@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Sơ đồ nhà hàng</ion-title>
     <ion-buttons right>
-      <button ion-button icon-left class="add-btn">
+      <button ion-button icon-left class="add-btn" (click)="onClickAdd()">
         <ion-icon name="add"></ion-icon>
         Thêm mới
       </button>
@@ -12,13 +12,13 @@
 </ion-header>
 <ion-content>
   <div class="body-container-map">
-    <div *ngFor="let item of mArrayFloorModels">
-        <div class="floor-name">{{item.floor.name}}</div>
+    <div *ngFor="let item of mArrayFloorModels" class="floor-model-container">
+        <div class="floor-name" (click)="onClickFloor(item.floor)" tappable>{{item.floor.name}}</div>
         <ion-row>
           <ion-col col-6 >
             <div class="table-title">Bàn</div>
             <ion-row align-items-center>
-              <ion-col col-2 *ngFor="let table of item.tables">
+              <ion-col col-2 *ngFor="let table of item.tables" (click)="onClickTable(table)" tappable>
                 <div class="table-item">{{table.name}}</div>
               </ion-col>
             </ion-row>
@@ -26,7 +26,7 @@
           <ion-col col-6>
             <div class="table-title">Khu vực</div>
             <ion-row align-items-center>
-                <ion-col col-2 *ngFor="let area of item.areas">
+                <ion-col col-2 *ngFor="let area of item.areas" (click)="onClickArea(area)" tappable>
                   <div class="table-item">{{area.name}}</div>
                 </ion-col>
               </ion-row>

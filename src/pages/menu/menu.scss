@@ -59,6 +59,10 @@ page-menu {
   .table-container{
     margin-top: 20px;
     border: 1px solid #BAC1D5;
+    margin-bottom: 20px;
+    .total-name{
+      padding: 16px;
+    }
     .white-bg{
       td{
         background: white;

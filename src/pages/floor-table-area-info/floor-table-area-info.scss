@@ -1,4 +1,4 @@
-page-table {
+page-floor-table-area-info {
   .item {
     margin: 10px 0;
     border-radius: 5px;
@@ -7,6 +7,7 @@ page-table {
 
   .text-input {
     margin: 13px 0 !important;
+    text-align: right;
   }
 
   .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
@@ -39,31 +40,43 @@ page-table {
     background: map-get($map: $colors, $key: light);
   }
 
-  .schedule-total {
-    max-width: 400px;
+  .fta-info-container {
+    max-width: 500px;
     width: 100%;
+    margin: 20px auto;
   }
 
-  .btn-save {
+  .item-input .label-md,
+  .item-select .label-md,
+  .item-datetime .label-md {
+    color: #222;
+  }
+
+  .item-select-disabled ion-label {}
+
+  .text-input[disabled] {
+    opacity: 0.4;
+  }
+
+  .btn-delete {
+    background: map-get($map: $colors, $key: danger);
+    border-radius: 5px;
+    margin-right: 10px;
+    min-width: 120px;
+  }
+
+  .btn-edit {
+    border-radius: 5px;
+    min-width: 120px;
+    margin-left: 10px;
+  }
+
+  .btn-save-container {
     text-align: center;
-    margin-top: 20px;
+
     .button {
-      transition: 200ms;
       min-width: 120px;
       border-radius: 5px;
-      background: map-get($map: $colors, $key: green);
-      box-shadow: 0 3px 6px rgba($color: map-get($map: $colors, $key: green), $alpha: .16);
     }
-    .button:hover{
-      background: map-get($map: $colors, $key: green);
-      transform: scale(1.1);
-    }
-  }
-
-  .scroll-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 }

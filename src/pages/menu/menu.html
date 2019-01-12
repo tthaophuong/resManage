@@ -30,6 +30,9 @@
     </div>
 
     <div class="table-container">
+      <div class="total-name" [hidden]="indexMenu != CATEGORY">Tổng số: {{items.length}}</div>
+      <div class="total-name" [hidden]="indexMenu != PRODUCT">Tổng số: {{foods.length}}</div>
+      <div class="total-name" [hidden]="indexMenu != COMBO">Tổng số: {{combos.length}}</div>
       <table width="100%" [hidden]="indexMenu != CATEGORY">
         <tr class="table-title">
           <th class="width-50">STT</th>
@@ -40,7 +43,7 @@
         </tr>
         <tr *ngFor="let item of items; let i = index" [class.white-bg]="i % 2 == 0">
           <td text-center>{{i+1}}</td>
-          <td text-center>{{item.id}}</td>
+          <td text-center>{{item.category_id}}</td>
           <td colspan="2">{{item.name}}</td>
           <!-- <td>{{item.group}}</td> -->
           <td>{{item.icon}}</td>
@@ -61,13 +64,13 @@
         </tr>
         <tr *ngFor="let food of foods; let i = index" [class.white-bg]="i % 2 == 0">
           <td text-center>{{i+1}}</td>
-          <td text-center>{{food.idf}}</td>
-          <td text-left>{{food.namef}}</td>
-          <td text-left>{{food.costf}}</td>
-          <td text-center>{{food.moneyf}}</td>
-          <td text-center>{{food.countf}}</td>
-          <td text-center>{{food.kindf}}</td>
-          <td text-center>{{food.statusf}}</td>
+          <td text-center>{{food.product_id}}</td>
+          <td text-left>{{food.name}}</td>
+          <td text-left>{{food.price | number}}</td>
+          <td text-center>{{food.currency}}</td>
+          <td text-center>{{food.unit}}</td>
+          <td text-center>{{food.category_id | categoryName}}</td>
+          <td text-center>{{food.status | productStatus}}</td>
         </tr>
       </table>
 

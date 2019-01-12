@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Products } from '../../providers/class/Products';
+import { Categories } from '../../providers/class/Categories';
+import { RestaurantSFSConnector } from '../../providers/smartfox/SFSConnector';
+import { AppControllerProvider } from '../../providers/app-controller/app-controller';
+import { Areas } from '../../providers/class/Areas';
 
 /**
  * Generated class for the ComboPage page.
@@ -25,16 +29,21 @@ export class ComboPage {
   mArea: number = 1;
   mCurrency: number = 1;
 
-  cateTitle = "Thêm danh mục";
   titles = ["Thêm danh mục", "Thêm món ăn", "Thêm combo"];
+  cateTitle = "";
 
   total_money: number = 0;
 
   mProducts: Array<Products> = [];
   mProductsProductModels: Array<ProductModels> = [];
 
+  categoryName: string = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  mAreas: Array<Areas> = [];
+
+  constructor(
+    public mAppModule : AppControllerProvider,
+    public navCtrl: NavController, public navParams: NavParams) {
     if (this.navParams.data["mode"]) {
       this.mMode = this.navParams.get("mode");
       this.cateTitle = this.titles[this.mMode - 1];
@@ -42,16 +51,35 @@ export class ComboPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ComboPage');
-  }
-  closeCombo() {
-    this.navCtrl.pop();
+
   }
   
-  items = [
-    {
-      name: "product",
-      quantity: "1",
+  onClickSave(){
+    if(this.mMode == 1){
+      this.doCreateCategory();
+    }else if(this.mMode == 2){
+      this.doCreateProduct();
+    }else if(this.mMode == 3){
+      this.doCreateCombo();
+    }else{
+
     }
-  ]
+  }
+
+  doCreateCategory(){
+    this.mAppModule.showLoading();
+    let category = new Categories();
+    category.setName(this.categoryName);
+    category.setType(this.mTypeCategory);
+    RestaurantSFSConnector.getInstance().addNewCategory(category);
+  }
+
+  doCreateProduct(){
+    
+  }
+
+  doCreateCombo(){
+
+  }
+  
 }

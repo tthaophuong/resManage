@@ -26,7 +26,13 @@ export class RestaurantClient extends SfsClientBaseExtension{
             return this.onParseGET_RESTAURANT_OF_USER(params);
         }
         else if(cmd == RestaurantCMD.CREATE_FLOOR){
-            return this.onParseCreateFloor(params);
+            return this.doParseInfo(params);
+        }
+        else if(cmd == RestaurantCMD.CREATE_AREA){
+            return this.doParseInfo(params);
+        }
+        else if(cmd == RestaurantCMD.CREATE_TABLE){
+            return this.doParseInfo(params);
         }
         else if (cmd == RestaurantCMD.GET_LIST_CATEGORIES_IN_RESTAURANT) {
             return this.onParseGET_LIST_CATEGORIES_IN_RESTAURANT(params);
@@ -131,10 +137,7 @@ export class RestaurantClient extends SfsClientBaseExtension{
         return res;
     }
 
-    public onParseCreateFloor(params){
-        let res = this.doParseInfo(params);
-        return res;
-    }
+    
 
     // public onParseGET_PRODUCT_IN_RESTAURANT(params){
     //     let data = this.doParseArrayExtensions(params);

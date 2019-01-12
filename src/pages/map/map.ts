@@ -4,6 +4,11 @@ import { AppControllerProvider } from '../../providers/app-controller/app-contro
 import { Floors } from '../../providers/class/Floors';
 import { Areas } from '../../providers/class/Areas';
 import { Tables } from '../../providers/class/Tables';
+import { RestaurantManager } from '../../providers/app-controller/RestaurantManager';
+import { RestaurantSFSConnector } from '../../providers/smartfox/SFSConnector';
+import { RestaurantClient } from '../../providers/smartfox/RestaurantClient';
+import { RestaurantCMD } from '../../providers/smartfox/RestaurantCMD';
+import { Paramskey } from '../../providers/smartfox/Paramkeys';
 
 /**
  * Generated class for the MapPage page.
@@ -12,7 +17,7 @@ import { Tables } from '../../providers/class/Tables';
  * Ionic pages and navigation.
  */
 
-export interface FloorModels{
+export interface FloorModels {
   floor: Floors;
   areas: Array<Areas>;
   tables: Array<Tables>;
@@ -29,70 +34,127 @@ export interface FloorModels{
   templateUrl: 'map.html',
 })
 export class MapPage {
-  index: number = 0;
-  menu: Array<{ menuSelected: string, subMenu: string }> = [];
-  menuSelected: any;
 
-  TABLE: number = 1;
-  FLOOR: number = 2;
-  AREA: number = 3;
 
-  indexMenu = 1;
-  titles = ["Danh sách tầng", "Danh sách khu vực", "Danh sách bàn"];
+  mArrayFloorModels: Array<FloorModels> = [];
 
-  mArrayFloorModels : Array<FloorModels> = [];
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public modCtrl: ModalController, public mAppModule: AppControllerProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public mAppModule: AppControllerProvider) {
   }
 
-  onClickMenu(index) {
-    this.indexMenu = index;
-    this.mname = this.titles[this.indexMenu - 1];
+  onLoadData() {
+    let floors = RestaurantManager.getInstance().getFloors();
+    let areas = RestaurantManager.getInstance().getAreas();
+    let tables = RestaurantManager.getInstance().getTables();
+
+    this.mArrayFloorModels = [];
+    floors.forEach(element => {
+      this.mArrayFloorModels.push({
+        floor: element,
+        areas: areas.filter(area => {
+          return area.getFloor_id() == element.getFloor_id()
+        }),
+        tables: tables.filter(table => {
+          return table.getFloor_id() == element.getFloor_id()
+        })
+      })
+    });
   }
-  mname = "Danh sách tầng";
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MapPage');
+    if (!this.mAppModule.userIsLogin) {
+      this.navCtrl.setRoot("LoginPage");
+      return;
+    }
+
+    this.onLoadData();
+
+
+    RestaurantSFSConnector.getInstance().addListener("MapPage", response => {
+      this.onExtensions(response);
+    })
   }
 
-createInfo(){
-  this.mAppModule.showModal("TablePage",{mode: this.indexMenu})
-}
-  
-  tables = [
-    {
-      imgs: "../assets/imgs/table-icon-png-6.png",
-      name: "Bàn số 1",
-    },
-    {
-      imgs: "../assets/imgs/table-icon-png-6.png",
-      name: "Bàn số 1",
-    },
-    {
-      imgs: "../assets/imgs/table-icon-png-6.png",
-      name: "Bàn số 1",
-    },
-    {
-      imgs: "../assets/imgs/table-icon-png-6.png",
-      name: "Bàn số 1",
-    },
-    {
-      imgs: "../assets/imgs/table-icon-png-6.png",
-      name: "Bàn số 1",
-    },
-    {
-      imgs: "../assets/imgs/table-icon-png-6.png",
-      name: "Bàn số 1",
-    },
-    {
-      imgs: "../assets/imgs/table-icon-png-6.png",
-      name: "Bàn số 1",
-    },
-    {
-      imgs: "../assets/imgs/table-icon-png-6.png",
-      name: "Bàn số 1",
-    },
-  ]
+  ionViewWillUnload() {
+    RestaurantSFSConnector.getInstance().removeListener("MapPage");
+  }
 
-  areaInfo= ["Bar 1", "Bếp 1"]
+  onExtensions(response) {
+    this.mAppModule.hideLoading();
+    let cmd = response.cmd;
+    let params = response.params;
+
+    if (RestaurantClient.getInstance().doCheckStatusParams(params)) {
+      // let dataBase = RestaurantClient.getInstance().doBaseDataWithCMDParams(cmd,params);
+      if (cmd == RestaurantCMD.GET_LIST_FLOOR_IN_RESTAURANT) {
+        this.onLoadData();
+      } else if (cmd == RestaurantCMD.GET_LIST_AREA_IN_RESTAURANT) {
+        this.onLoadData();
+      } else if (cmd == RestaurantCMD.GET_LIST_TABLE_IN_RESTAURANT) {
+        this.onLoadData();
+      }
+    } else {
+      this.mAppModule.showToast(params.getUtfString(Paramskey.MESSAGE));
+    }
+  }
+
+
+  onClickAdd() {
+    let action = this.mAppModule.getActionSheet().create();
+    action.setTitle("Thêm mới");
+    action.addButton({
+      text: "Thêm tầng",
+      handler: () => {
+        this.mAppModule.showModal("TablePage", { mode: 1 }, () => {
+          this.mAppModule.showLoadingNoduration();
+          RestaurantSFSConnector.getInstance().getListFloorOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+        });
+      }
+    });
+    action.addButton({
+      text: "Thêm khu vực",
+      handler: () => {
+        this.mAppModule.showModal("TablePage", { mode: 2 }, () => {
+          this.mAppModule.showLoadingNoduration();
+          RestaurantSFSConnector.getInstance().getListAreaOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+        });
+
+      }
+    });
+    action.addButton({
+      text: "Thêm bàn",
+      handler: () => {
+        this.mAppModule.showModal("TablePage", { mode: 3 }, () => {
+          this.mAppModule.showLoadingNoduration();
+          RestaurantSFSConnector.getInstance().getListTableOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+        });
+
+      }
+    });
+    action.present();
+  }
+
+  onClickFloor(floor: Floors) {
+    this.mAppModule.showModal("FloorTableAreaInfoPage", { mode: 1, id: floor.getFloor_id() }, (id) => {
+      if (id) {
+        RestaurantSFSConnector.getInstance().getListFloorOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+      }
+    });
+  }
+  onClickTable(table: Tables) {
+    this.mAppModule.showModal("FloorTableAreaInfoPage", { mode: 3, id: table.getTable_id() }, (id) => {
+      if (id) {
+        RestaurantSFSConnector.getInstance().getListTableOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+      }
+    });
+  }
+  onClickArea(area: Areas) {
+    this.mAppModule.showModal("FloorTableAreaInfoPage", { mode: 2, id: area.getArea_id() }, (id) => {
+      if (id) {
+        RestaurantSFSConnector.getInstance().getListAreaOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+      }
+    });
+  }
+
+  
 }

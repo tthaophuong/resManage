@@ -13,7 +13,7 @@
   <div class="category-container">
     <div id="catagorys" *ngIf="mMode == 1">
       <ion-item>
-        <ion-input type="text" placeholder="Tên danh mục"></ion-input>
+        <ion-input type="text" placeholder="Tên danh mục" [(ngModel)]="categoryName"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -55,11 +55,8 @@
 
       <ion-item>
         <ion-label>Khu vực chế biến</ion-label>
-        <ion-select [(ngModel)]="mArea">
-          <ion-option value="1">Bếp 1</ion-option>
-          <ion-option value="2">Bếp 2</ion-option>
-          <ion-option value="3">Bar 1</ion-option>
-          <ion-option value="4">Bar 2</ion-option>
+        <ion-select [(ngModel)]="mArea" placeholder="Chọn khu vực">
+          <ion-option value="{{item.area_id}}" *ngFor="let item of mAreas">{{item.name}}</ion-option>
         </ion-select>
       </ion-item>
 
@@ -110,7 +107,7 @@
     </div>
 
     <div class="btn-save-bottom">
-      <button ion-button> Lưu</button>
+      <button ion-button (click)="onClickSave()">Lưu</button>
     </div>
   </div>
 

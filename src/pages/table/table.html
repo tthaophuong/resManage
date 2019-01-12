@@ -4,55 +4,59 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<!-- <ion-header>
 
-  <ion-navbar>
-    <ion-title>table</ion-title>
-  </ion-navbar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons right>
+      <button ion-button icon-only navPop>
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
 
-</ion-header> -->
+    <ion-title>{{cateTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
 
- 
 <ion-content>
   <div class="schedule-total">
-    <div class="floor" *ngIf="mMode == 1">
-    <p>Thêm tầng</p>
-    <button class="schedule-btn" ion-button icon-only clear (click)="dismiss()">
-      <ion-icon name="close"></ion-icon>
-    </button>
-    <div class="schedule bor-table">
-      <ion-input type="text" value="" placeholder="Nhập tên tầng"></ion-input>
+    <div *ngIf="mMode == 1">
+      <ion-item>
+        <ion-input type="text" placeholder="Nhập tên tầng" [(ngModel)]="floorName"></ion-input>
+      </ion-item>
     </div>
-</div>
-<div class="tables" *ngIf="mMode == 2">
-    <p>Thêm bàn</p>
-    <div class="schedule bor-table">
-      <select id="status" name="status" class="table-info ">
-        <option value="active">Tầng 1</option>
-        <option value="block">Tầng 2</option>
-        <option value="block">Tầng 3</option>
-      </select>
+    <div *ngIf="mMode == 2">
+      <ion-item>
+        <ion-input type="text" placeholder="Nhập tên khu vực" [(ngModel)]="areaName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tầng</ion-label>
+        <ion-select [(ngModel)]="mFloorID" placeholder="Chọn tầng">
+          <ion-option value="{{item.floor_id}}" *ngFor="let item of mFloors">{{item.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
     </div>
-    <div class="schedule bor-table">
-      <ion-input type="text" value="" placeholder="Tên bàn"></ion-input>
+    <div *ngIf="mMode == 3">
+
+      <ion-item>
+        <ion-input type="text" placeholder="Nhập tên bàn" [(ngModel)]="tableName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="number" placeholder="Số chỗ ngồi" [(ngModel)]="tableCapacity"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tầng</ion-label>
+        <ion-select [(ngModel)]="mFloorID" placeholder="Chọn tầng">
+          <ion-option value="{{item.floor_id}}" *ngFor="let item of mFloors">{{item.name}}</ion-option>
+        </ion-select>
+      </ion-item>
     </div>
-    <div class="schedule bor-table">
-      <ion-input type="text" value="" placeholder="Sức chứa"></ion-input>
+
+    <div class="btn-save">
+      <button ion-button (click)="onClickSave()">Lưu</button>
     </div>
-</div>
-<div class="areas" *ngIf="mMode == 3">
-    <p>Thêm khu vực chế biến</p>
-    <div class="schedule bor-table">
-      <select id="status" name="status" class="table-info ">
-        <option value="active">Tầng 1</option>
-        <option value="block">Tầng 2</option>
-        <option value="block">Tầng 3</option>
-      </select>
-    </div>
-    <div class="schedule bor-table">
-      <ion-input type="text" value="" placeholder="Nhập tên khu vực"></ion-input>
-    </div>
-  </div>
-    <button ion-button inline>Lưu</button>
   </div>
 </ion-content>

@@ -4,13 +4,15 @@ export class Categories{
     private  category_id : number = -1;
 	private  name : string = "";
     private  icon : string = "";
-    
+    private  type : number = -1;
+	
     constructor(){}
 
     public toSFSObject(o) {
 		o.putInt(Paramskey.CATEGORY_ID, this.getCategory_id());
 		o.putUtfString(Paramskey.NAME, this.getName());
 		o.putUtfString(Paramskey.ICON, this.getIcon());
+		o.putInt(Paramskey.TYPE, parseInt(this.getType()+""));
 		return o;
 	}
 	
@@ -24,6 +26,17 @@ export class Categories{
 		if(o.containsKey(Paramskey.ICON)) {
 			this.setIcon(o.getUtfString(Paramskey.ICON));
 		}
+		if(o.containsKey(Paramskey.TYPE)) {
+			this.setType(o.getInt(Paramskey.TYPE));
+		}
+	}
+
+	public  getType() {
+		return this.type;
+	}
+
+	public  setType(type: number) {
+		this.type = type;
 	}
 
 	public  getCategory_id() {

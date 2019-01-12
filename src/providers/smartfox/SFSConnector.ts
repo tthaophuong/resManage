@@ -8,6 +8,7 @@ import { Products } from '../class/Products';
 import { Floors } from '../class/Floors';
 import { Areas } from '../class/Areas';
 import { Categories } from '../class/Categories';
+import { Tables } from '../class/Tables';
 
 
 var SFS2X = window['SFS2X'];
@@ -254,10 +255,60 @@ export class RestaurantSFSConnector extends SFSConnector {
         this.send(this.cmd,params);
     }
 
+    public addUpdateFloor(floor: Floors){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_FLOOR_INFO);
+        params = floor.toSFSObject(params);
+        this.send(this.cmd,params);
+    }
+
     public addNewArea(area: Areas){
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.CREATE_AREA);
         params = area.toSFSObject(params);
+        this.send(this.cmd,params);
+    }
+
+    public addUpdateArea(area: Areas){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_AREA_INFO);
+        params = area.toSFSObject(params);
+        this.send(this.cmd,params);
+    }
+
+    public removeFloor(floor_id: number){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.REMOVE_FLOOR);
+        params.putInt(Paramskey.FLOOR_ID,floor_id);
+        this.send(this.cmd,params);
+    }
+
+    public removeTable(table_id: number){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.REMOVE_TABLE);
+        params.putInt(Paramskey.TABLE_ID,table_id);
+        this.send(this.cmd,params);
+    }
+
+    public removeArea(area_id: number){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.REMOVE_AREA);
+        params.putInt(Paramskey.AREA_ID,area_id);
+        this.send(this.cmd,params);
+    }
+
+    public addNewTable(table: Tables){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.CREATE_TABLE);
+        params = table.toSFSObject(params);
+        this.send(this.cmd,params);
+    }
+
+
+    public addUpdateTable(table: Tables){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_TABLE_INFO);
+        params = table.toSFSObject(params);
         this.send(this.cmd,params);
     }
 

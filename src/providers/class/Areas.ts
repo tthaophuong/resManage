@@ -10,13 +10,22 @@ export class Areas{
     
     constructor(){}
 
+	public fromOject(o: Areas){
+		this.area_id = o.getArea_id();
+		this.name  = o.getName();
+		this.type  = o.getType();
+		this.status = o.getStatus();
+		this.floor_id = o.getFloor_id();
+		this.restaurant_id = o.getRestaurant_id();
+	}
+
     public toSFSObject(o) {
 		
 		o.putInt(Paramskey.AREA_ID, this.getArea_id());
 		o.putUtfString(Paramskey.NAME, this.getName());
-		o.putInt(Paramskey.TYPE, this.getType());
-		o.putInt(Paramskey.STATUS, this.getStatus());
-		o.putInt(Paramskey.FLOOR_ID, this.getFloor_id());
+		o.putInt(Paramskey.TYPE, parseInt(this.getType()+""));
+		o.putInt(Paramskey.STATUS, parseInt(this.getStatus()+""));
+		o.putInt(Paramskey.FLOOR_ID, parseInt(this.getFloor_id()+""));
 		o.putInt(Paramskey.RESTAURANT_ID, this.getRestaurant_id());
 		return o;
 	}

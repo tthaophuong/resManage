@@ -10,13 +10,22 @@ export class Tables {
     private floor_name: string = "Tang";
 
     constructor() { }
+    public fromObject(o: Tables){
+        this.table_id = o.getTable_id();
+        this.name = o.getName();
+        this.capacity = o.getCapacity();
+        this.status = o.getStatus();
+        this.floor_id = o.getFloor_id();
+        this.restaurant_id = o.getRestaurant_id();
+        this.floor_name = o.getFloorName();
+    }
 
     public toSFSObject(o) {
         o.putInt(Paramskey.TABLE_ID, this.getTable_id());
         o.putUtfString(Paramskey.NAME, this.getName());
-        o.putInt(Paramskey.CAPACITY, this.getCapacity());
-        o.putInt(Paramskey.STATUS, this.getStatus());
-        o.putInt(Paramskey.FLOOR_ID, this.getFloor_id());
+        o.putInt(Paramskey.CAPACITY, parseInt(this.getCapacity()+""));
+        o.putInt(Paramskey.STATUS, parseInt(this.getStatus()+""));
+        o.putInt(Paramskey.FLOOR_ID, parseInt(this.getFloor_id()+""));
         o.putInt(Paramskey.RESTAURANT_ID, this.getRestaurant_id());
         return o;
     }

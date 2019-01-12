@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ModalController, NavController, ToastController, App } from 'ionic-angular';
+import { ModalController, NavController, ToastController, App, ActionSheetController, LoadingController, Loading, AlertCmp, AlertController } from 'ionic-angular';
 import { Calendar } from './calendar';
 import { RestaurantSFSConnector } from '../smartfox/SFSConnector';
 import 'rxjs/add/operator/map';
@@ -29,14 +29,62 @@ export class AppControllerProvider {
   private mUserData: UserData = new UserData();
   private mUser: Users = new Users();
   private mRestaurantOfUser: Array<RestaurantOfUser> = [];
-
+  mLoading : Loading = null;
   constructor(
     public mApp: App,
     public http: Http,
+    public mAlertController: AlertController,
+    public mLoadingController: LoadingController,
     public mModalController: ModalController,
+    public mActionSheet: ActionSheetController,
     public mToast: ToastController,
   ) {
     this.mAppConfig = new Config();
+  }
+
+  public getAlertController(){
+    return this.mAlertController;
+  }
+
+  async showLoading(content?: string, cssClass?: string, duration?: number) {
+    if (this.mLoading) {
+      try {
+        await this.mLoading.dismiss()
+      } catch (error) { }
+    }
+    this.mLoading = this.mLoadingController.create({
+      duration: duration ? duration : 3000,
+      dismissOnPageChange: true,
+      content: content ? content : "Waiting...!",
+      cssClass: cssClass ? cssClass : ""
+    });
+    this.mLoading.present();
+  }
+
+  async showLoadingNoduration(content?: string, cssClass?: string) {
+    if (this.mLoading) {
+      try {
+        await this.mLoading.dismiss()
+      } catch (error) { }
+    }
+    this.mLoading = this.mLoadingController.create({
+      dismissOnPageChange: true,
+      content: content ? content : "Waiting...!",
+      cssClass: cssClass ? cssClass : ""
+    });
+    this.mLoading.present();
+  }
+
+
+  public hideLoading(): void {
+    if (this.mLoading) {
+      this.mLoading.dismiss();
+      this.mLoading = null;
+    }
+  }
+
+  public getActionSheet(){
+    return this.mActionSheet;
   }
 
   public _loadAppConfig() {
@@ -124,9 +172,14 @@ export class AppControllerProvider {
 
   }
 
-  public showModal(page: string, params?: any) {
+  public showModal(page: string, params?: any,callback?:any) {
     let modal = this.mModalController.create(page, params ? params : null);
     modal.present();
+    modal.onDidDismiss((data)=>{
+      if(callback){
+        callback(data);
+      }
+    })
   }
 
   public getRestaurantOfUser() {
