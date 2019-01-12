@@ -41,7 +41,7 @@
           <!-- <th text-left>Loại </th> -->
           <th>Icon </th>
         </tr>
-        <tr *ngFor="let item of items; let i = index" [class.white-bg]="i % 2 == 0">
+        <tr *ngFor="let item of items; let i = index" class="item-row-table" [class.white-bg]="i % 2 == 0">
           <td text-center>{{i+1}}</td>
           <td text-center>{{item.category_id}}</td>
           <td colspan="2">{{item.name}}</td>
@@ -62,7 +62,7 @@
           <th>Loại </th>
           <th>Trạng thái </th>
         </tr>
-        <tr *ngFor="let food of foods; let i = index" [class.white-bg]="i % 2 == 0">
+        <tr *ngFor="let food of foods; let i = index" class="item-row-table" [class.white-bg]="i % 2 == 0">
           <td text-center>{{i+1}}</td>
           <td text-center>{{food.product_id}}</td>
           <td text-left>{{food.name}}</td>
@@ -83,7 +83,7 @@
           <th text-center>Loại </th>
           <th text-center>Trạng thái </th>
         </tr>
-        <tr *ngFor="let combo of combos ; let i = index" [class.white-bg]="i % 2 == 0">
+        <tr *ngFor="let combo of combos ; let i = index" class="item-row-table" [class.white-bg]="i % 2 == 0">
           <td text-center>{{i+1}}</td>
           <td text-center>{{combo.idc}}</td>
           <td text-left>{{combo.namec}}</td>
