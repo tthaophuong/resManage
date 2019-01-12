@@ -98,17 +98,20 @@ export class FloorTableAreaInfoPage {
       else if(cmd == RestaurantCMD.UPDATE_AREA_INFO){
         this.showMessageSuccess();
         this.isEdit = false;
+        this.cateTitle = this.titles[this.mMode - 1];
         RestaurantSFSConnector.getInstance().getListAreaOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
       }
       else if(cmd == RestaurantCMD.UPDATE_FLOOR_INFO){
         this.showMessageSuccess();
         this.isEdit = false;
+        this.cateTitle = this.titles[this.mMode - 1];
         RestaurantSFSConnector.getInstance().getListFloorOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
 
       }
       else if(cmd == RestaurantCMD.UPDATE_TABLE_INFO){
         this.showMessageSuccess();
         this.isEdit = false;
+        this.cateTitle = this.titles[this.mMode - 1];
         RestaurantSFSConnector.getInstance().getListTableOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
       }
     } else {

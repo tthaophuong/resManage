@@ -1,98 +1,91 @@
 page-employee-detail {
-  .tittle {
-    text-align: center;
-    padding: 10px;
-    font-size: 28px;
-    position: relative;
-    margin-bottom: 15px 0;
-
-    button {
-      border: 1px solid black;
-      border-radius: 50%;
-      color: black;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    button:hover{
-      color: orangered;
-    }
+  .item {
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba($color: #000000, $alpha: .16);
   }
 
-  .button[icon-only] {
-    padding: 6px;
+  .text-input {
+    margin: 13px 0 !important;
+    text-align: right;
   }
 
-  .btns {
-    text-align: center;
-    margin-top: 20px;
-
-    button {
-      padding: 6px;
-      min-width: 100px;
-    }
+  .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+  .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    box-shadow: none;
   }
 
-  .avata {
-    border: 1px solid black;
-    max-width: 200px;
-    min-height: 200px;
-    position: relative;
+  .item-md.item-block .item-inner {
+    border-bottom: none;
   }
 
-  .icon-ava {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    font-size: 20px;
-    padding: 6px;
+  .item-md.item-input.item-input-has-focus .item-inner,
+  .item-md.item-input.input-has-focus .item-inner {
+
+    border-radius: 5px;
+    box-shadow: none;
   }
 
-  .avata-img {
-    display: flex;
-    margin-top: 8px;
-    position: absolute;
-    left: 30px;
+  .item-ios.item-input.item-input-has-focus .item-inner,
+  .item-ios.item-input.input-has-focus .item-inner {
+    border-radius: 5px;
+    box-shadow: none;
   }
 
-  .take-photo {
-    padding: 8px;
-    border-right: 1px solid black;
+  .header:after {
+    height: 0 !important;
   }
 
-  .take-photo:hover {
-    color: orangered;
+  ion-content.content {
+    background: map-get($map: $colors, $key: light);
   }
 
-  .photo {
-    border-right: none;
-  }
-
-  .bg-color1 {
-    background: #ffb713;;
-    color: black;
-  }
-  .bg-color1:hover{
-    background: #ffb713;
-    opacity: 0.8;
-  }
-
-  input,
-  select {
-    padding: 6px;
-    min-width: 185px;
-  }
-  .add-employee{
-    padding: 14px;
-  }
-  .schedule{
-    margin-bottom: 20px;
-  }
-  .table-info {
-    border: none;
-    font-size: 18px;
-    padding: 12px;
+  .fta-info-container {
+    max-width: 500px;
     width: 100%;
-    border-radius: 3px;
+    margin: 20px auto;
   }
+
+  .item-input .label-md,
+  .item-select .label-md,
+  .item-datetime .label-md {
+    color: #222;
+  }
+
+  .item-select-disabled ion-label {}
+
+  .text-input[disabled] {
+    opacity: 0.4;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: auto;
+    padding-top: 32px;
+
+    padding: 16px;
+    min-height: 100%;
+  }
+
+  .btn-delete {
+    background: map-get($map: $colors, $key: danger);
+    border-radius: 5px;
+    margin-right: 10px;
+    min-width: 120px;
+  }
+
+  .btn-edit {
+    border-radius: 5px;
+    min-width: 120px;
+  }
+
+  .btn-save-container {
+    text-align: center;
+
+    .button {
+      min-width: 120px;
+      border-radius: 5px;
+    }
+  }
+  
 }

@@ -3,6 +3,7 @@ import { Products } from "../class/Products";
 import { Floors } from "../class/Floors";
 import { Tables } from "../class/Tables";
 import { Areas } from "../class/Areas";
+import { Staffs } from "../class/Staffs";
 
 export class RestaurantManager {
     public static _instance: RestaurantManager = null;
@@ -11,6 +12,7 @@ export class RestaurantManager {
     mFloors: Array<Floors> = [];
     mTables: Array<Tables> = [];
     mAreas: Array<Areas> = [];
+    mStaffs: Array<Staffs> = [];
 
     constructor() {
 
@@ -60,6 +62,17 @@ export class RestaurantManager {
         return new Products();
     }
 
+    public getStaffInfo(staff_id: number){
+        if(this.mStaffs.length > 0){
+            for (const staff of this.mStaffs) {
+                if(staff.getUserID() == staff_id){
+                    return staff;
+                }
+            }
+        }
+        return new Staffs();
+    }
+
     public getCategoryInfo(category_id: number){
         if(this.mCategorys.length > 0){
             for (const category of this.mCategorys) {
@@ -86,6 +99,9 @@ export class RestaurantManager {
     public getCategorys() {
         return this.mCategorys;
     }
+    public getStaffs() {
+        return this.mStaffs;
+    }
 
     public setCategors(params) {
         this.mCategorys = params;
@@ -101,6 +117,9 @@ export class RestaurantManager {
     }
     public setAreas(params) {
         this.mAreas = params;
+    }
+    public setStaff(params) {
+        this.mStaffs = params;
     }
 
     public static getInstance() {

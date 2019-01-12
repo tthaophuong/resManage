@@ -9,6 +9,8 @@ import { RestaurantSFSConnector } from '../../providers/smartfox/SFSConnector';
 import { RestaurantClient } from '../../providers/smartfox/RestaurantClient';
 import { RestaurantCMD } from '../../providers/smartfox/RestaurantCMD';
 import { Paramskey } from '../../providers/smartfox/Paramkeys';
+import { Categories } from '../../providers/class/Categories';
+import { Products } from '../../providers/class/Products';
 
 /**
  * Generated class for the CategoryDetailPage page.
@@ -28,18 +30,14 @@ import { Paramskey } from '../../providers/smartfox/Paramkeys';
 export class CategoryDetailPage {
   mMode: number = 1;
   cateTitle: string = "";
-  titles = ["Thông tin danh mục", "Thông tin khu vực", "Thông tin bàn"];
-
+  titles = ["Thông tin danh mục", "Thông tin món ăn", "Thông tin combo"];
   mId: number = -1;
-
-  mFloor: Floors = new Floors();
-  mArea: Areas = new Areas();
-  mTable: Tables = new Tables();
   restaurantName: string = "";
-
-  mFloors: Array<Floors> = [];
-
+  mAreas: Array<Areas> = [];
   isEdit: boolean = false;
+
+  mCategory: Categories = new Categories();
+  mProduct: Products = new Products();
 
   constructor(
     public mViewController: ViewController,
@@ -59,27 +57,25 @@ export class CategoryDetailPage {
   }
   ionViewDidLoad() {
     if (this.mMode == 1) {
-      this.mFloor.fromObject(RestaurantManager.getInstance().getFloorInfo(this.mId));
+      this.mCategory = RestaurantManager.getInstance().getCategoryInfo(this.mId);
     } else if (this.mMode == 2) {
-      this.mArea.fromOject(RestaurantManager.getInstance().getAreaInfo(this.mId));
+      this.mProduct = RestaurantManager.getInstance().getProductInfo(this.mId);
     } else if (this.mMode == 3) {
-      this.mTable.fromObject(RestaurantManager.getInstance().getTableInfo(this.mId));
+
     } else {
       return;
     }
 
-    this.mFloors = RestaurantManager.getInstance().getFloors();
+    this.mAreas = RestaurantManager.getInstance().getAreas();
 
-    RestaurantSFSConnector.getInstance().addListener("FloorTableAreaInfoPage", response => {
+    RestaurantSFSConnector.getInstance().addListener("CategoryDetailPage", response => {
       this.onExtensions(response);
     })
 
   }
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad CategoryDetailPage');
-  // }
+ 
   ionViewWillUnload() {
-    RestaurantSFSConnector.getInstance().removeListener("FloorTableAreaInfoPage");
+    RestaurantSFSConnector.getInstance().removeListener("CategoryDetailPage");
   }
 
   onExtensions(response) {
@@ -88,32 +84,18 @@ export class CategoryDetailPage {
     let params = response.params;
 
     if (RestaurantClient.getInstance().doCheckStatusParams(params)) {
-      if (cmd == RestaurantCMD.REMOVE_AREA) {
-        this.showMessageSuccess();
-        this.mViewController.dismiss(this.mId);
-      } else if (cmd == RestaurantCMD.REMOVE_FLOOR) {
-        this.showMessageSuccess();
-        this.mViewController.dismiss(this.mId);
-      } else if (cmd == RestaurantCMD.REMOVE_TABLE) {
-        this.showMessageSuccess();
-        this.mViewController.dismiss(this.mId);
-      }
-      else if(cmd == RestaurantCMD.UPDATE_AREA_INFO){
-        this.showMessageSuccess();
+      if (cmd == RestaurantCMD.UPDATE_CATEGORY_INFO) {
         this.isEdit = false;
-        RestaurantSFSConnector.getInstance().getListAreaOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
-      }
-      else if(cmd == RestaurantCMD.UPDATE_FLOOR_INFO){
         this.showMessageSuccess();
+      } 
+      else if (cmd == RestaurantCMD.UPDATE_PRODUCT_INFO) {
         this.isEdit = false;
-        RestaurantSFSConnector.getInstance().getListFloorOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
-
-      }
-      else if(cmd == RestaurantCMD.UPDATE_TABLE_INFO){
         this.showMessageSuccess();
-        this.isEdit = false;
-        RestaurantSFSConnector.getInstance().getListTableOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
-      }
+      } 
+      else if (cmd == RestaurantCMD.REMOVE_CATEGORY) {
+        this.showMessageSuccess();
+        this.mViewController.dismiss(1);
+      } 
     } else {
       this.mAppModule.showToast(params.getUtfString(Paramskey.MESSAGE));
     }
@@ -133,11 +115,13 @@ export class CategoryDetailPage {
       text: "Xoá",
       handler: () => {
         if (this.mMode == 1) {
-          this.doRemoveFloor();
+          this.mAppModule.showLoading();
+          this.mCategory.setRestaurant_id(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+          RestaurantSFSConnector.getInstance().removeCategory(this.mCategory);
         } else if (this.mMode == 2) {
-          this.doRemoveArea();
+          // this.mAppModule.showLoading();
         } else if (this.mMode == 3) {
-          this.doRemoveTable();
+
         } else {
           return;
         }
@@ -146,31 +130,18 @@ export class CategoryDetailPage {
     alert.present();
   }
 
-  doRemoveFloor() {
-    this.mAppModule.showLoading();
-    RestaurantSFSConnector.getInstance().removeFloor(this.mFloor.getFloor_id());
-  }
-
-  doRemoveArea() {
-    this.mAppModule.showLoading();
-    RestaurantSFSConnector.getInstance().removeArea(this.mArea.getArea_id());
-  }
-
-  doRemoveTable() {
-    this.mAppModule.showLoading();
-    RestaurantSFSConnector.getInstance().removeTable(this.mTable.getTable_id());
-  }
+ 
 
   onClickEdit() {
     this.isEdit = true;
     if (this.mMode == 1) {
       this.cateTitle = "Chỉnh sửa danh mục";
     } 
-    // else if (this.mMode == 2) {
-    //   this.cateTitle = "Chỉnh sửa khu vực";
-    // } else if (this.mMode == 3) {
-    //   this.cateTitle = "Chỉnh sửa bàn";
-    // } 
+    else if (this.mMode == 2) {
+      this.cateTitle = "Chỉnh sửa sản phẩm";
+    } else if (this.mMode == 3) {
+      this.cateTitle = "Chỉnh sửa combo";
+    } 
     else {
       return;
     }
@@ -178,28 +149,25 @@ export class CategoryDetailPage {
 
   onClickSave() {
     if (this.mMode == 1) {
-      this.doUpdateFloor();
+      this.doUpdateCategory();
     } else if (this.mMode == 2) {
-      this.doUpdateArea();
+      this.doUpdateProduct();
     } else if (this.mMode == 3) {
-      this.doUpdateTable();
+     
     } else {
       return;
     }
   }
 
-  doUpdateFloor(){
+  doUpdateCategory(){
     this.mAppModule.showLoading();
-    RestaurantSFSConnector.getInstance().addUpdateFloor(this.mFloor);
+    RestaurantSFSConnector.getInstance().updateCategory(this.mCategory);
   }
 
-  doUpdateArea(){ 
+  doUpdateProduct(){
     this.mAppModule.showLoading();
-    RestaurantSFSConnector.getInstance().addUpdateArea(this.mArea);
+    RestaurantSFSConnector.getInstance().updateProduct(this.mProduct);
   }
 
-  doUpdateTable(){
-    this.mAppModule.showLoading();
-    RestaurantSFSConnector.getInstance().addUpdateTable(this.mTable);
-  }
+  
 }

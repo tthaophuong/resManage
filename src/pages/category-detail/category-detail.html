@@ -30,41 +30,76 @@
     <div *ngIf="mMode == 1">
       <ion-item [hidden]="isEdit">
         <ion-label>Mã danh mục</ion-label>
-        <ion-input type="text" disabled="true" [(ngModel)]="mFloor.floor_id"></ion-input>
+        <ion-input type="text" disabled="true" [(ngModel)]="mCategory.category_id"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Tên</ion-label>
-        <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mFloor.name"></ion-input>
+        <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mCategory.name"></ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-label>Loại</ion-label>
+        <ion-select [(ngModel)]="mCategory.type" placeholder="Chưa cập nhật" [disabled]="!isEdit">
+          <ion-option value="1" >Đồ ăn</ion-option>
+          <ion-option value="2" >Đồ uống</ion-option>
+        </ion-select>
+      </ion-item>
+
       <ion-item [hidden]="isEdit">
         <ion-label>Nhà hàng</ion-label>
         <ion-input type="text" disabled="true" [(ngModel)]="restaurantName"></ion-input>
       </ion-item>
     </div>
-<!--     
+    
     <div *ngIf="mMode == 2">
       <ion-item [hidden]="isEdit">
-        <ion-label >Mã khu vực</ion-label>
-        <ion-input type="text" disabled="true" [(ngModel)]="mArea.area_id"></ion-input>
+        <ion-label >Mã sản phẩm</ion-label>
+        <ion-input type="text" disabled="true" [(ngModel)]="mProduct.product_id"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Tên</ion-label>
-        <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mArea.name"></ion-input>
+        <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mProduct.name"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Tầng</ion-label>
-        <ion-select [(ngModel)]="mArea.floor_id" placeholder="Chọn tầng" [disabled]="!isEdit">
-          <ion-option value="{{item.floor_id}}" *ngFor="let item of mFloors">{{item.name}}</ion-option>
+        <ion-label>Giá tiền</ion-label>
+        <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mProduct.price"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Đơn vị tiền</ion-label>
+        <ion-select [(ngModel)]="mProduct.currency" placeholder="Chưa cập nhật" [disabled]="!isEdit">
+          <ion-option value="VNĐ" >VNĐ</ion-option>
+          <ion-option value="$" >$</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Đơn vị món ăn</ion-label>
+        <ion-select [(ngModel)]="mProduct.unit" placeholder="Chưa cập nhật" [disabled]="!isEdit">
+          <ion-option value="chai" >Chai</ion-option>
+          <ion-option value="suất" >Suất</ion-option>
+          <ion-option value="lon" >Lon</ion-option>
+          <ion-option value="con" >Con</ion-option>
+          <ion-option value="cốc" >Cốc</ion-option>
+          <ion-option value="nồi" >Nồi</ion-option>
+          <ion-option value="đĩa" >Đĩa</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Khu vực chế biến</ion-label>
+        <ion-select [(ngModel)]="mProduct.area_id" placeholder="Chọn tầng" [disabled]="!isEdit">
+          <ion-option value="{{item.area_id}}" *ngFor="let item of mAreas">{{item.name}}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>Trạng thái</ion-label>
-        <ion-select [(ngModel)]="mArea.status" placeholder="Chưa cập nhật" [disabled]="!isEdit">
-          <ion-option value="1" >Đang hoạt động</ion-option>
-          <ion-option value="2" >Ngừng hoạt động</ion-option>
+        <ion-select [(ngModel)]="mProduct.status" placeholder="Chưa cập nhật" [disabled]="!isEdit">
+          <ion-option value="1" >Đang phục vụ</ion-option>
+          <ion-option value="2" >Ngừng bán</ion-option>
         </ion-select>
       </ion-item>
 
@@ -73,7 +108,7 @@
         <ion-input type="text" disabled="true" [(ngModel)]="restaurantName"></ion-input>
       </ion-item>
 
-    </div> -->
+    </div>
     <!-- <div *ngIf="mMode == 3">
       <ion-item [hidden]="isEdit">
         <ion-label>Mã bàn</ion-label>
@@ -112,7 +147,7 @@
     </div>
 
     <div class="a3-container-center" margin-top [hidden]="isEdit">
-      <button ion-button class="btn-delete" (click)="onClickDelete()" icon-left>
+      <button ion-button class="btn-delete" [hidden]="mMode == 2" (click)="onClickDelete()" icon-left>
         <ion-icon name="trash"></ion-icon>
         Xoá
       </button>

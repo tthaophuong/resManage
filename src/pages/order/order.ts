@@ -18,19 +18,18 @@ import { AppControllerProvider } from '../../providers/app-controller/app-contro
   templateUrl: 'order.html',
 })
 export class OrderPage {
+  mType: number = 1;
 
   constructor(public navCtrl: NavController, 
     public mAppModule: AppControllerProvider,
     public navParams: NavParams) {
   }
-  moveOrderDetail(){
-    this.mAppModule.showModal("OrderDetailPage")
-  }
-  moveNewOrder(){
-    this.mAppModule.showModal("ComboListPage")
-  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderPage');
+    if(!this.mAppModule.userIsLogin){
+      this.navCtrl.setRoot("LoginPage");
+      return;
+    }
   }
   items=[
     {

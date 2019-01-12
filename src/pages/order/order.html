@@ -14,44 +14,63 @@
 
 
 <ion-content>
-  <div class="tittle-name bg-color">
-    <p>Quản lý order:  </p>
-    <div class="filter-btn">
-      <select id="order" name="order">
-        <option value="order-old">Order đã thanh toán</option>
-        <option value="order-active">Order chưa thanh toán</option>
-        <option value="order-new">Order đặt hàng</option>
-      </select>
+  <div class="container">
+    <ion-row align-items-center >
+      <ion-col col-6>
+        <div class="order-title">Quản lý order</div>
+      </ion-col>
+      <ion-col col-3 offset-3>
+        <ion-item>
+          <ion-label>Thời gian</ion-label>
+          <ion-select [(ngModel)]="mType" placeholder="Chọn bộ lọc">
+            <ion-option value="1">7 ngày</ion-option>
+            <ion-option value="2">15 ngày</ion-option>
+            <ion-option value="3">30 ngày</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-center>
+      <ion-col col-4>
+        <ion-searchbar mode="ios" placeholder="Nhập mã order"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+
+    <div class="table-container">
+        <table width="100%" class="list-order">
+            <tr>
+              <th> Mã Order</th>
+              <th> Tên bàn</th>
+              <th>Mã nhân viên</th>
+              <th text-left>Tên nhân viên</th>
+              <th>Thời gian bắt đầu</th>
+              <th>Thời gian kết thúc</th>
+              <th>Ngày</th>
+              <th>Trạng thái</th>
+              <th>Tổng tiền</th>
+            </tr>
+            <tr class="hover-name" *ngFor="let item of items; let i = index" [class.white-bg]="i%2 == 1" (click)="moveOrderDetail()">
+              <td text-center>{{item.orderID}}</td>
+              <td text-center>{{item.table}}</td>
+              <td text-center>{{item.nameID}}</td>
+              <td>{{item.name}}</td>
+              <td text-center>{{item.startTime}}</td>
+              <td text-center>{{item.endTime}}</td>
+              <td text-center>{{item.date}}</td>
+              <td text-center>{{item.status}}</td>
+              <td text-center>{{item.money}}</td>
+            </tr>
+          </table>
     </div>
-    <button ion-button clear (click)="moveNewOrder()"> Thêm mới </button>
+  
+
   </div>
-  <ion-row class="menu-search a3-center"> 
-    <ion-col col-6><input type="text" placeholder="Tìm kiếm...">
-    </ion-col>
-    <ion-col col-1><button ion-button icon-only clear><ion-icon name="search"></ion-icon></button></ion-col>
-   </ion-row>
-   <table class="list-order">
-      <tr>
-        <th> Mã Order</th>
-        <th> Tên bàn</th>
-        <th>Mã nhân viên</th>
-        <th>Tên nhân viên</th>
-        <th>Thời gian bắt đầu</th>
-        <th>Thời gian kết thúc</th>
-        <th>Ngày</th>
-        <th>Trạng thái</th>
-        <th>Tổng tiền</th>
-      </tr>
-      <tr  class="hover-name" *ngFor="let item of items" (click)="moveOrderDetail()">
-        <td >{{item.orderID}}</td>
-        <td >{{item.table}}</td>
-        <td >{{item.nameID}}</td>
-        <td >{{item.name}}</td>
-        <td >{{item.startTime}}</td>
-        <td >{{item.endTime}}</td>
-        <td >{{item.date}}</td>
-        <td >{{item.status}}</td>
-        <td >{{item.money}}</td>
-      </tr>
-    </table>
+
+
+
+
+
+
+  
 </ion-content>

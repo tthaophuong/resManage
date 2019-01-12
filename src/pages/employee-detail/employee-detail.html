@@ -1,36 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons right>
+      <button ion-button icon-only navPop>
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <div class="tittle">Thông tin nhân viên
-    <button ion-button icon-only clear (click)="hideDetail()">
-      <ion-icon icon-only name="close"></ion-icon>
-    </button>
+  <div class="container">
+
+    <ion-item [hidden]="isEdit">
+      <ion-label>Mã nhân viên</ion-label>
+      <ion-input type="text" disabled="true" [(ngModel)]="mStaff.userID"></ion-input>
+    </ion-item>
+    <ion-item [hidden]="isEdit">
+      <ion-label>Tên</ion-label>
+      <ion-input type="text" [disabled]="!isEdit" [(ngModel)]="mStaff.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Vai trò</ion-label>
+      <ion-select [(ngModel)]="mStaff.role" placeholder="Chưa cập nhật" [disabled]="!isEdit || mStaff.role == 1 || mStaff.role == 2">
+          <ion-option value="1" *ngIf="mStaff.role == 1">Chủ nhà hàng</ion-option>
+          <ion-option value="2" *ngIf="mStaff.role == 2">Quản trị viên</ion-option>
+          <ion-option value="3">Nhân viên chạy bàn</ion-option>
+          <ion-option value="4">Nhân viên bếp</ion-option>
+          <ion-option value="5">Nhân viên quản lý</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Trạng thái</ion-label>
+      <ion-select [(ngModel)]="mStaff.status" placeholder="Chưa cập nhật" [disabled]="!isEdit">
+        <ion-option value="1">Đã kích hoạt</ion-option>
+        <ion-option value="0">Khóa tài khoản</ion-option>
+      </ion-select>
+    </ion-item>
+
+   
+    <ion-item [hidden]="isEdit">
+      <ion-label>Nhà hàng</ion-label>
+      <ion-input type="text" disabled="true" [(ngModel)]="restaurantName"></ion-input>
+    </ion-item>
+
+
+    <div margin-top class="btn-save-container">
+      <button ion-button [hidden]="!isEdit" (click)="onClickSave()" class="btn-save">Lưu</button>
+    </div>
+
+    <div class="a3-container-center" margin-top [hidden]="isEdit">
+      <button ion-button class="btn-edit" (click)="onClickEdit()" icon-left>
+        <ion-icon name="create"></ion-icon>
+        Chỉnh sửa
+      </button>
+    </div>
   </div>
-  <form class="employee-form">
-    <div class="add-employee">
-    <!-- <P>Thêm nhân viên </P> -->
-    <div class="schedule bor-table">
-      <ion-input type="text" value="" placeholder="Tên đăng nhập"></ion-input>
-    </div>
-    <div class="schedule bor-table">
-      <ion-input type="password" value="" placeholder="Mật khẩu"></ion-input>
-    </div>
-    <div class="schedule bor-table">
-        <select id="status" name="status" class="table-info ">
-          <option value="active">Full time (8:00-16:00)</option>
-          <option value="block">Parttime (8:00-13:30)</option>
-          <option value="block">Parttime (17:30-22:30)</option>
-        </select>
-      </div>
-    <div class="schedule bor-table">
-      <select id="status" name="status" class="table-info ">
-        <option value="active">Nhân viên thu ngân</option>
-        <option value="block">Nhân viên bếp</option>
-        <option value="block">Nhân viên phục vụ</option>
-      </select>
-    </div>
-  </div>
-    <div class="btns ">
-      <button class="bg-color1" ion-button>Xóa</button>
-      <button class="bg-color1" ion-button>Lưu</button>
-    </div>
-  </form>
+
+
 </ion-content>

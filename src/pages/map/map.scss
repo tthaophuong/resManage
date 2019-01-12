@@ -9,6 +9,7 @@ page-map {
   .body-container-map{
     padding: 20px;
   }
+  
   .floor-name{
     padding: 12px 10px;
     background-color: map-get($map: $colors, $key: orange);
@@ -32,6 +33,14 @@ page-map {
     background: white;
     color: #222;
     font-weight: bold;
+    &.isBlock{
+      opacity: .4;
+    }
+  }
+  .table-item:hover{
+    background: map-get($map: $colors, $key: green);
+    color: white;
+    border: none;
   }
   .floor-model-container{
     padding-bottom: 20px;
