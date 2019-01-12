@@ -62,7 +62,9 @@ export class MenuPage {
 
   
 
-
+  openCategoryDetail(){
+    this.mAppModule.showModal("CategoryDetailPage")
+  }
   onClickAdd() {
     this.mAppModule.showModal("ComboPage",{mode: this.indexMenu});
   }

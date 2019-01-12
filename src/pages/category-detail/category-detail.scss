@@ -1,0 +1,82 @@
+page-category-detail {
+    .item {
+        margin: 10px 0;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px rgba($color: #000000, $alpha: .16);
+      }
+    
+      .text-input {
+        margin: 13px 0 !important;
+        text-align: right;
+      }
+    
+      .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+      .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+        box-shadow: none;
+      }
+    
+      .item-md.item-block .item-inner {
+        border-bottom: none;
+      }
+    
+      .item-md.item-input.item-input-has-focus .item-inner,
+      .item-md.item-input.input-has-focus .item-inner {
+    
+        border-radius: 5px;
+        box-shadow: none;
+      }
+    
+      .item-ios.item-input.item-input-has-focus .item-inner,
+      .item-ios.item-input.input-has-focus .item-inner {
+        border-radius: 5px;
+        box-shadow: none;
+      }
+    
+      .header:after {
+        height: 0 !important;
+      }
+    
+      ion-content.content {
+        background: map-get($map: $colors, $key: light);
+      }
+    
+      .fta-info-container {
+        max-width: 500px;
+        width: 100%;
+        margin: 20px auto;
+      }
+    
+      .item-input .label-md,
+      .item-select .label-md,
+      .item-datetime .label-md {
+        color: #222;
+      }
+    
+      .item-select-disabled ion-label {}
+    
+      .text-input[disabled] {
+        opacity: 0.4;
+      }
+    
+      .btn-delete {
+        background: map-get($map: $colors, $key: danger);
+        border-radius: 5px;
+        margin-right: 10px;
+        min-width: 120px;
+      }
+    
+      .btn-edit {
+        border-radius: 5px;
+        min-width: 120px;
+        margin-left: 10px;
+      }
+    
+      .btn-save-container {
+        text-align: center;
+    
+        .button {
+          min-width: 120px;
+          border-radius: 5px;
+        }
+      }
+}

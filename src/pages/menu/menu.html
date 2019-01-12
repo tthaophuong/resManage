@@ -41,7 +41,7 @@
           <!-- <th text-left>Loại </th> -->
           <th>Icon </th>
         </tr>
-        <tr *ngFor="let item of items; let i = index" [class.white-bg]="i % 2 == 0">
+        <tr *ngFor="let item of items; let i = index" [class.white-bg]="i % 2 == 0" (click)="openCategoryDetail()">
           <td text-center>{{i+1}}</td>
           <td text-center>{{item.category_id}}</td>
           <td colspan="2">{{item.name}}</td>
