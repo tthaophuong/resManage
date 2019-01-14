@@ -9,7 +9,7 @@ export class RestaurantCMD {
 	public static  GET_STAFF_INFO : string = "get_staff_info";
 	public static  ADD_STAFF_INTO_RESTAURANT : string = "add_staff_into_restaurant";
 	public static  REMOVE_STAFF_OUT_RESTAURANT : string = "remove_staff_out_restaurant";
-	public static  UPDATE_STAFF_ROLE_IN_RESTAURANT : string = "update_staff_role_in_restaurant";
+	public static  UPDATE_STAFF_IN_RESTAURANT : string = "update_staff_in_restaurant";
 	public static  GET_RESTAURANT_OF_USER : string = "get_restaurant_of_user";
 	
 	public static  CREATE_RESTAURANT : string = "create_restaurant";

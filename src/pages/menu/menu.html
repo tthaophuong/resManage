@@ -3,7 +3,7 @@
     <div class="a3-container menu-header-container a3-items-center">
       <div class="m-name-menu" [class.selected]="indexMenu == CATEGORY" (click)="onClickMenu(1)">Danh mục</div>
       <div class="m-name-menu" [class.selected]="indexMenu == PRODUCT" (click)="onClickMenu(2)">Món ăn</div>
-      <div class="m-name-menu" [class.selected]="indexMenu == COMBO" (click)="onClickMenu(3)">Combo</div>
+      <!-- <div class="m-name-menu" [class.selected]="indexMenu == COMBO" (click)="onClickMenu(3)">Combo</div> -->
     </div>
   </ion-toolbar>
 </ion-header>
@@ -38,15 +38,15 @@
           <th class="width-50">STT</th>
           <th class="width-50">Mã ID</th>
           <th text-left colspan="2">Tên</th>
-          <!-- <th text-left>Loại </th> -->
+          <th text-left>Loại </th>
           <th>Icon </th>
         </tr>
-        <tr *ngFor="let item of items; let i = index" class="item-row-table" [class.white-bg]="i % 2 == 0">
+        <tr *ngFor="let item of items; let i = index" (click)="onClickCategory(item)" class="item-row-table" [class.white-bg]="i % 2 == 0">
           <td text-center>{{i+1}}</td>
           <td text-center>{{item.category_id}}</td>
           <td colspan="2">{{item.name}}</td>
-          <!-- <td>{{item.group}}</td> -->
-          <td>{{item.icon}}</td>
+          <td>{{item.type | categoryType}}</td>
+          <td text-center>{{item.icon || 'Chưa cập nhật'}}</td>
         </tr>
       </table>
 
@@ -62,7 +62,7 @@
           <th>Loại </th>
           <th>Trạng thái </th>
         </tr>
-        <tr *ngFor="let food of foods; let i = index" class="item-row-table" [class.white-bg]="i % 2 == 0">
+        <tr *ngFor="let food of foods; let i = index" (click)="onClickProduct(food)" class="item-row-table" [class.white-bg]="i % 2 == 0">
           <td text-center>{{i+1}}</td>
           <td text-center>{{food.product_id}}</td>
           <td text-left>{{food.name}}</td>

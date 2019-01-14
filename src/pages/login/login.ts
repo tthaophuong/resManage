@@ -28,11 +28,26 @@ export class LoginPage {
     this.mAppModule._loadAppConfig().then(()=>{
       
     })
+
+    this.mAppModule.getUserLogin().then((data)=>{
+      if(data){
+        this.mAppModule.showLoading();
+        let database = JSON.parse(data);
+        this.username = database.username;
+        this.password = database.password;
+        this.login();
+      }
+    }).catch(err=>{
+
+    })
   }
 
   doConnectToServer(){
     RestaurantSFSConnector.getInstance().connect().then(()=>{
       this.onConnectSuccess();
+    }).catch(err=>{
+      this.mAppModule.hideLoading();
+      alert("Không thể kết nối server!");
     })
   }
 
@@ -42,6 +57,9 @@ export class LoginPage {
     
     RestaurantSFSConnector.getInstance().doLogin(this.mAppModule.getUserData()).then((success) => {
       this.onLoginSuccess(success);
+    }).catch(err=>{
+      this.mAppModule.hideLoading();
+      alert("Đăng nhập thất bại!");
     })
   }
 
@@ -50,7 +68,7 @@ export class LoginPage {
   }
 
   onLoginSuccess(success) {
-    console.log("login success", success['data'].getDump());
+    this.mAppModule.hideLoading();
     this.mAppModule.saveUserLoginData(this.mAppModule.getUserData());
     this.mAppModule.onLoginSuccess(success);
   }

@@ -9,6 +9,7 @@ import { Floors } from '../class/Floors';
 import { Areas } from '../class/Areas';
 import { Categories } from '../class/Categories';
 import { Tables } from '../class/Tables';
+import { Staffs } from '../class/Staffs';
 
 
 var SFS2X = window['SFS2X'];
@@ -276,6 +277,13 @@ export class RestaurantSFSConnector extends SFSConnector {
         this.send(this.cmd,params);
     }
 
+    public removeCategory(cate: Categories){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.REMOVE_CATEGORY);
+        params = cate.toSFSObject(params);
+        this.send(this.cmd,params);
+    }
+
     public removeFloor(floor_id: number){
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.REMOVE_FLOOR);
@@ -319,6 +327,21 @@ export class RestaurantSFSConnector extends SFSConnector {
         this.send(this.cmd,params);
     }
 
+    public updateCategory(category: Categories){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_CATEGORY_INFO);
+        params = category.toSFSObject(params);
+        this.send(this.cmd,params);
+    }
+
+    public updateProduct(product: Products){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_PRODUCT_INFO);
+        params = product.toSFSObject(params);
+        this.send(this.cmd,params);
+    }
+
+
     public getListCategoryOfRestaurant(restaurant_id: number){
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_CATEGORIES_IN_RESTAURANT);
@@ -350,6 +373,28 @@ export class RestaurantSFSConnector extends SFSConnector {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_TABLE_IN_RESTAURANT);
         params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
+        this.send(this.cmd,params);
+    }
+
+    public getListStaffOfRestaurant(restaurant_id: number){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_STAFF);
+        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
+        this.send(this.cmd,params);
+    }
+
+    public addUserToRestaurant(user_id,restaurant_id){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.ADD_STAFF_INTO_RESTAURANT);
+        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
+        params.putInt(Paramskey.STAFF_ID,user_id);
+        this.send(this.cmd,params);
+    }
+
+    public updateStaffInfoInRestaurant(staff: Staffs){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_STAFF_IN_RESTAURANT);
+        params = staff.toSFSObject(params);
         this.send(this.cmd,params);
     }
 

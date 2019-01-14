@@ -1,78 +1,82 @@
 page-employee {
-  .tittle-name {
-    display: flex;
-    position: relative;
-    background-color: #dddddd;
-    border-bottom: 1px solid rgb(180, 180, 180);
-    p {
-      margin-left: 15px;
-      font-size: 20px;
+  .add-btn{
+    background-color: map-get($map: $colors, $key: green);
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba($color: map-get($map: $colors, $key: green), $alpha: .16);
+    color: white;
+    min-width: 120px;
+  }
+
+  .m-body-container{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+  }
+  ion-content.content{
+    background: whitesmoke;
+  }
+
+  .header:after{
+    height: 0 !important; 
+  }
+
+  .title-menu {
+    font-weight: bold;
+    color: #222;
+    font-size: 2.2rem;
+  }
+  .btn-add-container{
+    padding-left: 10px;
+    .button{
+      background-color: map-get($map: $colors, $key: green);
+      border-radius: 5px;
+      box-shadow: 0 3px 6px rgba($color: map-get($map: $colors, $key: green), $alpha: .16);
     }
   }
-
-  .btn-menu {
-    margin: auto;
-    padding: 10px;
-    color: white;
-    background-color: rgb(17, 141, 44);
-  }
-  .table-title {
-    background-color: rgb(194, 112, 18);
-    color: white;
-  }
-.search-btn{
-  display: flex;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-  .list-employee {
-    margin: 20px;
-    width: 100%;
-
-    table {
-      border-collapse: collapse;
-      border-spacing: 0;
-      width: 100%;
-      border: 1px solid #ddd;
+  .m-search-container{
+    .searchbar-ios{
+      background: transparent;
+      border-bottom: none !important;
     }
-
-    th,
-    td {
-      text-align: left;
+    .searchbar-ios .searchbar-search-icon {
+      top: 12px;
+    }
+    .searchbar-ios .searchbar-input{
+      font-size: 1.3rem;
+      height: 3.6rem;
+      box-shadow: 0 0 6px rgba($color: #000000, $alpha: .2);
+    }
+  }
+  
+  .table-container{
+    margin-top: 20px;
+    border: 1px solid #BAC1D5;
+    margin-bottom: 20px;
+    .total-name{
       padding: 16px;
     }
-
-    tr:nth-child(even) {
-      background-color: #f2f2f2
+    .white-bg{
+      background: white;
     }
-
-    .hover-name:hover {
-      color: red;
+    th{
+      background-color: map-get($map: $colors, $key: orange);
+      color: white;
+      padding: 16px 0;
     }
-
-  }
-
-  .total-employee {
-    display: flex;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    font-size: 18px;
-    color: red;
-    ;
-
-    ion-label {
-      overflow: visible;
+    td{
+      padding: 14px 0;
+      // background: #f8f8f8;
+    }
+    .width-50{
+      width: 60px;
+    }
+    .item-row-table{
+      cursor: pointer;
+    }
+    .item-row-table:hover{
+      background: rgba($color: map-get($map: $colors, $key: orange), $alpha: .4);
     }
   }
-
-  .alert-md .alert-wrapper{
-    min-width: 370px;
-    text-align: center;
-  }
-
-
 
   
 }

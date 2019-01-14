@@ -1,40 +1,46 @@
 <ion-content>
-  <div class="tittle-name bg-color">
-    <p>Quản lý nhân viên </p>
-    <div class="search-btn">
-      <ion-searchbar></ion-searchbar>
-      <button ion-button inline class="btn-menu" (click)="doPrompt()">
-        <ion-icon name="add"></ion-icon> Thêm mới
-      </button>
-    </div>
-  </div>
-  <div class="list-content">
-    <table class="list-employee">
-      <tr class="table-title">
-        <th>STT</th>
-        <th>Mã nhân viên</th>
-        <th>Tên nhân viên</th>
-        <th>Ngày sinh</th>
-        <th>SĐT</th>
-        <th>TG hoạt động</th>
-        <th>Trạng thái</th>
-      </tr>
-      <tr class="hover-name" *ngFor="let item of items" (click)="openModel()">
-        <td>{{item.stt}}</td>
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.birth}}</td>
-        <td>{{item.phone}}</td>
-        <td>{{item.time}}</td>
-        <td>{{item.status}}</td>
-      </tr>
-    </table>
 
-    <div class="total-employee">
-      <ion-label for="">Tổng số nhân viên: </ion-label>
-      <ion-label for="">5</ion-label>
+  <div class="m-body-container">
+    <div class="a3-container a3-justify-between a3-items-center">
+      <div class="title-menu">Quản lý nhân viên</div>
+      <div class="title-left">
+        <div class="a3-container a3-items-center">
+          <div class="m-search-container">
+            <ion-searchbar mode="ios"></ion-searchbar>
+          </div>
+
+          <div class="btn-add-container">
+            <button ion-button icon-left (click)="onClickAdd()">
+              <ion-icon name="add"></ion-icon>
+              Thêm mới
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <div class="table-container">
+      <div class="total-name" [hidden]="indexMenu != CATEGORY">Tổng số nhân viên: {{items.length}}</div>
+      <table width="100%">
+        <tr class="table-title">
+          <th class="width-50">STT</th>
+          <th class="width-50">ID</th>
+          <th text-left>Tên nhân viên</th>
+          <th text-left>Vai trò</th>
+          <th>Trạng thái</th>
+        </tr>
+        <tr class="hover-name" *ngFor="let item of items; let i = index" (click)="onClickItem(item)" class="item-row-table" [class.white-bg]="i % 2 == 0">
+          <td text-center>{{i+1}}</td>
+          <td text-center>{{item.userID}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.role | staffRole}}</td>
+          <td text-center>{{item.status | staffStatus}}</td>
+        </tr>
+      </table>
+    </div>
+
   </div>
 
-  
+
 </ion-content>

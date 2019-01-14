@@ -29,12 +29,12 @@ export class Products{
 
     public  toSFSObject(o) {
 		o.putInt(Paramskey.RESTAURANT_ID, this.getRestaurant_id());
-		o.putInt(Paramskey.STATUS, this.getStatus());
-		o.putInt(Paramskey.AREA_ID, this.getArea_id());
-		o.putInt(Paramskey.CATEGORY_ID, this.getCategory_id());
+		o.putInt(Paramskey.STATUS, parseInt(this.getStatus()+""));
+		o.putInt(Paramskey.AREA_ID, parseInt(this.getArea_id()+""));
+		o.putInt(Paramskey.CATEGORY_ID, parseInt(this.getCategory_id()+""));
 		o.putInt(Paramskey.PRODUCT_ID, this.getProduct_id());
 		
-		o.putDouble(Paramskey.PRICE, this.getPrice());
+		o.putDouble(Paramskey.PRICE, parseInt(this.getPrice()+""));
 		o.putUtfString(Paramskey.NAME, this.getName());
 		o.putUtfString(Paramskey.THUMBNAIL, this.getThumnail());
 		o.putUtfString(Paramskey.DESCRIPTION, this.getDescription());

@@ -1,0 +1,39 @@
+<!--
+  Generated template for the AddNewEmployeePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Thêm nhân viên</ion-title>
+      <ion-buttons right>
+        <button ion-button icon-only navPop>
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+  
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="form-input-container">
+      <ion-item>
+        <ion-icon name="ios-person-outline" item-start></ion-icon>
+        <ion-input [(ngModel)]="mUserData.username" placeholder="Tên đăng nhập"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="ios-lock-outline" item-start></ion-icon>
+        <ion-input [(ngModel)]="mUserData.password" type="password" placeholder="Mật khẩu"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="a3-container-center login-button-container">
+      <button (click)="onClickSave()" ion-button class="btn-login">Thêm nhân viên</button>
+    </div>
+
+  </div>
+</ion-content>

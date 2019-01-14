@@ -6,6 +6,8 @@ import { RestaurantSFSConnector } from '../../providers/smartfox/SFSConnector';
 import { RestaurantClient } from '../../providers/smartfox/RestaurantClient';
 import { Paramskey } from '../../providers/smartfox/Paramkeys';
 import { RestaurantCMD } from '../../providers/smartfox/RestaurantCMD';
+import { Categories } from '../../providers/class/Categories';
+import { Products } from '../../providers/class/Products';
 // import { AppModule } from '../../app/app.module';
 
 /**
@@ -46,6 +48,18 @@ export class MenuPage {
     public modCtrl: ModalController) {
     this.title = this.titles[this.indexMenu - 1];
 
+  }
+
+  onClickCategory(cate: Categories){
+    this.mAppModule.showModal("CategoryDetailPage", {mode: this.indexMenu, id: cate.getCategory_id()},()=>{
+      RestaurantSFSConnector.getInstance().getListCategoryOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+    });
+  }
+
+  onClickProduct(product: Products){
+    this.mAppModule.showModal("CategoryDetailPage", {mode: this.indexMenu, id: product.getProduct_id()},()=>{
+      RestaurantSFSConnector.getInstance().getListProductOfRestaurant(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+    });
   }
 
   onClickMenu(index) {

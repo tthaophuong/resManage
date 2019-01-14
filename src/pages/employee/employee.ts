@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { AppControllerProvider } from '../../providers/app-controller/app-controller';
+import { RestaurantManager } from '../../providers/app-controller/RestaurantManager';
+import { Staffs } from '../../providers/class/Staffs';
+import { RestaurantSFSConnector } from '../../providers/smartfox/SFSConnector';
+import { RestaurantCMD } from '../../providers/smartfox/RestaurantCMD';
 
 /**
  * Generated class for the EmployeePage page.
@@ -19,100 +24,51 @@ import { IonicPage, NavController, NavParams, ModalController, AlertController }
   templateUrl: 'employee.html',
 })
 export class EmployeePage {
-  modalCtrls: any;
+  items: Array<Staffs> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public alertCtrl: AlertController,
-    public modCtrl: ModalController) {
+  constructor(
+    public mAppModuel: AppControllerProvider,
+    public navCtrl: NavController, public navParams: NavParams, 
+   ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EmployeePage');
-  }
-  openModel() {
-    let modal = this.modCtrl.create("EmployeeDetailPage");
-    modal.present();
-  }
-  doPrompt() {
-    let emp = this.modCtrl.create("EmployeeDetailPage")
-    emp.present();
-  //   let prompt = this.alertCtrl.create({
-  //     title: 'Thêm tài khoản',
-  //     inputs: [
-  //       {
-  //         name: 'Username',
-  //         placeholder: 'Username'
-  //       },
-  //       {
-  //         name: 'Password',
-  //         placeholder: 'Password'
-  //       },
-  //     ],
+    if(!this.mAppModuel.userIsLogin){
+      this.navCtrl.setRoot("LoginPage");
+    }
 
-      
-  //     buttons: [
-  //       {
-  //         text: 'Hủy',
-  //         handler: data => {
-  //           console.log('Cancel clicked');
-  //         }
-  //       },
-  //       {
-  //         text: 'Lưu',
-  //         handler: data => {
-  //           console.log('Saved clicked');
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   prompt.present();
+    this.items = RestaurantManager.getInstance().getStaffs();
+    RestaurantSFSConnector.getInstance().addListener("EmployeePage", response => {
+      this.onExtensions(response);
+    })
+
   }
 
-  items = [
-    {
-      stt: "1",
-      id: "1",
-      name: "Smith",
-      birth: "2000/2/2",
-      phone: "23425235",
-      time: "12:00",
-      status: "đang hoạt động",
-    },
-    {
-      stt: "1",
-      id: "1",
-      name: "Smith",
-      birth: "2000/2/2",
-      phone: "23425235",
-      time: "12:00",
-      status: "đang hoạt động",
-    },
-    {
-      stt: "1",
-      id: "1",
-      name: "Smith",
-      birth: "2000/2/2",
-      phone: "23425235",
-      time: "12:00",
-      status: "đang hoạt động",
-    },
-    {
-      stt: "1",
-      id: "1",
-      name: "Smith",
-      birth: "2000/2/2",
-      phone: "23425235",
-      time: "12:00",
-      status: "đang hoạt động",
-    },
-    {
-      stt: "1",
-      id: "1",
-      name: "Smith",
-      birth: "2000/2/2",
-      phone: "23425235",
-      time: "12:00",
-      status: "đang hoạt động",
-    },
-  ]
+  ionViewWillUnload() {
+    RestaurantSFSConnector.getInstance().removeListener("EmployeePage");
+  }
+
+  onExtensions(response) {
+    this.mAppModuel.hideLoading();
+    let cmd = response.cmd;
+    let params = response.params;
+
+    if(cmd == RestaurantCMD.GET_LIST_STAFF){
+      this.items = RestaurantManager.getInstance().getStaffs();
+    }
+  }
+
+  onClickAdd(){
+    this.mAppModuel.showModal("AddNewEmployeePage",null,(data)=>{
+      if(data){
+        this.mAppModuel.showLoading();
+        RestaurantSFSConnector.getInstance().getListStaffOfRestaurant(this.mAppModuel.getRestaurantOfUser().getRestaurant_id());
+      }
+    })
+  }
+
+  onClickItem(item: Staffs){
+    this.mAppModuel.showModal("EmployeeDetailPage", {id: item.getUserID()});
+  }
+
 }

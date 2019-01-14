@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AppControllerProvider } from '../providers/app-controller/app-controller';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpModule } from '@angular/http';
   imports: [
     HttpModule,
     BrowserModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp,{
       scrollPadding: false,
       scrollAssists: false

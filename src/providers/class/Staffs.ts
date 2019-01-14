@@ -15,7 +15,21 @@ export class Staffs extends Users {
 	public  setRestaurant_id( restaurant_id) {
 		this.restaurant_id = restaurant_id;
 	}
+
+	public toSFSObject(o){
+		o.putInt(Paramskey.STAFF_ID, this.getUserID());
+		o.putInt(Paramskey.RESTAURANT_ID,this.getRestaurant_id());
+		o.putInt(Paramskey.ROLE,parseInt(this.getRole()+""));
+		o.putInt(Paramskey.STATUS,parseInt(this.getStatus()+""));
+		return o;
+	}
 	
+	public fromObject(o: Staffs){
+		this.setUserID(o.getUserID());
+		this.setName(o.getName());
+		this.setRole(o.getRole());
+		this.setStatus(o.getStatus());
+	}
 
 	public  fromSFSObject( o) {
 		super.fromSFSObject(o);

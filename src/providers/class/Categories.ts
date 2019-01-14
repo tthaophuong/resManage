@@ -18,7 +18,7 @@ export class Categories{
 		return o;
 	}
 	
-	public  fromSFSObject(o) {
+	public fromSFSObject(o) {
 		if(o.containsKey(Paramskey.CATEGORY_ID)) {
 			this.setCategory_id(o.getInt(Paramskey.CATEGORY_ID));
 		}

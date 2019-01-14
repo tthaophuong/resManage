@@ -6,6 +6,8 @@ import { Products } from "../class/Products";
 import { Floors } from "../class/Floors";
 import { Areas } from "../class/Areas";
 import { Tables } from "../class/Tables";
+import { Staffs } from "../class/Staffs";
+import { Paramskey } from "./Paramkeys";
 
 export class RestaurantClient extends SfsClientBaseExtension{
     public static _instance : RestaurantClient = null;
@@ -44,8 +46,18 @@ export class RestaurantClient extends SfsClientBaseExtension{
             return this.onParseGET_LIST_AREA_IN_RESTAURANT(params);
         } else if (cmd == RestaurantCMD.GET_LIST_TABLE_IN_RESTAURANT) {
             return this.onParseGET_LIST_TABLE_IN_RESTAURANT(params);
-  
+        } else if (cmd == RestaurantCMD.GET_LIST_STAFF) {
+            return this.onParseGET_LIST_STAFF(params);
         }
+        else if (cmd == RestaurantCMD.CREATE_ACCOUNT) {
+            return this.onParseCREATE_ACCOUNT(params);
+        }
+    }
+
+    onParseCREATE_ACCOUNT(params){
+        let content = params.getSFSObject(Paramskey.CONTENT);
+        let user = content.getSFSObject(Paramskey.USER);
+        return user;
     }
     public onParseGET_LIST_CATEGORIES_IN_RESTAURANT(params){
         let data = this.doParseArrayExtensions(params);
@@ -55,6 +67,21 @@ export class RestaurantClient extends SfsClientBaseExtension{
             for(let i = 0;i < array.size(); i++){
                 let sfs = array.getSFSObject(i);
                 let newRes = new Categories();
+                newRes.fromSFSObject(sfs);
+                res.push(newRes);
+            }
+        }
+        return res;
+    }
+
+    public onParseGET_LIST_STAFF(params){
+        let data = this.doParseArrayExtensions(params);
+        let array = data.array;
+        let res = [];
+        if(array){
+            for(let i = 0;i < array.size(); i++){
+                let sfs = array.getSFSObject(i);
+                let newRes = new Staffs();
                 newRes.fromSFSObject(sfs);
                 res.push(newRes);
             }

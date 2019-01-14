@@ -13,6 +13,8 @@ import { RestaurantOfUser } from '../class/RestaurantOfUser';
 import { Users } from '../class/Users';
 import { HomePage } from '../../pages/home/home';
 import { RestaurantManager } from './RestaurantManager';
+import { Storage } from '@ionic/storage';
+import { StorageController } from '../core/storage';
 
 /*
   Generated class for the AppControllerProvider provider.
@@ -29,8 +31,10 @@ export class AppControllerProvider {
   private mUserData: UserData = new UserData();
   private mUser: Users = new Users();
   private mRestaurantOfUser: Array<RestaurantOfUser> = [];
+  private mStorageController: StorageController = new StorageController();
   mLoading : Loading = null;
   constructor(
+    public mStorage: Storage,
     public mApp: App,
     public http: Http,
     public mAlertController: AlertController,
@@ -40,6 +44,11 @@ export class AppControllerProvider {
     public mToast: ToastController,
   ) {
     this.mAppConfig = new Config();
+    this.mStorageController.setStorage(this.mStorage);
+  }
+
+  public getStorageController(): StorageController{
+    return this.mStorageController;
   }
 
   public getAlertController(){
@@ -156,6 +165,8 @@ export class AppControllerProvider {
         RestaurantManager.getInstance().setAreas(dataBase);
       } else if (cmd == RestaurantCMD.GET_LIST_TABLE_IN_RESTAURANT) {
         RestaurantManager.getInstance().setTables(dataBase);
+      } else if (cmd == RestaurantCMD.GET_LIST_STAFF) {
+        RestaurantManager.getInstance().setStaff(dataBase);
       }
     } else {
       this.showToast(params.getUtfString(Paramskey.MESSAGE));
@@ -169,7 +180,7 @@ export class AppControllerProvider {
     RestaurantSFSConnector.getInstance().getListTableOfRestaurant(this.mRestaurantOfUser[0].getRestaurant_id());
     RestaurantSFSConnector.getInstance().getListAreaOfRestaurant(this.mRestaurantOfUser[0].getRestaurant_id());
     RestaurantSFSConnector.getInstance().getListFloorOfRestaurant(this.mRestaurantOfUser[0].getRestaurant_id());
-
+    RestaurantSFSConnector.getInstance().getListStaffOfRestaurant(this.getRestaurantOfUser().getRestaurant_id());
   }
 
   public showModal(page: string, params?: any,callback?:any) {
@@ -200,7 +211,11 @@ export class AppControllerProvider {
   }
 
   public saveUserLoginData(data) {
-    // return this.mStorageController.saveDataToStorage(this.USERLOGIN, JSON.stringify(data));
+    return this.mStorageController.saveDataToStorage(this.USERLOGIN, JSON.stringify(data));
+  }
+
+  public getUserLogin(){
+    return this.mStorageController.getDataFromStorage(this.USERLOGIN);
   }
 
 

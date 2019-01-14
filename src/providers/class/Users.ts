@@ -9,6 +9,7 @@ export class Users{
 	private  avatar : string = "";
 	private  role : number = -1;
 	private  status : number = -1;
+	private birthday: number = -1;
     
     constructor(){
 
