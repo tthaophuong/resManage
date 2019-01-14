@@ -58,9 +58,13 @@ export class ComboPage {
       this.navCtrl.setRoot("LoginPage");
       return;
     }
-    RestaurantSFSConnector.getInstance().addListener("", response => {
+    RestaurantSFSConnector.getInstance().addListener("ComboPage", response => {
       this.onExtension(response);
     })
+  }
+
+  ionViewWillUnload(){
+    RestaurantSFSConnector.getInstance().removeListener("ComboPage");
   }
 
   onExtension(response) {
