@@ -1,35 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons right>
+        <button ion-button icon-only navPop>
+          <ion-icon name="close-circle"></ion-icon>
+        </button>
+      </ion-buttons>
+  
+      <ion-title>Chương trình khuyến mại</ion-title>
+    </ion-toolbar>
+  </ion-header>
 <ion-content>
-  <div class="schedule-total">
-    <p>Thêm Order</p>
-    <button class="schedule-btn" ion-button icon-only clear (click)="dismiss()">
-      <ion-icon name="close"></ion-icon>
-    </button>
-    <div class="schedule bor-table">
-      <ion-input type="text" value="" placeholder="Nhập tên combo"></ion-input>
-    </div>
-    <div class="schedule bor-table">
-      <ion-input type="text" value="" placeholder="Thêm và tìm kiếm sản phẩm"></ion-input>
-    </div>
-    <ion-row class="schedule" *ngFor="let combo of combos">
-      <ion-col col-3 class="combo-detail">{{combo.namec}}</ion-col>
-      <ion-col col-3 class="combo-detail ">{{combo.linkc}}</ion-col>
-      <ion-col col-3 class="combo-detail combo-quantity">{{combo.quantityc}}</ion-col>
-      <ion-col col-3 class="combo-detail ">{{combo.removec}}</ion-col>
-    </ion-row>
-    <ion-row class="combo-costs ">
-      <ion-col col-3></ion-col>
-      <ion-col col-3></ion-col>
-      <ion-col col-3 class="combo-cost ">
-        <ion-label>Tạm tính:</ion-label>
-      </ion-col>
-      <ion-col col-3 class="combo-cost ">
-        <ion-label>500.000đ</ion-label>
-      </ion-col>
-    </ion-row>
-    <div class="schedule bor-table">
-      <ion-input type="text" value="" placeholder="Giá bán"></ion-input>
-    </div>
+  <div class="category-container foods">
+       <ion-item>
+      <ion-input type="text" placeholder="Mã khuyến mại"></ion-input>
+    </ion-item>
 
-    <button class="save-btn" ion-button inline>Lưu</button>
+    <ion-item>
+      <ion-input type="text" placeholder="Tên chương trình khuyến mại"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" placeholder="Ngày bắt đầu"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" placeholder="Ngày kết thúc"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Mô tả"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" placeholder="Giá tiền(VNĐ)"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Trạng thái</ion-label>
+        <ion-select [(ngModel)]="mTypeCategory">
+          <ion-option value="1">Đang sử dụng</ion-option>
+          <ion-option value="2">Đã dừng</ion-option>
+        </ion-select>
+      </ion-item>
+    <div class="btn-save-bottom">
+        <button ion-button (click)="onClickSave()">Lưu</button>
+      </div>
   </div>
+  
 </ion-content>

@@ -14,44 +14,22 @@
 
 
 <ion-content>
-  <div class="tittle-name bg-color">
-    <p>Báo cáo nhà hàng: </p>
-    <!-- <button ion-button clear (click)="moveOrderDetail()"> Upload </button> -->
-    <select name="" >
-      <option value="text">Tháng 1</option>
-      <option value="text">Tháng 2</option>
-      <option value="text">Tháng 3</option>
-      <option value="text">Tháng 4</option>
-      <option value="text">Tháng 5</option>
-      <option value="text">Tháng 6</option>
-      <option value="text">Tháng 7</option>
-      <option value="text">Tháng 8</option>
-      <option value="text">Tháng 9</option>
-      <option value="text">Tháng 10</option>
-      <option value="text">Tháng 11</option>
-      <option value="text">Tháng 12</option>
-    </select>
-  </div>
-  <!-- <ion-row>
-    <ion-col col-4 class="time-start">Từ ngày: </ion-col>
-    <ion-col col-8 class="calendar">
-      <div class="dropdown" [class.show]="isShowDate">
-        <div class="day-of-weeks" margin-top>
-          <div class="day" *ngFor="let day of dayofweeks">
-            {{day}}
-          </div>
-        </div>
-        <div class="day-in-month row">
-          <div tappable class="day" (click)="changeNumber(day)" *ngFor="let day of calendar.days" 
-          [class.active]="day && day.dayNumber >= today.getDate() && calendar.month == today.getMonth()+ 1">
-            <span *ngIf="day">{{day.dayNumber}}</span>
-            <div class="bg" *ngIf="day && day.dayNumber == numberSelected"></div>
-          </div>
-        </div>
-
-      </div>
-    </ion-col>
-  </ion-row> -->
+    <ion-row align-items-center class="report-bg">
+        <ion-col col-6>
+          <div class="order-title">Quản lý báo cáo nhà hàng</div>
+        </ion-col>
+        <ion-col col-3 offset-3>
+          <ion-item>
+            <ion-label>Thời gian</ion-label>
+            <ion-select [(ngModel)]="mType" placeholder="Chọn bộ lọc">
+              <ion-option value="1">1 tháng</ion-option>
+              <ion-option value="2">2 tháng</ion-option>
+              <ion-option value="3">3 tháng</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
   <dl class="res-diagram">
       <dt>Doanh số của nhà hàng trong tháng 1</dt>
 
