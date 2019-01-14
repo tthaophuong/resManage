@@ -1,9 +1,34 @@
 page-home {
-  .img-cover {
-    // background-image: url("../assets/imgs/Healthy-Dessert-Watermelon-Pizza-Topped-Fruit-806-1.jpg");
-    // background-position: center;
-    // background-repeat: no-repeat;
-    // background-size: cover;
+  .res-content {
+    h2 {
+      font-size: 40px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
   }
 
+  .bg-res {
+    background-image: url("../assets/imgs/Balcony_CrabCakes-5-762x508(pp_w760_h506).jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-filter: blur(2px);
+    height: 100%;
+  }
 }
