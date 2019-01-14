@@ -82,7 +82,7 @@ export class MapPage {
   onExtensions(response) {
     this.mAppModule.hideLoading();
     let cmd = response.cmd;
-    let params = response.params;
+    let params = response.params; 
 
     if (RestaurantClient.getInstance().doCheckStatusParams(params)) {
       // let dataBase = RestaurantClient.getInstance().doBaseDataWithCMDParams(cmd,params);

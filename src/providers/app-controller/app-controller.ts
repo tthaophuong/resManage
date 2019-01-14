@@ -124,6 +124,7 @@ export class AppControllerProvider {
 
   public onLoginSuccess(params) {
     this.userIsLogin = true;
+    
     let dataObject = params['data'].getSFSObject(Paramskey.CONTENT);
     let room_name = dataObject.getUtfString(Paramskey.ROOM_NAME);
 

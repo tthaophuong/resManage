@@ -86,6 +86,10 @@ export class MenuPage {
 
   }
 
+  ionViewWillUnload(){
+    RestaurantSFSConnector.getInstance().removeListener("MenuPage");
+  }
+
   onExtension(response){
     let cmd = response.cmd;
     let params = response.params;

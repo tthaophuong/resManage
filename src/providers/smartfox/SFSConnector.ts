@@ -68,6 +68,8 @@ export class RestaurantSFSConnector extends SFSConnector {
         return this._instance;
     }
 
+    
+
     public setData(data): void {
         super.setData(data);
         this.onResponseDataConfig(data);
@@ -351,7 +353,7 @@ export class RestaurantSFSConnector extends SFSConnector {
     public getListProductOfRestaurant(restaurant_id: number){
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_PRODUCT_IN_RESTAURANT);
-        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
         this.send(this.cmd,params);
     }
 
