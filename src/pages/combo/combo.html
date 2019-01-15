@@ -16,7 +16,7 @@
         <ion-input type="text" placeholder="Tên danh mục" [(ngModel)]="categoryName"></ion-input>
       </ion-item>
 
-      <ion-item> 
+      <ion-item>
         <ion-label>Loại</ion-label>
         <ion-select [(ngModel)]="mTypeCategory">
           <ion-option value="1">Đồ ăn</ion-option>
@@ -29,33 +29,46 @@
     <div id="foods" *ngIf="mMode == 2">
 
       <ion-item>
-        <ion-input type="text" placeholder="Tên món ăn"></ion-input>
-      </ion-item>
- 
-      <ion-item>
-        <ion-input type="number" placeholder="Giá tiền(VNĐ)"></ion-input>
+        <ion-label>Tên</ion-label>
+        <ion-input type="text" [(ngModel)]="mProduct.name"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Đơn vị</ion-label>
-        <ion-select [(ngModel)]="mCurrency">
-          <ion-option value="1">Suất</ion-option>
-          <ion-option value="2">Con</ion-option>
-          <ion-option value="3">Đĩa</ion-option>
+        <ion-label>Giá tiền</ion-label>
+        <ion-input type="text" [(ngModel)]="mProduct.price"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Đơn vị tiền</ion-label>
+        <ion-select [(ngModel)]="mProduct.currency" placeholder="Chọn loại tiền">
+          <ion-option value="VNĐ">VNĐ</ion-option>
+          <ion-option value="$">$</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label>Loại</ion-label>
-        <ion-select [(ngModel)]="mTypeCategory">
-          <ion-option value="1">Đồ ăn</ion-option>
-          <ion-option value="2">Đồ uống</ion-option>
+        <ion-label>Đơn vị món ăn</ion-label>
+        <ion-select [(ngModel)]="mProduct.unit" placeholder="Chọn đơn vị">
+          <ion-option value="chai">Chai</ion-option>
+          <ion-option value="suất">Suất</ion-option>
+          <ion-option value="lon">Lon</ion-option>
+          <ion-option value="con">Con</ion-option>
+          <ion-option value="cốc">Cốc</ion-option>
+          <ion-option value="nồi">Nồi</ion-option>
+          <ion-option value="đĩa">Đĩa</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Danh mục</ion-label>
+        <ion-select [(ngModel)]="mProduct.category_id" placeholder="Chọn danh mục">
+          <ion-option value="{{item.category_id}}" *ngFor="let item of mCategorys">{{item.name}}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>Khu vực chế biến</ion-label>
-        <ion-select [(ngModel)]="mArea" placeholder="Chọn khu vực">
+        <ion-select [(ngModel)]="mProduct.area_id" placeholder="Chọn tầng">
           <ion-option value="{{item.area_id}}" *ngFor="let item of mAreas">{{item.name}}</ion-option>
         </ion-select>
       </ion-item>
@@ -63,45 +76,111 @@
     </div>
 
     <div id="combos" *ngIf="mMode == 3">
-      <ion-item>
-        <ion-input type="text" placeholder="Tên combo"></ion-input>
-      </ion-item>
 
-      <ion-item class="gray-color">
-        <ion-icon item-start name="search"></ion-icon>
-        <ion-label>Thêm và tìm kiếm sản phẩm</ion-label>
-      </ion-item>
-
-      <div class="c-product" >
-        <ion-row align-items-center *ngFor="let item of mProductsProductModels; let i = index">
-          <ion-col col-6>
-            <div class="product-name">{{i+1}}. {{item.product.name}}</div>
+      <div class="segment-container">
+        <ion-row>
+          <ion-col col-6 (click)="onClickType(1)" tappable>
+            <div class="segment-item" [class.selected]="mTypeCombo == 1">Gợi ý</div>
           </ion-col>
-          <ion-col col-1>
-            x
-          </ion-col>
-          <ion-col col-4>
-            <ion-item>
-              <ion-input type="number" placeholder="Số lượng" [(ngModel)]="item.quantity"></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col col-1>
-            <div class="btn-container">
-              <button ion-button icon-only clear color="dark">
-                <ion-icon name="close"></ion-icon>
-              </button>
-            </div>
+          <ion-col col-6 (click)="onClickType(2)" tappable>
+            <div class="segment-item" [class.selected]="mTypeCombo == 2">Tạo mới</div>
           </ion-col>
         </ion-row>
       </div>
 
-      <div class="total-money">
-        Tạm tính: {{total_money | number}}
+      <div [hidden]="mTypeCombo == 2">
+        <ion-item>
+          <ion-label>Gợi ý</ion-label>
+          <ion-select [(ngModel)]="mTypeHint" (ngModelChange)="onChange()" placeholder="Chọn gợi ý">
+            <ion-option value="{{hint.id}}" *ngFor="let hint of mHints">{{hint.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="text" placeholder="Tên combo" [(ngModel)]="mCombo.name"></ion-input>
+        </ion-item>
+
+        <ion-item class="gray-color" (click)="onClickSearch()">
+          <ion-icon item-start name="search"></ion-icon>
+          <ion-label>Thêm và tìm kiếm sản phẩm</ion-label>
+        </ion-item>
+
+        <div class="c-product">
+          <ion-row align-items-center *ngFor="let item of mProductModels; let i = index">
+            <ion-col col-6>
+              <div class="product-name">{{i+1}}. {{item.product.name}}</div>
+            </ion-col>
+            <ion-col col-1>
+              x
+            </ion-col>
+            <ion-col col-4>
+              <ion-item>
+                <ion-input type="number" placeholder="Số lượng" [(ngModel)]="item.quantity"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-1>
+              <div class="btn-container">
+                <button ion-button icon-only clear color="dark">
+                  <ion-icon name="close"></ion-icon>
+                </button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <div class="total-money">
+          Tạm tính: {{getTotalMoney() | number}}
+        </div>
+
+        <ion-item>
+          <ion-input type="number" placeholder="Giá bán(VNĐ)" [(ngModel)]="mCombo.price"></ion-input>
+        </ion-item>
+
       </div>
 
-      <ion-item>
-        <ion-input type="number" placeholder="Giá bán(VNĐ)"></ion-input>
-      </ion-item>
+      <div [hidden]="mTypeCombo == 1">
+        <ion-item>
+          <ion-input type="text" placeholder="Tên combo" [(ngModel)]="mCombo.name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="number" placeholder="Giá bán(VNĐ)" [(ngModel)]="mCombo.price"></ion-input>
+        </ion-item>
+
+        <ion-item class="gray-color" (click)="onClickSearch()">
+          <ion-icon item-start name="search"></ion-icon>
+          <ion-label>Thêm và tìm kiếm sản phẩm</ion-label>
+        </ion-item>
+
+        <div class="c-product">
+          <ion-row align-items-center *ngFor="let item of mProductModels; let i = index">
+            <ion-col col-6>
+              <div class="product-name">{{i+1}}. {{item.product.name}}</div>
+            </ion-col>
+            <ion-col col-1>
+              x
+            </ion-col>
+            <ion-col col-4>
+              <ion-item>
+                <ion-input type="number" placeholder="Số lượng" [(ngModel)]="item.quantity"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-1>
+              <div class="btn-container">
+                <button ion-button icon-only clear color="dark" (click)="onClickClose(i)">
+                  <ion-icon name="close"></ion-icon>
+                </button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <div class="total-money">
+          Tạm tính: {{getTotalMoney() | number}}
+        </div>
+
+
+      </div>
 
 
     </div>

@@ -8,6 +8,9 @@ import { Areas } from '../../providers/class/Areas';
 import { RestaurantClient } from '../../providers/smartfox/RestaurantClient';
 import { Paramskey } from '../../providers/smartfox/Paramkeys';
 import { RestaurantCMD } from '../../providers/smartfox/RestaurantCMD';
+import { Combos } from '../../providers/class/Combo';
+import { RestaurantManager } from '../../providers/app-controller/RestaurantManager';
+import { ProductInCombo } from '../../providers/class/ProductInCombo';
 
 /**
  * Generated class for the ComboPage page.
@@ -38,11 +41,24 @@ export class ComboPage {
   total_money: number = 0;
 
   mProducts: Array<Products> = [];
-  mProductsProductModels: Array<ProductModels> = [];
+  mProductModels: Array<ProductModels> = [];
 
   categoryName: string = "";
 
   mAreas: Array<Areas> = [];
+  mCategorys: Array<Categories> = [];
+
+  mCombo: Combos = new Combos();
+
+  mProduct: Products = new Products();
+
+  mTypeCombo: number = 1;
+  mTypeHint: number = 1;
+
+  mHints = [
+    {name: "Top 5 sản phẩm bán chạy", id: 1},
+    {name: "Top 5 sản phẩm bán ít", id: 2},
+  ];
 
   constructor(
     public mAppModule: AppControllerProvider,
@@ -51,6 +67,35 @@ export class ComboPage {
       this.mMode = this.navParams.get("mode");
       this.cateTitle = this.titles[this.mMode - 1];
     }
+
+    if(this.mMode == 3){
+      this.onLoadProductModels();
+    }
+  }
+
+  onChange(){
+    this.onLoadProductModels();
+  }
+
+  onLoadProductModels(){
+    this.mCombo.setName(this.mHints[this.mTypeHint - 1].name);
+    let products = [];
+    if(this.mTypeCombo == 1){
+      products = RestaurantManager.getInstance().getTopProducts();
+    }else{
+      products = RestaurantManager.getInstance().getBottomProducts();
+    }
+    this.mProductModels = [];
+    products.forEach(element => {
+      this.mProductModels.push({
+        product: element,
+        quantity: 1
+      });
+    });
+  }
+
+  onClickType(number){
+    this.mTypeCombo = number;
   }
 
   ionViewDidLoad() {
@@ -61,6 +106,11 @@ export class ComboPage {
     RestaurantSFSConnector.getInstance().addListener("ComboPage", response => {
       this.onExtension(response);
     })
+
+    this.mCombo.setRestaurant_id(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+    this.mAreas = RestaurantManager.getInstance().getAreas();
+    this.mCategorys = RestaurantManager.getInstance().getCategorys();
+
   }
 
   ionViewWillUnload(){
@@ -76,6 +126,10 @@ export class ComboPage {
       if (cmd == RestaurantCMD.CREATE_CATEGORY) {
         this.showMessageSuccess();
       } else if (cmd == RestaurantCMD.ADD_PRODUCT) {
+        this.showMessageSuccess();
+      } else if(cmd == RestaurantCMD.CREATE_COMBO){
+        this.onResponseCreateCombo(params);
+      } else if (cmd == RestaurantCMD.ADD_PRODUCT_INTO_COMBO){
         this.showMessageSuccess();
       }
     } else {
@@ -111,11 +165,85 @@ export class ComboPage {
   }
 
   doCreateProduct() {
-
+    this.mAppModule.showLoading();
+    this.mProduct.setRestaurant_id(this.mAppModule.getRestaurantOfUser().getRestaurant_id());
+    RestaurantSFSConnector.getInstance().addNewProduct([this.mProduct]);
   }
 
   doCreateCombo() {
+    this.mAppModule.showLoading();
+    RestaurantSFSConnector.getInstance().createCombo(this.mCombo);
+  }
 
+  onResponseCreateCombo(params){
+    let content = params.getSFSObject(Paramskey.CONTENT);
+    let info = content.getSFSObject(Paramskey.INFO);
+    this.mCombo.fromSFSObject(info);
+    let array : Array<ProductInCombo> = [];
+    
+    this.mProductModels.forEach(p=>{
+      let newP = new ProductInCombo();
+      newP.setCombo_id(this.mCombo.getCombo_id());
+      newP.setProduct_id(p.product.getProduct_id());
+      newP.setQuantity(p.quantity);
+      array.push(newP);
+    });
+
+    RestaurantSFSConnector.getInstance().addProductIntoCombo(array);
+  }
+
+  onClickSearch(){
+    let products = RestaurantManager.getInstance().getProducts();
+    let array = [];
+    products.forEach(element => {
+      array.push({
+        name: element.getName(),
+        id: element.getProduct_id()
+      })
+    });
+
+    this.mAppModule.showRadio("Chọn sản phẩm", array, -1,(id)=>{
+      if(id){
+
+        let index = products.findIndex(pro=>{
+          return pro.getProduct_id() == id;
+        })
+
+        if(index > -1){
+          if(this.mProductModels.length == 0){
+            this.mProductModels.push({
+              product : products[index],
+              quantity: 1
+            });
+          }else{
+            let index1 = this.mProductModels.findIndex(p=>{
+              return p.product.getProduct_id() == products[index].getProduct_id();
+            });
+  
+            if(index1 > -1){
+              this.mProductModels[index1].quantity+=1;
+            }else{
+              this.mProductModels.push({
+                product : products[index],
+                quantity: 1
+              });
+            }
+          }
+        }
+      }
+    })
+  }
+
+  getTotalMoney(){
+    let sum = 0;
+    this.mProductModels.forEach(m=>{
+      sum+= m.product.getPrice() * m.quantity;
+    })
+    return sum;
+  }
+
+  onClickClose(i){
+    this.mProductModels.splice(i,1);
   }
 
 }

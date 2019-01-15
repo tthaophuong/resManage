@@ -23,9 +23,9 @@
         <ion-item>
           <ion-label>Thời gian</ion-label>
           <ion-select [(ngModel)]="mType" placeholder="Chọn bộ lọc">
-            <ion-option value="1">7 ngày</ion-option>
-            <ion-option value="2">15 ngày</ion-option>
-            <ion-option value="3">30 ngày</ion-option>
+            <ion-option value="1">Hôm nay</ion-option>
+            <ion-option value="2">7 ngày</ion-option>
+            <ion-option value="3">15 ngày</ion-option>
           </ion-select>
         </ion-item>
       </ion-col>
@@ -40,26 +40,21 @@
     <div class="table-container">
         <table width="100%" class="list-order">
             <tr>
+              <th>STT</th>
               <th> Mã Order</th>
               <th> Tên bàn</th>
-              <th>Mã nhân viên</th>
-              <th text-left>Tên nhân viên</th>
-              <th>Thời gian bắt đầu</th>
-              <th>Thời gian kết thúc</th>
-              <th>Ngày</th>
               <th>Trạng thái</th>
               <th>Tổng tiền</th>
+              <th>Thời gian tạo</th>
+
             </tr>
-            <tr class="hover-name" *ngFor="let item of items; let i = index" [class.white-bg]="i%2 == 1" (click)="moveOrderDetail()">
-              <td text-center>{{item.orderID}}</td>
-              <td text-center>{{item.table}}</td>
-              <td text-center>{{item.nameID}}</td>
-              <td>{{item.name}}</td>
-              <td text-center>{{item.startTime}}</td>
-              <td text-center>{{item.endTime}}</td>
-              <td text-center>{{item.date}}</td>
-              <td text-center>{{item.status}}</td>
-              <td text-center>{{item.money}}</td>
+            <tr class="hover-name" *ngFor="let item of mAllOrders; let i = index" [class.white-bg]="i%2 == 1" >
+              <td text-center>{{i+1}}</td>
+              <td text-center>{{item.order_id}}</td>
+              <td text-center>{{item.table_id | tableName}}</td>
+              <td text-center>{{item.status | orderStatus}}</td>
+              <td text-center>{{item.total_money | number}}đ</td>
+              <td text-center>{{item.getTimeDate() | date: 'short'}}</td>
             </tr>
           </table>
     </div>

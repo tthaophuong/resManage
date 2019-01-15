@@ -67,4 +67,27 @@ page-combo {
       border-top: .55px solid white;
       color: map-get($map: $colors, $key: orange);
   }
+
+  .segment-container{
+    .col:first-child{
+      padding-left: 0;
+     
+    }
+    .col:last-child{
+      padding-right: 0;
+     
+    }
+    .segment-item{
+      padding: 10px;
+      box-shadow: 0 3px 6px rgba($color: #000000, $alpha: .16);
+      background: #7b7b7b;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 1.8rem;
+      &.selected{
+        background: #488aff;
+      }
+    }
+  }
 }

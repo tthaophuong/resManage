@@ -72,5 +72,18 @@ export class RestaurantCMD {
 	public static  REMOVE_DISCOUNT : string = "remove_discount";
 	public static  GET_LIST_DISCOUNT_IN_RESTAURANT : string = "get_list_discount_in_restaurant";
 
+	public static  GET_COMBO_INFO = "get_combo_info";
+	public static  CREATE_COMBO = "create_combo";
+	public static  UPDATE_COMBO_INFO = "update_combo_info";
+	public static  GET_LIST_COMBO_OF_RESTAURANT = "get_list_combo_of_restaurant";
+	
+	public static  ADD_PRODUCT_INTO_COMBO = "add_product_into_combo";
+	public static  REMOVE_PRODUCT_OUT_COMBO = "remove_product_out_combo";
+	public static  UPDATE_PRODUCT_IN_COMBO = "update_product_in_combo";
+	public static  GET_PRODUCT_IN_COMBO = "get_product_in_combo";
+
+	public static GET_TOP_PRODUCT_IN_RESTAURANT = "get_top_product_in_restaurant";
+	public static GET_BOTTOM_PRODUCT_IN_RESTAURANT = "get_bottom_product_in_restaurant";
+	
     constructor() { }
 }

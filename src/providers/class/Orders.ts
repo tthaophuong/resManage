@@ -11,16 +11,20 @@ export class Orders {
     private customer_id : number = -1;
 
     private code = "";
-    private total_money : number = -1;
+    private total_money : number = 0;
     private time_created : number = -1;
     private time_payment : number = -1;
 
-    private number_customer: number = -1;
+    private number_customer: number = 1;
     private mTable: Tables = new Tables();
 
-    private time_serve: number = -1;
+    private time_serve: number = 0;
 
     constructor() { }
+
+    getTimeDate(){
+        return new Date(this.time_created);
+    }
 
     public getNumber_customer() {
 		return this.number_customer;
@@ -28,21 +32,25 @@ export class Orders {
 
 	public setNumber_customer(number_customer) {
 		this.number_customer = number_customer;
-	}
+    }
+    
+    public getTables(): Tables{
+        return this.mTable;
+    }
 
 
     public  toSFSObject(o) {
 		o.putInt(Paramskey.RESTAURANT_ID, this.getRestaurant_id());
 		o.putInt(Paramskey.TABLE_ID, this.getTable_id());
 		o.putInt(Paramskey.ORDER_ID, this.getOrder_id());
-		o.putInt(Paramskey.CUSTOMER_ID, this.getCustomer_id());
+		if(this.getCustomer_id() > 0)o.putInt(Paramskey.CUSTOMER_ID, this.getCustomer_id());
 		o.putInt(Paramskey.STAFF_CREATE, this.getStaff_created());
-		o.putInt(Paramskey.STAFF_PAYMENT, this.getStaff_payment());
+		if(this.getStaff_payment() > 0)o.putInt(Paramskey.STAFF_PAYMENT, this.getStaff_payment());
 		o.putInt(Paramskey.STATUS, this.getStatus());
 		o.putUtfString(Paramskey.CODE, this.getCode());
 		o.putDouble(Paramskey.TOTAL_MONEY, this.getTotal_money());
 		o.putLong(Paramskey.TIME_CREATED, this.getTime_created());
-        o.putLong(Paramskey.TIME_PAYMENT, this.getTime_payment());
+        if(this.getTime_payment() > 0)o.putLong(Paramskey.TIME_PAYMENT, this.getTime_payment());
         o.putInt(Paramskey.NUMBER_CUSTOMER, this.getNumber_customer());
 		return o;
 	}

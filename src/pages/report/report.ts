@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Products } from '../../providers/class/Products';
+import { RestaurantManager } from '../../providers/app-controller/RestaurantManager';
+import { AppControllerProvider } from '../../providers/app-controller/app-controller';
 
 /**
  * Generated class for the ReportPage page.
@@ -9,8 +12,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  */
 
 @IonicPage({
-  name:"ReportPage",
-  segment:"report"
+  name: "ReportPage",
+  segment: "report"
 })
 @Component({
   selector: 'page-report',
@@ -18,10 +21,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ReportPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  mType: number = 1;
+  items: Array<Products> = [];
+
+  constructor(
+    public mAppModule: AppControllerProvider,
+    public navCtrl: NavController, public navParams: NavParams) {
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ReportPage');
+    if(!this.mAppModule.userIsLogin){
+      this.navCtrl.setRoot("LoginPage");
+      return;
+    }
+    this.items = RestaurantManager.getInstance().mTopProducts;
   }
 
 }

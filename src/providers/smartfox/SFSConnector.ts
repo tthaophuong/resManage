@@ -10,6 +10,8 @@ import { Areas } from '../class/Areas';
 import { Categories } from '../class/Categories';
 import { Tables } from '../class/Tables';
 import { Staffs } from '../class/Staffs';
+import { Combos } from '../class/Combo';
+import { ProductInCombo } from '../class/ProductInCombo';
 
 
 var SFS2X = window['SFS2X'];
@@ -68,7 +70,7 @@ export class RestaurantSFSConnector extends SFSConnector {
         return this._instance;
     }
 
-    
+
 
     public setData(data): void {
         super.setData(data);
@@ -202,202 +204,264 @@ export class RestaurantSFSConnector extends SFSConnector {
 
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.USERNAME, data.getUserName());
-        params.putUtfString(Paramskey.PASSWORD, data.getPassword());
+        params.putUtfString(Paramskey.PASSWORD, md5(data.getPassword()));
         params.putUtfString(Paramskey.CMD, RestaurantCMD.CREATE_ACCOUNT);
         this.send(this.cmd, params);
     }
 
-    doUpdateUserInfo(data: UserData){
+    doUpdateUserInfo(data: UserData) {
         if (SFS2X == null || SFS2X == undefined) {
             SFS2X = window['SFS2X'];
         }
 
         let params = new SFS2X.SFSObject();
-        params.putUtfString(Paramskey.NAME, data.getName()) ;
-        params.putInt(Paramskey.USER_ID,data.getUserId());
+        params.putUtfString(Paramskey.NAME, data.getName());
+        params.putInt(Paramskey.USER_ID, data.getUserId());
         params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_ACCOUNT);
         this.send(this.cmd, params);
     }
 
-    public doCreateRestaurant(){
+    public doCreateRestaurant() {
         let params = new SFS2X.SFSObject();
         // params.putUtfString(Paramskey.NAME, "New restaurant");
         params.putUtfString(Paramskey.CMD, RestaurantCMD.CREATE_RESTAURANT);
         this.send(this.cmd, params);
     }
 
-    public getRestaurantOfUser(){
+    public getRestaurantOfUser() {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_RESTAURANT_OF_USER);
         this.send(this.cmd, params);
     }
 
-    public addNewProduct(array : Array<Products>){
+    public addNewProduct(array: Array<Products>) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.ADD_PRODUCT);
-       
+
         let _array = new SFS2X.SFSArray();
         array.forEach(element => {
             let o = new SFS2X.SFSObject();
-            console.log(element);
-            
             o = element.toSFSObject(o);
-            console.log(o.getDump());
             _array.addSFSObject(o);
 
         });
 
-        params.putSFSArray(Paramskey.ARRAY,_array);
-        this.send(this.cmd,params);
+        params.putSFSArray(Paramskey.ARRAY, _array);
+        this.send(this.cmd, params);
     }
 
-    public addNewFloor(floor: Floors){
+    public addNewFloor(floor: Floors) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.CREATE_FLOOR);
         params = floor.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
-    public addUpdateFloor(floor: Floors){
+    public addUpdateFloor(floor: Floors) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_FLOOR_INFO);
         params = floor.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
-    public addNewArea(area: Areas){
+    public addNewArea(area: Areas) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.CREATE_AREA);
         params = area.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
-    public addUpdateArea(area: Areas){
+    public addUpdateArea(area: Areas) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_AREA_INFO);
         params = area.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
-    public removeCategory(cate: Categories){
+    public removeCategory(cate: Categories) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.REMOVE_CATEGORY);
         params = cate.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
-    public removeFloor(floor_id: number){
+    public removeFloor(floor_id: number) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.REMOVE_FLOOR);
-        params.putInt(Paramskey.FLOOR_ID,floor_id);
-        this.send(this.cmd,params);
+        params.putInt(Paramskey.FLOOR_ID, floor_id);
+        this.send(this.cmd, params);
     }
 
-    public removeTable(table_id: number){
+    public removeTable(table_id: number) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.REMOVE_TABLE);
-        params.putInt(Paramskey.TABLE_ID,table_id);
-        this.send(this.cmd,params);
+        params.putInt(Paramskey.TABLE_ID, table_id);
+        this.send(this.cmd, params);
     }
 
-    public removeArea(area_id: number){
+    public removeArea(area_id: number) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.REMOVE_AREA);
-        params.putInt(Paramskey.AREA_ID,area_id);
-        this.send(this.cmd,params);
+        params.putInt(Paramskey.AREA_ID, area_id);
+        this.send(this.cmd, params);
     }
 
-    public addNewTable(table: Tables){
+    public addNewTable(table: Tables) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.CREATE_TABLE);
         params = table.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
 
-    public addUpdateTable(table: Tables){
+    public addUpdateTable(table: Tables) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_TABLE_INFO);
         params = table.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
-    public addNewCategory(category: Categories){
+    public addNewCategory(category: Categories) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.CREATE_CATEGORY);
         params = category.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
-    public updateCategory(category: Categories){
+    public updateCategory(category: Categories) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_CATEGORY_INFO);
         params = category.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
-    public updateProduct(product: Products){
+    public updateProduct(product: Products) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_PRODUCT_INFO);
         params = product.toSFSObject(params);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
 
-    public getListCategoryOfRestaurant(restaurant_id: number){
+    public getListCategoryOfRestaurant(restaurant_id: number) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_CATEGORIES_IN_RESTAURANT);
-        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
-        this.send(this.cmd,params);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
+        this.send(this.cmd, params);
     }
-    public getListProductOfRestaurant(restaurant_id: number){
+    public getListProductOfRestaurant(restaurant_id: number) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_PRODUCT_IN_RESTAURANT);
         params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
-        this.send(this.cmd,params);
+        this.send(this.cmd, params);
     }
 
-    public getListFloorOfRestaurant(restaurant_id: number){
+    public getListFloorOfRestaurant(restaurant_id: number) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_FLOOR_IN_RESTAURANT);
-        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
-        this.send(this.cmd,params);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
+        this.send(this.cmd, params);
     }
 
-    public getListAreaOfRestaurant(restaurant_id: number){
+    public getListAreaOfRestaurant(restaurant_id: number) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_AREA_IN_RESTAURANT);
-        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
-        this.send(this.cmd,params);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
+        this.send(this.cmd, params);
     }
 
-    public getListTableOfRestaurant(restaurant_id: number){
+    public getListTableOfRestaurant(restaurant_id: number) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_TABLE_IN_RESTAURANT);
-        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
-        this.send(this.cmd,params);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
+        this.send(this.cmd, params);
     }
 
-    public getListStaffOfRestaurant(restaurant_id: number){
+    public getListStaffOfRestaurant(restaurant_id: number) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_STAFF);
-        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
-        this.send(this.cmd,params);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
+        this.send(this.cmd, params);
     }
 
-    public addUserToRestaurant(user_id,restaurant_id){
+    public addUserToRestaurant(user_id, restaurant_id) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.ADD_STAFF_INTO_RESTAURANT);
-        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
-        params.putInt(Paramskey.STAFF_ID,user_id);
-        this.send(this.cmd,params);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
+        params.putInt(Paramskey.STAFF_ID, user_id);
+        this.send(this.cmd, params);
     }
 
-    public updateStaffInfoInRestaurant(staff: Staffs){
+    public updateStaffInfoInRestaurant(staff: Staffs) {
         let params = new SFS2X.SFSObject();
         params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_STAFF_IN_RESTAURANT);
         params = staff.toSFSObject(params);
+        this.send(this.cmd, params);
+    }
+
+    public createCombo(combo: Combos) {
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.CREATE_COMBO);
+        params = combo.toSFSObject(params);
+        this.send(this.cmd, params);
+    }
+
+    public addProductIntoCombo(array: Array<ProductInCombo>) {
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.ADD_PRODUCT_INTO_COMBO);
+
+        let _array = new SFS2X.SFSArray();
+        array.forEach(element => {
+            let o = new SFS2X.SFSObject();
+            o = element.toSFSObject(o);
+            _array.addSFSObject(o);
+        });
+
+        params.putSFSArray(Paramskey.ARRAY, _array);
+        this.send(this.cmd, params);
+    }
+
+    public getListComboOfRestaurant(restaurant_id) {
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_COMBO_OF_RESTAURANT);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
+        this.send(this.cmd, params);
+    }
+
+    public getTopProductInRestaurant(restaurant_id: number) {
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_TOP_PRODUCT_IN_RESTAURANT);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
+        this.send(this.cmd, params);
+    }
+
+    public getBottomProductInRestaurant(restaurant_id: number) {
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_BOTTOM_PRODUCT_IN_RESTAURANT);
+        params.putInt(Paramskey.RESTAURANT_ID, restaurant_id);
+        this.send(this.cmd, params);
+    }
+
+    public updateCombo(combo: Combos) {
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.UPDATE_COMBO_INFO);
+        params = combo.toSFSObject(params);
+        this.send(this.cmd, params);
+    }
+
+    public getListProductInCombo(combo_id) {
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_PRODUCT_IN_COMBO);
+        params.putInt(Paramskey.COMBO_ID, combo_id);
+        this.send(this.cmd, params);
+    }
+
+    public getListOrder(restaurant_id : number){
+        let params = new SFS2X.SFSObject();
+        params.putUtfString(Paramskey.CMD, RestaurantCMD.GET_LIST_ORDER_TODAY);
+        params.putInt(Paramskey.RESTAURANT_ID,restaurant_id);
         this.send(this.cmd,params);
     }
+
 
 }

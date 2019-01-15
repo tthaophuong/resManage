@@ -14,24 +14,49 @@
 
 
 <ion-content>
-    <ion-row align-items-center class="report-bg">
+  <ion-row align-items-center class="report-bg">
+    <ion-col col-6>
+      <div class="order-title">Báo cáo nhà hàng</div>
+    </ion-col>
+    <ion-col col-3 offset-3>
+      <ion-item>
+        <ion-label>Thời gian</ion-label>
+        <ion-select [(ngModel)]="mType" placeholder="Chọn bộ lọc">
+          <ion-option value="1">Hôm nay</ion-option>
+          <ion-option value="2">7 ngày</ion-option>
+          <ion-option value="3">15 ngày</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+ <div class="container">
+    <ion-row>
         <ion-col col-6>
-          <div class="order-title">Quản lý báo cáo nhà hàng</div>
-        </ion-col>
-        <ion-col col-3 offset-3>
-          <ion-item>
-            <ion-label>Thời gian</ion-label>
-            <ion-select [(ngModel)]="mType" placeholder="Chọn bộ lọc">
-              <ion-option value="1">1 tháng</ion-option>
-              <ion-option value="2">2 tháng</ion-option>
-              <ion-option value="3">3 tháng</ion-option>
-            </ion-select>
-          </ion-item>
+          <div class="font-big bold">
+            Top sản phẩm bán chạy
+          </div>
+    
+         <div class="table-container">
+            <table width="100%">
+                <tr>
+                  <th class="width-50">STT</th>
+                  <th text-left>Tên</th>
+                  <th>Giá</th>
+                </tr>
+                <tr *ngFor="let item of items; let i = index" [class.white-bg]="i % 2 == 0">
+                  <td text-center>{{i+1}}</td>
+                  <td>{{item.name}}</td>
+                  <td text-center>{{item.price | number}}</td>
+                </tr>
+              </table>
+         </div>
         </ion-col>
       </ion-row>
-  
-  <dl class="res-diagram">
-      <dt>Doanh số của nhà hàng trong tháng 1</dt>
+ </div>
+  <!-- <dl class="res-diagram">
+    <dt>Doanh số của nhà hàng trong tháng 1</dt>
 
     <dd class="percentage percentage-11"><span class="text">Salad: 11.33%</span></dd>
     <dd class="percentage percentage-49"><span class="text">Gà nướng: 49.77%</span></dd>
@@ -39,6 +64,6 @@
     <dd class="percentage percentage-5"><span class="text">Lẩu bò: 5.41%</span></dd>
     <dd class="percentage percentage-2"><span class="text">Rau xào: 1.62%</span></dd>
     <dd class="percentage percentage-2"><span class="text">Khoai tây chiên: 2%</span></dd>
-  </dl>
+  </dl> -->
 
-</ion-content> 
+</ion-content>

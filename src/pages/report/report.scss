@@ -1,51 +1,14 @@
 page-report {
   .report-bg {
     background: map-get($map: $colors, $key: light);
+    padding-left: 16px;
+    padding-right: 10px;
   }
 
-  .container {
-    padding: 20px 16px;
-
-    .searchbar-ios {
-      background: transparent;
-      border-bottom: none !important;
-    }
-
-    .searchbar-ios .searchbar-search-icon {
-      top: 12px;
-    }
-
-    .searchbar-ios .searchbar-input {
-      font-size: 1.3rem;
-      height: 3.6rem;
-      box-shadow: 0 0 6px rgba($color: #000000, $alpha: .2);
-    }
-
-    th {
-      background-color: map-get($map: $colors, $key: orange);
-      color: white;
-      padding: 16px 0;
-    }
-
-    .white-bg {
-      background: white;
-    }
-
-    td {
-      padding: 14px 0;
-      // background: #f8f8f8;
-    }
-
-    .table-container {
-      border: 1px solid #BAC1D5;
-      margin-top: 32px;
-    }
-  }
-
-  .order-title {
+  .order-title{
     font-weight: bold;
     color: #222;
-    font-size: 24px;
+    font-size: 3rem;
   }
 
   .item {
@@ -77,6 +40,7 @@ page-report {
     box-shadow: none;
   }
 
+  
   dl {
     display: flex;
     background-color: white;
@@ -228,4 +192,45 @@ page-report {
   //     }
   //   }
   // }
+
+  .table-container{
+    margin-top: 10px;
+    border: .55px solid #BAC1D5;
+    margin-bottom: 20px;
+    .total-name{
+      padding: 16px;
+    }
+    .white-bg{
+      background: rgb(208, 212, 223);
+    }
+    th{
+      background-color: map-get($map: $colors, $key: orange);
+      color: white;
+      padding: 12px 0;
+    }
+    td{
+      padding: 12px 0;
+      // background: #f8f8f8;
+    }
+    .width-50{
+      width: 60px;
+    }
+    .item-row-table{
+      cursor: pointer;
+    }
+    .item-row-table:hover{
+      background: rgba($color: map-get($map: $colors, $key: orange), $alpha: .4);
+    }
+  }
+
+  .font-big{
+    font-size: 1.8rem;
+  }
+  .bold{
+    font-weight: bold;
+  }
+
+  .container{
+    padding: 16px;
+  }
 }

@@ -80,16 +80,12 @@
           <th text-center class="width-50">Mã ID</th>
           <th text-left>Tên </th>
           <th text-left>Giá </th>
-          <th text-center>Loại </th>
-          <th text-center>Trạng thái </th>
         </tr>
-        <tr *ngFor="let combo of combos ; let i = index" class="item-row-table" [class.white-bg]="i % 2 == 0">
+        <tr *ngFor="let combo of combos ; let i = index" (click)="onClickCombo(combo)" class="item-row-table" [class.white-bg]="i % 2 == 0">
           <td text-center>{{i+1}}</td>
-          <td text-center>{{combo.idc}}</td>
-          <td text-left>{{combo.namec}}</td>
-          <td text-left>{{combo.costc}}</td>
-          <td text-center>{{combo.kindc}}</td>
-          <td text-center>{{combo.statusc}}</td>
+          <td text-center>{{combo.combo_id}}</td>
+          <td text-left>{{combo.name}}</td>
+          <td text-left>{{combo.price | number}}</td>
         </tr>
       </table>
 

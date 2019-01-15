@@ -4,6 +4,7 @@ import { Floors } from "../class/Floors";
 import { Tables } from "../class/Tables";
 import { Areas } from "../class/Areas";
 import { Staffs } from "../class/Staffs";
+import { Combos } from "../class/Combo";
 
 export class RestaurantManager {
     public static _instance: RestaurantManager = null;
@@ -13,9 +14,21 @@ export class RestaurantManager {
     mTables: Array<Tables> = [];
     mAreas: Array<Areas> = [];
     mStaffs: Array<Staffs> = [];
+    mCombos: Array<Combos> = [];
+
+    mTopProducts: Array<Products> = [];
+    mBottomProducts: Array<Products> = [];
 
     constructor() {
 
+    }
+
+    public getTopProducts(){
+        return this.mTopProducts;
+    }
+
+    public getBottomProducts(){
+        return this.mBottomProducts;
     }
 
     public getFloorInfo(floor_id: number){
@@ -84,6 +97,17 @@ export class RestaurantManager {
         return new Categories();
     }
 
+    public getComboInfo(combo_id: number){
+        if(this.mCombos.length > 0){
+            for (const category of this.mCombos) {
+                if(category.getCombo_id() == combo_id){
+                    return category;
+                }
+            }
+        }
+        return new Combos();
+    }
+
     public getFloors() {
         return this.mFloors;
     }
@@ -101,6 +125,13 @@ export class RestaurantManager {
     }
     public getStaffs() {
         return this.mStaffs;
+    }
+    public getCombos() {
+        return this.mCombos;
+    }
+
+    public setCombos(params) {
+        this.mCombos = params;
     }
 
     public setCategors(params) {

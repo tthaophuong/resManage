@@ -7,8 +7,8 @@ export class Products{
 	private  restaurant_id : number = -1;
 	private  category_id : number = -1;
 	private  area_id : number = -1;
-	private  price : number = 25000;
-	private  name : string = "product";
+	private  price : number = 0;
+	private  name : string = "";
 	private  description : string = "";
 	private  thumnail : string = "";
 	
